@@ -58,7 +58,6 @@ public class CharacterMovementController : MonoBehaviour
 
     private void Jump()
     {
-        Debug.Log(123);
         _moveDirection.y = _jumpForce;
     }
 
@@ -103,5 +102,11 @@ public class CharacterMovementController : MonoBehaviour
 
         inputDirection = transform.TransformDirection(inputDirection);
         _moveDirection = inputDirection * _speed;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawSphere(_legsPoint.position, _checkGraoundRayLenght);
     }
 }
