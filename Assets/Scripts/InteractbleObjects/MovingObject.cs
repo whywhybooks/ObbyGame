@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MovingObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int range = 10;//max height of Box's movement
+    public float xCenter = 6f;
+
+    Rigidbody rb;
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+      //  rb.MovePosition(new Vector3(xCenter + Mathf.PingPong(Time.time * 2, range) - range / 2f, transform.position.y, transform.position.z));
+        Quaternion targetRotation = Quaternion.Euler(0, range * Time.fixedDeltaTime, 0);
+        rb.MoveRotation(rb.rotation * targetRotation);
     }
 }

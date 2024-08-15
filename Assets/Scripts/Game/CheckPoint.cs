@@ -36,7 +36,6 @@ public class CheckPoint : MonoBehaviour
 
             if (_activated == false)
             {
-            Debug.Log(123);
                 OnCollisionEnter?.Invoke(this);
                 _activated = true;
             }

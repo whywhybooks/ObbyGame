@@ -5,5 +5,9 @@ using UnityEngine;
 public class CharacterLooking : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private float _sensetivity;
+
+    private void LateUpdate()
+    {
+        transform.eulerAngles = new Vector3(0, _mainCamera.transform.eulerAngles.y, 0);
+    }
 }

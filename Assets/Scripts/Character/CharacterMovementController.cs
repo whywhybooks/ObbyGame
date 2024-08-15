@@ -41,6 +41,7 @@ public class CharacterMovementController : MonoBehaviour
 
         Rotate();
 
+        Debug.Log(_characterController.contactOffset);
         _moveDirection.y -= _gravity * Time.deltaTime;
         _characterController.Move(_moveDirection * Time.deltaTime);
     }
