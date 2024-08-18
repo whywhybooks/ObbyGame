@@ -106,7 +106,7 @@ public class PhysicalCC : MonoBehaviour
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-        /*	if (!applyCollision) return;
+        	if (!applyCollision) return;
 
             Rigidbody body = hit.collider.attachedRigidbody;
 
@@ -117,20 +117,7 @@ public class PhysicalCC : MonoBehaviour
             Vector3 pushDir = -hit.moveDirection.normalized;
 
             // Apply the push
-            body.AddForce(pushDir * pushForce, ForceMode.Force);*/
-        if (!applyCollision) return;
-
-        Rigidbody body = hit.collider.attachedRigidbody;
-
-        // check rigidbody
-        if (body == null || body.isKinematic) return;
-
-        // Calculate push direction from player to the collision point
-        Vector3 pushDir = hit.point - transform.position;
-        pushDir.y = 0; // Optionally, prevent pushing in the vertical direction
-
-        // Apply the push
-        body.AddForce(pushDir.normalized * pushForce, ForceMode.Force);
+            body.AddForce(pushDir * pushForce, ForceMode.Force);
 
     }
 
