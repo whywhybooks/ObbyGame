@@ -49,7 +49,17 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 
-	IEnumerator sitDown()
+	public void BoostSpeed(float multiplier)
+	{
+		speed *= multiplier;
+	}
+
+    public void RemoveAcceleration(float multiplier)
+    {
+        speed /= multiplier;
+    }
+
+    IEnumerator sitDown()
 	{
 		if (isSitting && Physics.Raycast(transform.position, Vector3.up, physicalCC.cc.height * 1.5f))
 		{

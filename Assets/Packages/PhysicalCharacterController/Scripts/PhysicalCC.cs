@@ -16,6 +16,7 @@ public class PhysicalCC : MonoBehaviour
 	public bool ProjectMoveOnGround;
 	public Vector3 moveInput;
 	private Vector3 moveVelocity;
+    public Vector3 externalVelocity;
 	public float gravity;
 
 	[Header("Slope and inertia")]
@@ -51,7 +52,7 @@ public class PhysicalCC : MonoBehaviour
 
 		GravityUpdate();
 
-		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity);
+		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
 		cc.Move((moveDirection) * Time.deltaTime);
 	}
@@ -105,17 +106,32 @@ public class PhysicalCC : MonoBehaviour
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-		if (!applyCollision) return;
+        /*	if (!applyCollision) return;
 
-		Rigidbody body = hit.collider.attachedRigidbody;
+            Rigidbody body = hit.collider.attachedRigidbody;
 
-		// check rigidbody
-		if (body == null || body.isKinematic) return;
+            // check rigidbody
+            if (body == null || body.isKinematic) return;
 
-		Vector3 pushDir = hit.point - (hit.point + hit.moveDirection.normalized);
+            //Vector3 pushDir = hit.point - (hit.point + hit.moveDirection.normalized);
+            Vector3 pushDir = -hit.moveDirection.normalized;
 
-		// Apply the push
-		body.AddForce(pushDir * pushForce, ForceMode.Force);
-	}
+            // Apply the push
+            body.AddForce(pushDir * pushForce, ForceMode.Force);*/
+        if (!applyCollision) return;
+
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        // check rigidbody
+        if (body == null || body.isKinematic) return;
+
+        // Calculate push direction from player to the collision point
+        Vector3 pushDir = hit.point - transform.position;
+        pushDir.y = 0; // Optionally, prevent pushing in the vertical direction
+
+        // Apply the push
+        body.AddForce(pushDir.normalized * pushForce, ForceMode.Force);
+
+    }
 
 }
