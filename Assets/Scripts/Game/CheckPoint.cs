@@ -6,8 +6,7 @@ using UnityEngine.Events;
 public class CheckPoint : MonoBehaviour
 {
     [Header("Collision Parametrs")]
-    [SerializeField] private Transform _collisionPoint;
-    [SerializeField] private Vector3 _cubeSize;
+    [SerializeField] private Transform _boxCollider;
     [SerializeField] private LayerMask _characterLayer;
 
     [Header("CheckPoint Parametrs")]
@@ -24,6 +23,11 @@ public class CheckPoint : MonoBehaviour
         CheckCollision();
     }
 
+    private void Start()
+    {
+        _boxCollider.GetComponent<MeshRenderer>().enabled = false;
+    }
+
     public void Initialize(int index)
     {
         Index = index;
@@ -31,7 +35,7 @@ public class CheckPoint : MonoBehaviour
 
     private void CheckCollision()
     {
-        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _characterLayer))
+        if (Physics.CheckBox(_boxCollider.position, _boxCollider.lossyScale / 2, transform.rotation, _characterLayer))
         {
 
             if (_activated == false)
@@ -44,11 +48,5 @@ public class CheckPoint : MonoBehaviour
         {
             _activated = false;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
     }
 }

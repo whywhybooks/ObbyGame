@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovingObject : MonoBehaviour
@@ -11,13 +12,6 @@ public class MovingObject : MonoBehaviour
 
     private const float tau = Mathf.PI * 2;
 
-    [Header("Collision Parametrs")]
-    [SerializeField] private Transform _collisionPoint;
-    [SerializeField] private Vector3 _cubeSize;
-    [SerializeField] private LayerMask _characterLayer;
-
-    private Transform _childObject;
-    private Collider[] _collision;
     private Vector3 _targetPositionAxis;
     float _cycles, _rawSinWave, _movementFactor;
     Vector3 _startPos, _offsetPosition;
@@ -50,6 +44,7 @@ public class MovingObject : MonoBehaviour
     private void Start()
     {
         _startPos = transform.position;
+        _movementObject.GetChild(0).AddComponent<Fixator>();
 
         switch (_axis)
         {
@@ -77,35 +72,11 @@ public class MovingObject : MonoBehaviour
         _rawSinWave = Mathf.Sin(_cycles * tau);
         _movementFactor = _rawSinWave / 2f + 0.5f;
         _offsetPosition = _movementFactor * _targetPositionAxis;
-        transform.position = _startPos + _offsetPosition;
-
-        CheckCollision();
-    }
-
-    private void CheckCollision()
-    {
-        _collision = Physics.OverlapBox(_collisionPoint.position, _cubeSize / 2, _movementObject.rotation, _characterLayer);
-
-        if (_collision.Length > 0)
-        {
-            _collision[0].transform.parent = _movementObject.transform;
-            _childObject = _collision[0].transform;
-        }
-        else
-        {
-            if (_childObject != null)
-            {
-                _childObject.transform.parent = null;
-                _childObject = null;
-            }
-        }
+        _movementObject.transform.position = _startPos + _offsetPosition;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
-
         Gizmos.color = new Color(0, 0, 1, 1f);
         Gizmos.DrawSphere(_startPositionGizmos, 0.5f);
 

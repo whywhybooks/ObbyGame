@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RotatingObject : MonoBehaviour
@@ -9,18 +10,12 @@ public class RotatingObject : MonoBehaviour
     [SerializeField] private Transform _rotatedObject;
     [SerializeField] private float _speed;
 
-    [Header("Collision Parametrs")]
-    [SerializeField] private Transform _collisionPoint;
-    [SerializeField] private Vector3 _cubeSize;
-    [SerializeField] private LayerMask _characterLayer;
-
-    private Transform _childObject;
-    private Collider[] _collision;
     private Vector3 _targetRotationAxis;
 
     private void Start()
     {
         _rotatedObject.parent = _fulcrum;
+        _rotatedObject.GetChild(0).AddComponent<Fixator>();
 
         switch (_axis)
         {
@@ -41,34 +36,11 @@ public class RotatingObject : MonoBehaviour
     private void FixedUpdate()
     {
         _fulcrum.Rotate(_targetRotationAxis * Time.fixedDeltaTime);
-         CheckCollision();
-    }
-
-    private void CheckCollision()
-    {
-        _collision = Physics.OverlapBox(_collisionPoint.position, _cubeSize / 2, _rotatedObject.rotation, _characterLayer);
-
-        if (_collision.Length > 0)
-        {
-            _collision[0].transform.parent = _rotatedObject.transform;
-            _childObject = _collision[0].transform;
-        }
-        else
-        {
-            if (_childObject != null)
-            {
-                _childObject.transform.parent = null;
-                _childObject = null;
-            }
-        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0, 0, 1, 1f);
         Gizmos.DrawSphere(_fulcrum.position, 0.5f);
-        
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
     }
 }

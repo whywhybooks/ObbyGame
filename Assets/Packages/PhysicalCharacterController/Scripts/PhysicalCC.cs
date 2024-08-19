@@ -33,6 +33,7 @@ public class PhysicalCC : MonoBehaviour
 	[Header("Collision")]
 	public bool applyCollision = true;
 	public float pushForce = 55f;
+	public bool collisionWithFixator = true;
 
 	private void Start()
 	{
@@ -102,23 +103,36 @@ public class PhysicalCC : MonoBehaviour
 			platformVelocity = Vector3.zero;
 			isGround = false;
 		}
+
+		if (collisionWithFixator == false && transform.parent != null)
+		{
+            transform.parent = null;
+        }
 	}
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-        	if (!applyCollision) return;
+		if (hit.collider.TryGetComponent(out Fixator fixator) && hit.normal == Vector3.up)
+		{
+			transform.parent = fixator.transform.parent;
+			collisionWithFixator = true;
+        }
+		else
+		{
+			collisionWithFixator = false;
+        }
 
-            Rigidbody body = hit.collider.attachedRigidbody;
+        if (!applyCollision) return;
 
-            // check rigidbody
-            if (body == null || body.isKinematic) return;
+        Rigidbody body = hit.collider.attachedRigidbody;
 
-            //Vector3 pushDir = hit.point - (hit.point + hit.moveDirection.normalized);
-            Vector3 pushDir = -hit.moveDirection.normalized;
+        // check rigidbody
+        if (body == null || body.isKinematic) return;
 
-            // Apply the push
-            body.AddForce(pushDir * pushForce, ForceMode.Force);
+        //Vector3 pushDir = hit.point - (hit.point + hit.moveDirection.normalized);
+        Vector3 pushDir = -hit.moveDirection.normalized;
 
+        // Apply the push
+        body.AddForce(pushDir * pushForce, ForceMode.Force);
     }
-
 }

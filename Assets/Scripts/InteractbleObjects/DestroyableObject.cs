@@ -6,7 +6,7 @@ public class DestroyableObject : MonoBehaviour
     [Header("Destroy Parametrs")]
     [SerializeField] private float _delayBeforeDestruction;
     [SerializeField] private MeshRenderer _meshRenderer;
-    [SerializeField] private Collider _collider;
+    [SerializeField] private Collider _colliderComponent;
 
     private bool _readyForDestruction;
     private bool _isDeleted;
@@ -18,9 +18,13 @@ public class DestroyableObject : MonoBehaviour
     private float _elapsedTime;
 
     [Header("Collision Parametrs")]
-    [SerializeField] private Transform _collisionPoint;
-    [SerializeField] private Vector3 _cubeSize;
+    [SerializeField] private Transform _boxCollider;
     [SerializeField] private LayerMask _characterLayer;
+
+    private void Start()
+    {
+        _boxCollider.GetComponent<MeshRenderer>().enabled = false;
+    }
 
     private void Update()
     {
@@ -58,20 +62,14 @@ public class DestroyableObject : MonoBehaviour
     private void SetActive(bool isActive)
     {
         _meshRenderer.enabled = isActive;
-        _collider.enabled = isActive;
+        _colliderComponent.enabled = isActive;
     }
 
     private void CheckCollision()
     {
-        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _characterLayer))
+        if (Physics.CheckBox(_boxCollider.position, _boxCollider.lossyScale / 2, transform.rotation, _characterLayer))
         {
             _readyForDestruction = true;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
     }
 }

@@ -11,8 +11,7 @@ public class Fan : MonoBehaviour
     private PhysicalCC _player;
 
     [Header("Collision Parametrs")]
-    [SerializeField] private Transform _collisionPoint;
-    [SerializeField] private Vector3 _cubeSize;
+    [SerializeField] private Transform _boxCollider;
     [SerializeField] private LayerMask _playerLayer;
 
     [Header("Gizmos")]
@@ -25,6 +24,11 @@ public class Fan : MonoBehaviour
         _player = FindObjectOfType<PhysicalCC>();
     }
 
+    private void Start()
+    {
+        _boxCollider.GetComponent<MeshRenderer>().enabled = false;
+    }
+
 
     private void FixedUpdate()
     {
@@ -33,7 +37,7 @@ public class Fan : MonoBehaviour
 
     private void CheckCollision()
     {
-        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _playerLayer))
+        if (Physics.CheckBox(_boxCollider.position, _boxCollider.localScale / 2, transform.rotation, _playerLayer))
         {
             _isCollision = true;
             _player.externalVelocity = _isRevers ? -transform.forward.normalized : transform.forward.normalized;
@@ -51,8 +55,6 @@ public class Fan : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
         Gizmos.color = new Color(0, 0, 1, 0.7f);
 
         if (_isRevers)
