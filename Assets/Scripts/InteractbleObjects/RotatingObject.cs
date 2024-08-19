@@ -6,6 +6,7 @@ using UnityEngine;
 public class RotatingObject : MonoBehaviour
 {
     [SerializeField] private Axis _axis;
+    [SerializeField] private bool _isReverse;
     [SerializeField] private Transform _fulcrum;
     [SerializeField] private Transform _rotatedObject;
     [SerializeField] private float _speed;
@@ -16,6 +17,11 @@ public class RotatingObject : MonoBehaviour
     {
         _rotatedObject.parent = _fulcrum;
         _rotatedObject.GetChild(0).AddComponent<Fixator>();
+
+        if (_isReverse)
+        {
+            _speed *= -1;
+        }
 
         switch (_axis)
         {
