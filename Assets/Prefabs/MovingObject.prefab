@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4823235938861627211}
   - component: {fileID: 2210369408063453800}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: MovingObject
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 7681464008139612909}
   - component: {fileID: 8572912070167211792}
   - component: {fileID: 7174287391661901579}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Root
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7940537845541098189}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: MovementObject
   m_TagString: Platform
   m_Icon: {fileID: 0}

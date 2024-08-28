@@ -7,6 +7,11 @@ public class PhysicalCC : MonoBehaviour
 	public CharacterController cc { get; private set; }
 	private IEnumerator dampingCor;
 
+	[Header("Fixed check")]
+	public LayerMask _fixedMask;
+	public Vector3 _boxScale;
+	public float _checkFixedDistance;
+
 	[Header("Ground Check")]
 	public bool isGround;
 	public float groundAngle;
@@ -43,6 +48,7 @@ public class PhysicalCC : MonoBehaviour
 	private void Update()
 	{
 		GroundCheck();
+		FixedCheck();
 
 		if (isGround)
 		{
@@ -104,14 +110,29 @@ public class PhysicalCC : MonoBehaviour
 			isGround = false;
 		}
 
-		if (collisionWithFixator == false && transform.parent != null)
+		/*if (collisionWithFixator == false && transform.parent != null)
 		{
             transform.parent = null;
-        }
+        }*/
+
+    }
+
+	private void FixedCheck()
+	{
+		Collider[] hits = Physics.OverlapBox(transform.position, _boxScale / 2, transform.rotation, _fixedMask);
+
+		if (hits.Length > 0)
+		{
+			transform.parent = hits[0].transform.parent;
+		}
+		else if (hits.Length == 0 && transform.parent != null)
+		{
+			transform.parent = null;
+		}
 	}
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
-	{
+	{/*
 		if (hit.collider.TryGetComponent(out Fixator fixator) && hit.normal == Vector3.up)
 		{
 			transform.parent = fixator.transform.parent;
@@ -119,8 +140,8 @@ public class PhysicalCC : MonoBehaviour
         }
 		else
 		{
-			collisionWithFixator = false;
-        }
+            collisionWithFixator = false;
+        }*/
 
         if (!applyCollision) return;
 

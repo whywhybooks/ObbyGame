@@ -78,10 +78,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b25ae13abd83c4b90bc40e5182eecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fixedMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _checkFixedDistance: 0
   isGround: 0
   groundAngle: 0
   ProjectMoveOnGround: 0
   moveInput: {x: 0, y: 0, z: 0}
+  externalVelocity: {x: 0, y: 0, z: 0}
   gravity: 60
   slopeLimit: 40
   inertiaDampingTime: 0.1
@@ -90,8 +95,9 @@ MonoBehaviour:
   inertiaVelocity: {x: 0, y: 0, z: 0}
   platformAction: 1
   platformVelocity: {x: 0, y: 0, z: 0}
-  applyCollision: 1
+  applyCollision: 0
   pushForce: 55
+  collisionWithFixator: 1
 --- !u!114 &6534996604238580251
 MonoBehaviour:
   m_ObjectHideFlags: 0

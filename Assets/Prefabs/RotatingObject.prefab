@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1132372809320440068}
   - component: {fileID: 8481949578033032274}
   - component: {fileID: 1407679413924267753}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Root
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8598076095239493069}
   - component: {fileID: 5719282392347130465}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: RotatingObject
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _axis: 1
+  _isReverse: 0
   _fulcrum: {fileID: 3892433670643170143}
   _rotatedObject: {fileID: 4304863658516420827}
   _speed: 50
@@ -164,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3892433670643170143}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Fulcrum
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -195,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4304863658516420827}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: RotatedObject
   m_TagString: Platform
   m_Icon: {fileID: 0}

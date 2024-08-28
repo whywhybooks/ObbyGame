@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CheckPointController : MonoBehaviour
 {
-    [SerializeField] private List<CheckPoint> _checkPoints = new List<CheckPoint>();
     [SerializeField] private CharacterHealth _character;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private Button _nextButton;
@@ -12,8 +12,13 @@ public class CheckPointController : MonoBehaviour
 
     private CheckPoint _currentCheckPoint;
 
+    private List<CheckPoint> _checkPoints = new List<CheckPoint>();
+    public List<CheckPoint> CheckPoints { get => _checkPoints; private set => _checkPoints = value; }
+
     private void OnEnable()
     {
+        _checkPoints = GetComponentsInChildren<CheckPoint>().ToList();
+
         _currentCheckPoint = _checkPoints[0];
         _nextButton.onClick.AddListener(NextCheckPoint);
         _previousButton.onClick.AddListener(PreviousCheckPoint);
@@ -44,6 +49,16 @@ public class CheckPointController : MonoBehaviour
         }
 
         _character.OnDied -= Restart;
+    }
+
+    public void SetCheckpointOnIndex(int index)
+    {
+        if (index >= 0 &&  index < _checkPoints.Count)
+        {
+            SetCheckPoint(_checkPoints[index]);
+        }
+
+        CharacterSetPosition(_currentCheckPoint.RestartPosition);
     }
 
     private void SetCheckPoint(CheckPoint checkPoint)
