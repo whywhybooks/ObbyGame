@@ -6,6 +6,8 @@ using UnityEngine;
 public class MovingObject : MonoBehaviour
 {
     [SerializeField] private Axis _axis;
+    [SerializeField] private bool _isRevers;
+    [SerializeField] private float _delay;
     [SerializeField] private Transform _movementObject;
     [SerializeField] private float _offset;
     [SerializeField] private float _speed;
@@ -17,6 +19,7 @@ public class MovingObject : MonoBehaviour
     Vector3 _startPos, _offsetPosition;
     private Vector3 _startPositionGizmos;
     private Vector3 _finalPositionGizmos;
+    private float _elapsedTime;
 
     private void OnValidate()
     {
@@ -38,12 +41,29 @@ public class MovingObject : MonoBehaviour
         }
 
         _finalPositionGizmos = transform.position + _targetPositionAxis;
+
+        if (_isRevers)
+        {
+            _movementObject.transform.position = _finalPositionGizmos;
+        }
+        else
+        {
+            _movementObject.transform.position = _startPositionGizmos;
+        }
     }
 
 
     private void Start()
     {
-        _startPos = transform.position;
+        if (_isRevers)
+        {
+            _startPos = _finalPositionGizmos;
+        }
+        else
+        {
+            _startPos = _startPositionGizmos;
+        }
+
         _movementObject.GetChild(0).AddComponent<Fixator>();
 
         switch (_axis)
@@ -67,12 +87,23 @@ public class MovingObject : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_delay > 0)
+        {
+            _delay -= Time.deltaTime;
+            return;
+        }
+
+        _elapsedTime += Time.deltaTime;
+
         if (_speed <= 0) return;
-        _cycles = Time.time / _speed;
+        _cycles = _elapsedTime / _speed;
         _rawSinWave = Mathf.Sin(_cycles * tau);
         _movementFactor = _rawSinWave / 2f + 0.5f;
         _offsetPosition = _movementFactor * _targetPositionAxis;
-        _movementObject.transform.position = _startPos + _offsetPosition;
+        if (_isRevers)
+            _movementObject.transform.position = _startPos - _offsetPosition;
+        else
+            _movementObject.transform.position = _startPos + _offsetPosition;
     }
 
     private void OnDrawGizmos()
