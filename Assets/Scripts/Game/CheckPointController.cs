@@ -9,15 +9,15 @@ public class CheckPointController : MonoBehaviour
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private Button _nextButton;
     [SerializeField] private Button _previousButton;
+    [SerializeField] private List<CheckPoint> _checkPoints = new List<CheckPoint>();
 
     private CheckPoint _currentCheckPoint;
 
-    private List<CheckPoint> _checkPoints = new List<CheckPoint>();
     public List<CheckPoint> CheckPoints { get => _checkPoints; private set => _checkPoints = value; }
 
     private void OnEnable()
     {
-        _checkPoints = GetComponentsInChildren<CheckPoint>().ToList();
+       // _checkPoints = GetComponentsInChildren<CheckPoint>().ToList();
 
         _currentCheckPoint = _checkPoints[0];
         _nextButton.onClick.AddListener(NextCheckPoint);
