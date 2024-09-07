@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TouchControlsKit;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+	[SerializeField] private bool _debugMode;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
@@ -17,31 +19,55 @@ public class PlayerInput : MonoBehaviour
 	{
 		if (physicalCC.isGround)
 		{
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
+			float horizontalInput = 0;
 
-            if (Math.Abs(horizontalInput) < 1)
-            {
-                horizontalInput = 0;
+			float verticalInput = 0;
+
+
+			if (_debugMode)
+			{
+				horizontalInput = Input.GetAxis("Horizontal");
+				verticalInput = Input.GetAxis("Vertical");
+
+
+                if (Math.Abs(horizontalInput) < 1)
+                {
+                    horizontalInput = 0;
+                }
+
+                if (Math.Abs(verticalInput) < 1)
+                {
+                    verticalInput = 0;
+                }
+            }
+			else
+			{
+                Vector2 move = TCKInput.GetAxis("Joystick");
+
+                if (Input.GetAxis("Horizontal") != 0)
+                    horizontalInput = Input.GetAxis("Horizontal");
+                else if (move.x != 0)
+                    horizontalInput = move.x;
+
+                if (Input.GetAxis("Vertical") != 0)
+                    verticalInput = Input.GetAxis("Vertical");
+                else if (move.y != 0)
+                    verticalInput = move.y;
             }
 
-            if (Math.Abs(verticalInput) < 1)
-            {
-                verticalInput = 0;
-            }
 
             physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
 							* verticalInput
                             + transform.right
 							* horizontalInput, 1f) * speed;
 
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				physicalCC.inertiaVelocity.y = 0f;
-				physicalCC.inertiaVelocity.y += jumpHeight;
-			}
-
-			if (Input.GetKeyDown(KeyCode.C) && sitCort == null)
+            if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
+            {
+                physicalCC.inertiaVelocity.y = 0f;
+                physicalCC.inertiaVelocity.y += jumpHeight;
+            }
+            
+            if (Input.GetKeyDown(KeyCode.C) && sitCort == null)
 			{
 				sitCort = sitDown();
 				StartCoroutine(sitCort);

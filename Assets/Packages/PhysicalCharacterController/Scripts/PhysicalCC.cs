@@ -45,7 +45,7 @@ public class PhysicalCC : MonoBehaviour
 		cc = GetComponent<CharacterController>();
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		GroundCheck();
 		FixedCheck();
@@ -61,7 +61,7 @@ public class PhysicalCC : MonoBehaviour
 
 		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
-		cc.Move((moveDirection) * Time.deltaTime);
+		cc.Move(moveDirection * Time.deltaTime);
 	}
 
 	private void GravityUpdate()
@@ -91,7 +91,8 @@ public class PhysicalCC : MonoBehaviour
 		if (Physics.SphereCast(transform.position, cc.radius, Vector3.down, out RaycastHit hit, cc.height / 2 - cc.radius + 0.01f))
 		{
 			isGround = true;
-			groundAngle = Vector3.Angle(Vector3.up, hit.normal);
+			//inertiaVelocity = Vector2.zero;
+            groundAngle = Vector3.Angle(Vector3.up, hit.normal);
 			groundNormal = hit.normal;
 
 			if (hit.transform.tag == "Platform")

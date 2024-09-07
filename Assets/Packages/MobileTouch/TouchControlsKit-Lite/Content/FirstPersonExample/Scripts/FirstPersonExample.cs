@@ -12,6 +12,7 @@ namespace Examples
         bool jump, prevGrounded, isPorjectileCube;
         float weapReadyTime;
         bool weapReady = true;
+        [SerializeField] private bool _debubMode;
 
 
         // Awake
@@ -35,7 +36,6 @@ namespace Examples
                 }
             }
 
-
             if( TCKInput.GetAction( "jumpBtn", EActionEvent.Down ) )
             {
                 Jumping();
@@ -45,9 +45,17 @@ namespace Examples
             {
                 PlayerFiring();
             }
+            Vector2 look = Vector2.zero;
 
-            Vector2 look = TCKInput.GetAxis( "Touchpad" );
-            PlayerRotation( look.x, look.y );
+         /*   if (_debubMode)
+            {
+                look = Input.mousePosition;
+            }
+            else
+            {
+                look = TCKInput.GetAxis( "Touchpad" );
+            }
+            PlayerRotation( look.x, look.y );*/
         }
 
         // FixedUpdate

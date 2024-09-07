@@ -5,6 +5,7 @@
 //         t.enzenebner@gmail.com
 //----------------------------------------------
 using System.Collections.Generic;
+using TouchControlsKit;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,6 +24,8 @@ namespace ThirdPersonCamera
     [RequireComponent(typeof(FreeForm))]
     public class CameraInputSampling_FreeForm : MonoBehaviour
     {
+        [SerializeField] private bool _debugMode;
+
         [Header("Input settings")]
         [Tooltip("Always and hold - Either the camera rotation is always on or you have to use an input to enable")]
         public CameraMode cameraMode = CameraMode.Input;
@@ -77,9 +80,10 @@ namespace ThirdPersonCamera
         private CameraInputFreeForm inputFreeForm;
         bool waitForRelease = false;
         int mouseButtonId = -1;
-        
+
 #if UNITY_STANDALONE_WIN
         private MouseCursorHelper mouseCursorHelper;
+        private bool _debugMode;
 #endif
 
         public void Start()
@@ -188,12 +192,29 @@ namespace ThirdPersonCamera
 
             float x = 0;
             float y = 0;
+            Vector2 look;
 
+            if (_debugMode)
+            {
+                look = Input.mousePosition;
+            }
+            else
+            {
+                look = TCKInput.GetAxis("Touchpad");
+            }
             if (inputFreeLook || cameraMode == CameraMode.Always)
             {
-                // sample mouse input 
-                x = Input.GetAxis(CMouseX) * mouseSensitivity.x;
-                y = (mouseInvertY ? (Input.GetAxis(CMouseY) * -1.0f) : Input.GetAxis(CMouseY)) * mouseSensitivity.y;
+                if (_debugMode)
+                {
+                    // sample mouse input 
+                    x = Input.GetAxis(CMouseX) * mouseSensitivity.x;
+                    y = (mouseInvertY ? (Input.GetAxis(CMouseY) * -1.0f) : Input.GetAxis(CMouseY)) * mouseSensitivity.y;
+                }
+                else
+                {
+                    x = look.x * mouseSensitivity.x;
+                    y = (mouseInvertY ? (look.x * -1.0f) : look.y) * mouseSensitivity.y;
+                }
             }
 
             if (controllerEnabled)
@@ -235,7 +256,7 @@ namespace ThirdPersonCamera
 
             mouseCursorHelper.Update();
 #else
-            if (lockMouseCursor)
+           /* if (lockMouseCursor)
             {
                 if (inputFreeLook || cameraMode == CameraMode.Always)
                 {
@@ -245,7 +266,7 @@ namespace ThirdPersonCamera
                 {
                     ShowCursor();
                 }
-            }
+            }*/
 #endif            
             // sample inputs for changing character direction
             if (forceDirectionFeature && mouseInputForceDirection.Count > 0)
