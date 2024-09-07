@@ -10,6 +10,8 @@ public class AllCheckpointsMenu : MonoBehaviour
     [SerializeField] private Button _openButton;
     [SerializeField] private CanvasGroup _thisPanel;
 
+    private bool _isOpen;
+
     private CheckPointController _checkPointController;
 
     private void OnEnable()
@@ -22,6 +24,23 @@ public class AllCheckpointsMenu : MonoBehaviour
     {
         _openButton.onClick.RemoveListener(Open);
         _closeButton.onClick.RemoveListener(Close);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (_isOpen)
+            {
+                _isOpen = false;
+                Close();
+            }
+            else
+            {
+                _isOpen = true;
+                Open();
+            }
+        }
     }
 
     private void Close()

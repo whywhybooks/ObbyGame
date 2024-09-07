@@ -51,6 +51,18 @@ public class CheckPointController : MonoBehaviour
         _character.OnDied -= Restart;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PreviousCheckPoint();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            NextCheckPoint();
+        }
+    }
+
     public void SetCheckpointOnIndex(int index)
     {
         if (index >= 0 &&  index < _checkPoints.Count)

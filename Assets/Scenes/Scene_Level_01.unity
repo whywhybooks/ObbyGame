@@ -64380,10 +64380,26 @@ MonoBehaviour:
   _previousButton: {fileID: 778224167}
   _checkPoints:
   - {fileID: 6637931248846164508}
-  - {fileID: 6637931248846164508}
-  - {fileID: 6637931248846164508}
-  - {fileID: 6637931248846164508}
-  - {fileID: 6637931248846164508}
+  - {fileID: 1346970055}
+  - {fileID: 324255826}
+  - {fileID: 1537480167}
+  - {fileID: 1739574277}
+  - {fileID: 1564458935}
+  - {fileID: 854053027}
+  - {fileID: 590951198}
+  - {fileID: 1930033155}
+  - {fileID: 970935687}
+  - {fileID: 2072888387}
+  - {fileID: 1813573263}
+  - {fileID: 1969075422}
+  - {fileID: 1040449276}
+  - {fileID: 1038351064}
+  - {fileID: 1990404688}
+  - {fileID: 808319202}
+  - {fileID: 203042502}
+  - {fileID: 584131168}
+  - {fileID: 1198577677}
+  - {fileID: 1240304558}
 --- !u!1 &2767319352963811516
 GameObject:
   m_ObjectHideFlags: 0
