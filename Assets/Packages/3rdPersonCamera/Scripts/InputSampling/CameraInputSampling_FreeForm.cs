@@ -83,7 +83,7 @@ namespace ThirdPersonCamera
 
 #if UNITY_STANDALONE_WIN
         private MouseCursorHelper mouseCursorHelper;
-        private bool _debugMode;
+      //  private bool _debugMode;
 #endif
 
         public void Start()
