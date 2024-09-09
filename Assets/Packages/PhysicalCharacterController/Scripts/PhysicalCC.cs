@@ -13,6 +13,8 @@ public class PhysicalCC : MonoBehaviour
 	public float _checkFixedDistance;
 
 	[Header("Ground Check")]
+	public Transform _legs;
+	public float _radius;
 	public bool isGround;
 	public float groundAngle;
 	public Vector3 groundNormal { get; private set; }
@@ -88,7 +90,8 @@ public class PhysicalCC : MonoBehaviour
 
 	private void GroundCheck()
 	{
-		if (Physics.SphereCast(transform.position, cc.radius, Vector3.down, out RaycastHit hit, cc.height / 2 - cc.radius + 0.01f))
+		//if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, cc.height / 2 - _radius + 0.01f))
+		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius))
 		{
 			isGround = true;
 			//inertiaVelocity = Vector2.zero;
@@ -157,4 +160,10 @@ public class PhysicalCC : MonoBehaviour
         // Apply the push
         body.AddForce(pushDir * pushForce, ForceMode.Force);
     }
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = new Color(0, 1, 1, 0.5f);
+		Gizmos.DrawSphere(_legs.position, _radius);
+	}
 }
