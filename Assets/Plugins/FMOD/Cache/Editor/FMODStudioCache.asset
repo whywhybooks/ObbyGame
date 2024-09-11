@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638615083806805857
+  lastModified: 638615160805892662
   FileSizes:
   - Name: 
     Value: 806
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Desktop/Bank A.bank
   Name: Desktop/Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638615083806985386
+  lastModified: 638615160805887947
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -61,7 +61,7 @@ MonoBehaviour:
   - {fileID: 4159602199157161752}
   StringsBanks:
   - {fileID: -4838955242797207553}
-  cacheTime: 638615083806985386
+  cacheTime: 638615160805892662
   cacheVersion: 131618
 --- !u!114 &3184406439045283299
 MonoBehaviour:
@@ -105,6 +105,6 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638615083806805857
+  lastModified: 638615160805892662
   FileSizes: []
   Exists: 1
