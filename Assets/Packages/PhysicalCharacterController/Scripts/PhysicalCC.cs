@@ -68,7 +68,6 @@ public class PhysicalCC : MonoBehaviour
 		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
 		cc.Move(moveDirection * Time.deltaTime);
-		Debug.Log(inertiaVelocity);
 	}
 
 	private void GravityUpdate()
@@ -132,6 +131,7 @@ public class PhysicalCC : MonoBehaviour
 	private void GroundCheck()
 	{
 		//if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, cc.height / 2 - _radius + 0.01f))
+
 		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius))
 		{
 			isGround = true;
@@ -204,7 +204,7 @@ public class PhysicalCC : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-	/*	Gizmos.color = new Color(0, 1, 1, 0.5f);
-		Gizmos.DrawSphere(_legs.position, _radius);*/  
+		Gizmos.color = new Color(0, 1, 1, 0.5f);
+		Gizmos.DrawSphere(_legs.position, _radius);
 	}
 }
