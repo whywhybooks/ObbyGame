@@ -26,7 +26,11 @@ public class PhysicalCC : MonoBehaviour
     public Vector3 externalVelocity;
 	public float gravity;
 
-	[Header("Slope and inertia")]
+    private bool longJumpActive;
+    private bool stopGravity;
+	private float longJumpDelayTime;
+
+    [Header("Slope and inertia")]
 	public float slopeLimit = 45;
 	public float inertiaDampingTime = 0.1f;
 	public float slopeStartForce = 3f;
@@ -64,6 +68,7 @@ public class PhysicalCC : MonoBehaviour
 		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
 		cc.Move(moveDirection * Time.deltaTime);
+		Debug.Log(inertiaVelocity);
 	}
 
 	private void GravityUpdate()
@@ -72,8 +77,44 @@ public class PhysicalCC : MonoBehaviour
 		{
 			inertiaVelocity += Vector3.ProjectOnPlane(groundNormal.normalized + (Vector3.down * (groundAngle / 30)).normalized * Mathf.Pow(slopeStartForce, slopeAcceleration), groundNormal) * Time.deltaTime;
 		}
-		else if (!isGround) inertiaVelocity.y -= gravity * Time.deltaTime;
+		else if (!isGround)
+		{
+			if (!stopGravity)
+			{
+				float previousInertialVelocityY = 0;
+                inertiaVelocity.y -= gravity * Time.deltaTime;
+
+                if (previousInertialVelocityY > cc.velocity.y && longJumpActive == true)
+                {
+					inertiaVelocity.y = 0;
+                    StartCoroutine(LongJump());
+                    stopGravity = true;
+                }
+
+                previousInertialVelocityY = cc.velocity.y;
+            }
+		}
 	}
+
+	public void PlayLongJump(float longJumpDelayTime)
+	{
+		this.longJumpDelayTime = longJumpDelayTime;
+
+       // inertiaVelocity.y = 25;
+        longJumpActive = true;
+    }
+
+	private IEnumerator LongJump()
+	{
+		float previousInertialVelocityY = inertiaVelocity.y;
+        inertiaVelocity.y = 0;
+
+		yield return new WaitForSeconds(longJumpDelayTime);
+
+		inertiaVelocity.y = previousInertialVelocityY;
+		stopGravity = false;
+		longJumpActive = false;
+    }
 
 	private void InertiaDamping()
 	{

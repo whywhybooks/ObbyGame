@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+	[Header("Main parametrs")]
 	[SerializeField] private bool _debugMode;
+	[SerializeField] private AnimationCurve _jumpCurve;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
@@ -15,7 +17,7 @@ public class PlayerInput : MonoBehaviour
 	IEnumerator sitCort;
 	public bool isSitting;
 
-	void Update()
+    void Update()
 	{
 		if (physicalCC.isGround)
 		{
@@ -66,7 +68,7 @@ public class PlayerInput : MonoBehaviour
                 physicalCC.inertiaVelocity.y = 0f;
                 physicalCC.inertiaVelocity.y += jumpHeight;
             }
-            
+
             if (Input.GetKeyDown(KeyCode.C) && sitCort == null)
 			{
 				sitCort = sitDown();
@@ -74,6 +76,13 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 	}
+
+	public void LongJump(float longJumpHeight, float delayTime)
+	{
+        physicalCC.inertiaVelocity.y = 0f;
+        physicalCC.inertiaVelocity.y += longJumpHeight;
+        physicalCC.PlayLongJump(delayTime);
+    }
 
 	public void BoostSpeed(float multiplier)
 	{
