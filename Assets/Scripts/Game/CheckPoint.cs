@@ -11,12 +11,16 @@ public class CheckPoint : MonoBehaviour
 
     [Header("CheckPoint Parametrs")]
     [SerializeField] private Transform _restartPoint;
+    [SerializeField] private GameObject _effectPrefab;
+    [SerializeField] private GameObject _defaultObject;
 
     private bool _activated;
     public int Index { get; private set; }
     public Vector3 RestartPosition => _restartPoint.position;
 
     public event UnityAction<CheckPoint> OnCollisionEnter;
+
+    private const float _delayForDeleteEffects = 0.11f;
 
     private void FixedUpdate()
     {
@@ -42,11 +46,26 @@ public class CheckPoint : MonoBehaviour
             {
                 OnCollisionEnter?.Invoke(this);
                 _activated = true;
+                StartCoroutine(Activate());
             }
         }
         else
         {
             _activated = false;
         }
+    }
+
+    private IEnumerator Activate()
+    {
+        yield return new WaitForSeconds(_delayForDeleteEffects);
+
+        // Если префаб указан, создаём его на месте удалённого объекта
+        if (_effectPrefab != null)
+        {
+            Instantiate(_effectPrefab, _defaultObject.transform.position, _defaultObject.transform.rotation);
+        }
+
+        // Удаляем объект
+        Destroy(_defaultObject);
     }
 }
