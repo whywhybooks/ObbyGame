@@ -125,7 +125,8 @@ public class PhysicalCC : MonoBehaviour
 
 		resistanceAngle = resistanceAngle == 0 ? 90 : resistanceAngle;
 
-	//	inertiaVelocity = (inertiaVelocity + moveVelocity).magnitude <= 0.1f ? Vector3.zero : Vector3.SmoothDamp(inertiaVelocity, Vector3.zero, ref a, inertiaDampingTime / (3 / (180 / resistanceAngle)));
+		//НИЖЕ ПРОБЛЕМА!!
+		inertiaVelocity = (inertiaVelocity + moveVelocity).magnitude <= 0.1f ? Vector3.zero : Vector3.SmoothDamp(inertiaVelocity, Vector3.zero, ref a, inertiaDampingTime / (3 / (180 / resistanceAngle)));
 	}
 
 	private void GroundCheck()
