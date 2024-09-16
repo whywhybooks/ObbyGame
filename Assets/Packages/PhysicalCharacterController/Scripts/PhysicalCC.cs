@@ -51,28 +51,31 @@ public class PhysicalCC : MonoBehaviour
 		cc = GetComponent<CharacterController>();
 	}
 
+    private void FixedUpdate()
+    {
+        GroundCheck();
+        FixedCheck();
 
+        if (isGround)
+        {
+            moveVelocity = ProjectMoveOnGround ? Vector3.ProjectOnPlane(moveInput, groundNormal) : moveInput;
+
+            if (groundAngle < slopeLimit && inertiaVelocity != Vector3.zero) InertiaDamping();
+        }
+
+        GravityUpdate();
+    }
 
     private void Update()
 	{
-		FixedCheck();
-		GroundCheck();
 
-		if (isGround)
-		{
-			moveVelocity = ProjectMoveOnGround? Vector3.ProjectOnPlane (moveInput, groundNormal) : moveInput;
-
-			if (groundAngle < slopeLimit && inertiaVelocity != Vector3.zero) InertiaDamping();
-		}
-
-		GravityUpdate();
 
 		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
 		cc.Move(moveDirection * Time.deltaTime);
 	}
 
-	private void GravityUpdate()
+    private void GravityUpdate()
 	{
 		if (isGround && groundAngle > slopeLimit)
 		{

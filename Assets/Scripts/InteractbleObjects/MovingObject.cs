@@ -23,8 +23,11 @@ public class MovingObject : MonoBehaviour
 
     private void OnValidate()
     {
-        _startPositionGizmos = transform.position;
+        Initialize();
+    }
 
+    private void Initialize()
+    {
         switch (_axis)
         {
             case Axis.X:
@@ -40,6 +43,7 @@ public class MovingObject : MonoBehaviour
                 break;
         }
 
+        _startPositionGizmos = transform.position;
         _finalPositionGizmos = transform.position + _targetPositionAxis;
 
         if (_isRevers)
@@ -55,6 +59,7 @@ public class MovingObject : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
         if (_isRevers)
         {
             _startPos = _finalPositionGizmos;
