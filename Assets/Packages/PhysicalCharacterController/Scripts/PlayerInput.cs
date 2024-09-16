@@ -62,7 +62,7 @@ public class PlayerInput : MonoBehaviour
 							* verticalInput
                             + transform.right
 							* horizontalInput, 1f) * speed;
-			physicalCC.moveInput.y = 0f;
+			//physicalCC.moveInput.y = 0f;
 
             if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
             {

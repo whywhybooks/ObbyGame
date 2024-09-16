@@ -51,10 +51,12 @@ public class PhysicalCC : MonoBehaviour
 		cc = GetComponent<CharacterController>();
 	}
 
-	private void FixedUpdate()
+
+
+    private void Update()
 	{
-		GroundCheck();
 		FixedCheck();
+		GroundCheck();
 
 		if (isGround)
 		{
@@ -178,7 +180,8 @@ public class PhysicalCC : MonoBehaviour
 	}
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
-	{/*
+	{
+	/*	if (hit.collider.TryGetComponent(out Fixator fixator) && hit.normal == Vector3.up)
 		if (hit.collider.TryGetComponent(out Fixator fixator) && hit.normal == Vector3.up)
 		{
 			transform.parent = fixator.transform.parent;
