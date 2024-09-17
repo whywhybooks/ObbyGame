@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
 {
 	[Header("Main parametrs")]
 	[SerializeField] private bool _debugMode;
-	[SerializeField] private AnimationCurve _jumpCurve;
+	[SerializeField] private Animator _animator;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
@@ -46,37 +46,49 @@ public class PlayerInput : MonoBehaviour
 			{
                 Vector2 move = TCKInput.GetAxis("Joystick");
 
-                if (Input.GetAxis("Horizontal") != 0)
-                    horizontalInput = Input.GetAxis("Horizontal");
-                else if (move.x != 0)
-                    horizontalInput = move.x;
 
-                if (Input.GetAxis("Vertical") != 0)
-                    verticalInput = Input.GetAxis("Vertical");
-                else if (move.y != 0)
-                    verticalInput = move.y;
+                 if (Input.GetAxis("Horizontal") != 0)
+                     horizontalInput = Input.GetAxis("Horizontal");
+                 else if (move.x != 0)
+                     horizontalInput = move.x;
+
+                 if (Input.GetAxis("Vertical") != 0)
+                     verticalInput = Input.GetAxis("Vertical");
+                 else if (move.y != 0)
+                     verticalInput = move.y;
             }
-
 
             physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
 							* verticalInput
                             + transform.right
 							* horizontalInput, 1f) * speed;
+
+	    	if (physicalCC.moveInput.magnitude > 1)
+			{
+				_animator.SetBool("IsRun", true);
+			}
+			else
+			{
+				_animator.SetBool("IsRun", false);
+			}
 			//physicalCC.moveInput.y = 0f;
 
             if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
             {
                 physicalCC.inertiaVelocity.y = 0f;
                 physicalCC.inertiaVelocity.y += jumpHeight;
+				_animator.SetTrigger("IsJump");
+
             }
 
             if (Input.GetKeyDown(KeyCode.C) && sitCort == null)
 			{
 				sitCort = sitDown();
 				StartCoroutine(sitCort);
+			
 			}
 		}
-	}
+    }
 
 	public void LongJump(float longJumpHeight, float delayTime)
 	{
@@ -88,11 +100,13 @@ public class PlayerInput : MonoBehaviour
 	public void BoostSpeed(float multiplier)
 	{
 		speed *= multiplier;
+		_animator.SetFloat("Speed", 1.5f);
 	}
 
     public void RemoveAcceleration(float multiplier)
     {
         speed /= multiplier;
+        _animator.SetFloat("Speed", 1);
     }
 
     IEnumerator sitDown()

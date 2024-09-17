@@ -1005,7 +1005,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.8774185
+          value: 0.7268809
           inSlope: 0.8057175
           outSlope: 0.8057175
           tangentMode: 0
@@ -1014,7 +1014,7 @@ ParticleSystem:
           outWeight: 0.5274522
         - serializedVersion: 3
           time: 0.20747653
-          value: 0.9924097
+          value: 0.8418721
           inSlope: 0.04684113
           outSlope: 0.04684113
           tangentMode: 34
@@ -1023,7 +1023,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.4452359
-          value: 0.88290846
+          value: 0.73237085
           inSlope: -0.033565328
           outSlope: -0.033565328
           tangentMode: 34
@@ -1032,7 +1032,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.71043116
-          value: 0.9872427
+          value: 0.8367051
           inSlope: -0.00034855306
           outSlope: -0.00034855306
           tangentMode: 34
@@ -1041,7 +1041,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.87311745
+          value: 0.72257984
           inSlope: -0.5552851
           outSlope: -0.5552851
           tangentMode: 0
@@ -4930,7 +4930,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.616, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8639535991558788343}
@@ -5407,7 +5407,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 20daffcb368c9514e9261dd28a7e98c7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 982aef7e90afae2439c96c89029e5365, type: 2}
+      objectReference: {fileID: 2100000, guid: 7600d38b9b5e9734bb2ad60dc49bb674, type: 2}
     - target: {fileID: 919132149155446097, guid: 20daffcb368c9514e9261dd28a7e98c7, type: 3}
       propertyPath: m_Name
       value: SM_Checkpoint_ButtonActive_01

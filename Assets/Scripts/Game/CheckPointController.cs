@@ -88,7 +88,7 @@ public class CheckPointController : MonoBehaviour
         CharacterSetPosition(_currentCheckPoint.RestartPosition);
     }
 
-    private void NextCheckPoint()
+    public void NextCheckPoint()
     {
         if (_currentCheckPoint.Index + 1 >=  _checkPoints.Count)
         {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2563431502490790816}
   - component: {fileID: 738869561277944837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 8356745954839314377}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0431862, y: 0.000029393435, z: -0.0007319887, w: 0.99906677}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 17.102793, y: 1.5878328, z: 17.102793}
+  m_LocalPosition: {x: -0, y: 0.0000000010582, z: -5.5337e-11}
+  m_LocalScale: {x: 17.551691, y: 1.6295087, z: 17.551691}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4245741197817023214}
