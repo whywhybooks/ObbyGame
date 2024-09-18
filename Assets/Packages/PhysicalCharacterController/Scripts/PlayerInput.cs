@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TouchControlsKit;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerInput : MonoBehaviour
 	public Transform bodyRender;
 	IEnumerator sitCort;
 	public bool isSitting;
+
+	public event UnityAction OnJump;
 
     void Update()
 	{
@@ -78,6 +81,7 @@ public class PlayerInput : MonoBehaviour
                 physicalCC.inertiaVelocity.y = 0f;
                 physicalCC.inertiaVelocity.y += jumpHeight;
 				_animator.SetTrigger("IsJump");
+				OnJump?.Invoke();
 
             }
 

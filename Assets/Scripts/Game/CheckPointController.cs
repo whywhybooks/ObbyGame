@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CheckPointController : MonoBehaviour
@@ -14,6 +16,8 @@ public class CheckPointController : MonoBehaviour
     private CheckPoint _currentCheckPoint;
 
     public List<CheckPoint> CheckPoints { get => _checkPoints; private set => _checkPoints = value; }
+
+    public event UnityAction OnRestart;
 
     private void OnEnable()
     {
@@ -86,6 +90,14 @@ public class CheckPointController : MonoBehaviour
     private void Restart()
     {
         CharacterSetPosition(_currentCheckPoint.RestartPosition);
+        StartCoroutine(RestartDelay());
+        //CharacterSetPosition(_currentCheckPoint.RestartPosition);
+    }
+
+    private IEnumerator RestartDelay()
+    {
+        yield return new WaitForSeconds(1);
+        OnRestart?.Invoke();
     }
 
     public void NextCheckPoint()

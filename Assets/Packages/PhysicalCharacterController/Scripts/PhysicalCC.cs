@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
 public class PhysicalCC : MonoBehaviour
@@ -45,6 +46,8 @@ public class PhysicalCC : MonoBehaviour
 	public bool applyCollision = true;
 	public float pushForce = 55f;
 	public bool collisionWithFixator = true;
+
+	public event UnityAction OnGround;
 
 	private void Start()
 	{
@@ -138,9 +141,10 @@ public class PhysicalCC : MonoBehaviour
 	{
 		//if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, cc.height / 2 - _radius + 0.01f))
 
-		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius))
+		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius) )
 		{
-			isGround = true;
+		//	OnGround?.Invoke();
+            isGround = true;
 			//inertiaVelocity = Vector2.zero;
             groundAngle = Vector3.Angle(Vector3.up, hit.normal);
 			groundNormal = hit.normal;
