@@ -1,5 +1,111 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3822323575221721643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129012842491439549}
+  - component: {fileID: 2959090575468242521}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2129012842491439549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822323575221721643}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.079174675, z: -0, w: 0.9968608}
+  m_LocalPosition: {x: 1.2496, y: 0.3, z: 2.19}
+  m_LocalScale: {x: 3.808057, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7761728155890922457}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.082, z: 0}
+--- !u!65 &2959090575468242521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822323575221721643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5824557666079563816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5414805324493744275}
+  - component: {fileID: 7152464036218165794}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5414805324493744275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824557666079563816}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.051618867, z: -0, w: 0.9986669}
+  m_LocalPosition: {x: 1.2496, y: 0.3, z: -2.14}
+  m_LocalScale: {x: 3.808057, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7761728155890922457}
+  m_LocalEulerAnglesHint: {x: 0, y: 5.918, z: 0}
+--- !u!65 &7152464036218165794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824557666079563816}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7799543920001274930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,7 +160,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a1efc394f869fd4d9b350db218cbb7c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2129012842491439549}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a1efc394f869fd4d9b350db218cbb7c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5414805324493744275}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a1efc394f869fd4d9b350db218cbb7c, type: 3}
       insertIndex: -1
@@ -84,5 +196,10 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.0307503, y: 1.3632843, z: 5.6100903}
-  m_Center: {x: -0.17704964, y: 0.122154355, z: -0.051016808}
+  m_Size: {x: 6.7719994, y: 1.3632843, z: 4.630533}
+  m_Center: {x: -0.30642498, y: 0.122154355, z: 0.03215313}
+--- !u!4 &7761728155890922457 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a1efc394f869fd4d9b350db218cbb7c, type: 3}
+  m_PrefabInstance: {fileID: 7799543920001274930}
+  m_PrefabAsset: {fileID: 0}
