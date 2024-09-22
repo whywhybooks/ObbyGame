@@ -10,6 +10,10 @@ public class CharacterHealth : MonoBehaviour
     [SerializeField] private Vector3 _cubeSize;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private LayerMask _onlyKillLayer;
+    [SerializeField] private PhysicalCC _physicalCC;
+
+    private Vector3 _defaultScale;
+    private Vector3 _minScale;
 
     public event UnityAction OnDied;
     public event UnityAction OnShieldPickUp;
@@ -24,9 +28,27 @@ public class CharacterHealth : MonoBehaviour
     public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
     public float ShieldLeftTime => ShieldTime - ShieldElapsedTime;
 
+    private void Start()
+    {
+        _defaultScale = _cubeSize;
+        _minScale = new Vector3(_cubeSize.x, _cubeSize.y / 3, _cubeSize.z) ;
+    }
+
     private void FixedUpdate()
     {
         CheckCollision();
+    }
+
+    private void Update()
+    {
+        if (_physicalCC.isGround == true)
+        {
+            _cubeSize = _defaultScale;
+        }
+        else
+        {
+            _cubeSize = _minScale;
+        }
     }
 
     private void CheckCollision()

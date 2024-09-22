@@ -59,7 +59,6 @@ public class PhysicalCC : MonoBehaviour
     {
         GroundCheck();
         FixedCheck();
-		Debug.Log(cc.velocity);
 
         if (isGround)
         {
