@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: gravity
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 3786285179675626756, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1109654717}
     - target: {fileID: 5537045149580353993, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: _mainCamera
       value: 
@@ -41631,6 +41635,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e0352d84a33b364496e43ab9c08459a, type: 3}
       propertyPath: m_Name
       value: SKM_Man_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 8e0352d84a33b364496e43ab9c08459a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 8e0352d84a33b364496e43ab9c08459a, type: 3}
       propertyPath: m_Controller

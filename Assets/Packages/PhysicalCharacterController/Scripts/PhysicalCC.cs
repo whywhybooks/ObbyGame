@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterController))]
 public class PhysicalCC : MonoBehaviour
 {
+	public Animator _animator;
 	public CharacterController cc { get; private set; }
 	private IEnumerator dampingCor;
 
@@ -58,6 +59,7 @@ public class PhysicalCC : MonoBehaviour
     {
         GroundCheck();
         FixedCheck();
+		Debug.Log(cc.velocity);
 
         if (isGround)
         {
@@ -65,18 +67,31 @@ public class PhysicalCC : MonoBehaviour
 
             if (groundAngle < slopeLimit && inertiaVelocity != Vector3.zero) InertiaDamping();
         }
+		else
+		{
+			_animator.SetFloat("Jump", cc.velocity.y);
+
+        }
+
 
         GravityUpdate();
     }
 
     private void Update()
 	{
-
-
 		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
 		cc.Move(moveDirection * Time.deltaTime);
-	}
+
+		if (_animator.GetBool("IsGround") == false && isGround == true)
+		{
+			_animator.SetBool("IsGround", true);
+		}
+		else if (_animator.GetBool("IsGround") == true && isGround == false)
+		{
+            _animator.SetBool("IsGround", false);
+        }
+    }
 
     private void GravityUpdate()
 	{

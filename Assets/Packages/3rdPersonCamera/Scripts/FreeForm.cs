@@ -137,7 +137,7 @@ namespace ThirdPersonCamera
             }
 
             // sample mouse scrollwheel for zooming in/out
-            if (inputFreeForm.mouseWheel < 0) // back
+           /* if (inputFreeForm.mouseWheel < 0) // back
             {
                 cameraController.desiredDistance += cameraController.zoomOutStepValue;
 
@@ -151,7 +151,7 @@ namespace ThirdPersonCamera
                 if (cameraController.desiredDistance < minDistance)
                     cameraController.desiredDistance = minDistance;
             }
-
+           */
             if (lookingBackwardsEnabled)
             {
                 if (inputFreeForm.middleMouseButtonPressed && !lookingBackwards) // flip y-axis when pressing middle mouse button
