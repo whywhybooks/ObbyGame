@@ -157,7 +157,11 @@ public class PhysicalCC : MonoBehaviour
 
 		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius) )
 		{
-		//	OnGround?.Invoke();
+			if (isGround == false)
+			{
+                OnGround?.Invoke();
+
+            }
             isGround = true;
 			//inertiaVelocity = Vector2.zero;
             groundAngle = Vector3.Angle(Vector3.up, hit.normal);

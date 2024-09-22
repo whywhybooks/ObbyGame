@@ -45,10 +45,16 @@ public class ChraracterSpeedBooster : MonoBehaviour
 
     private void BoostReset()
     {
-        _playerInput.RemoveAcceleration(_currentMultiplier);
-        StopCoroutine(_removeAccelerationCoroutine);
-        _removeAccelerationCoroutine = null;
-        _isBoosted = false;
+        if (_isBoosted)
+        {
+            _playerInput.RemoveAcceleration(_currentMultiplier);
+
+            if (_removeAccelerationCoroutine != null)
+                StopCoroutine(_removeAccelerationCoroutine);
+
+            _removeAccelerationCoroutine = null;
+            _isBoosted = false;
+        }
     }
 
     private IEnumerator RemoveAcceleration(float duration)
