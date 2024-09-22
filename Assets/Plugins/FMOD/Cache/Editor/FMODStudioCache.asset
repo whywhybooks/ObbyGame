@@ -390,7 +390,7 @@ MonoBehaviour:
   - {fileID: 3048980799204862789}
   StringsBanks:
   - {fileID: 9016627884593786946}
-  cacheTime: 638626275863949946
+  cacheTime: 638626145336499470
   cacheVersion: 131618
 --- !u!114 &158233083417664032
 MonoBehaviour:
@@ -621,7 +621,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638626275863929964
+  lastModified: 638626145336341745
   FileSizes: []
   Exists: 1
 --- !u!114 &5155372861987851753
@@ -772,7 +772,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Mobile/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638626275863949946
+  lastModified: 638626145336499470
   FileSizes:
   - Name: 
     Value: 2382
