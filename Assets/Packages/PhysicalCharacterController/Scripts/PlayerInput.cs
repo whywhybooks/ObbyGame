@@ -10,11 +10,14 @@ public class PlayerInput : MonoBehaviour
 	[Header("Main parametrs")]
 	[SerializeField] private bool _debugMode;
 	[SerializeField] private Animator _animator;
+	[SerializeField] private Transform _camera;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
+    float m_TurnAmount;
+	float m_ForwardAmount;
 
-	public Transform bodyRender;
+    public Transform bodyRender;
 	IEnumerator sitCort;
 	public bool isSitting;
 
@@ -61,7 +64,7 @@ public class PlayerInput : MonoBehaviour
                      verticalInput = move.y;
             }
 
-            physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
+            physicalCC.moveInput = Vector3.ClampMagnitude(_camera.forward
 							* verticalInput
                             + transform.right
 							* horizontalInput, 1f) * speed;
@@ -80,6 +83,7 @@ public class PlayerInput : MonoBehaviour
             {
                 physicalCC.inertiaVelocity.y = 0f;
 				physicalCC.inertiaVelocity.y += jumpHeight * 1.4f;
+				physicalCC.inertiaVelocity.y += jumpHeight;
 				_animator.SetTrigger("IsJump");
 				OnJump?.Invoke();
 
@@ -92,9 +96,18 @@ public class PlayerInput : MonoBehaviour
 			
 			}
 		}
+		m_ForwardAmount = physicalCC.moveInput.z;
+        m_TurnAmount = Mathf.Atan2(physicalCC.moveInput.x, physicalCC.moveInput.z);
+		ApplyExtraTurnRotation();
     }
 
-	public void LongJump(float longJumpHeight, float delayTime)
+    void ApplyExtraTurnRotation()
+    {
+        float turnSpeed = Mathf.Lerp(100, 360, m_ForwardAmount);
+        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+    }
+
+    public void LongJump(float longJumpHeight, float delayTime)
 	{
         physicalCC.inertiaVelocity.y = 0f;
         physicalCC.inertiaVelocity.y += longJumpHeight;

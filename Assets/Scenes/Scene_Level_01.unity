@@ -263,6 +263,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1109654717}
     - target: {fileID: 5537045149580353993, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537045149580353993, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 1887952915}
@@ -274,6 +278,10 @@ PrefabInstance:
       propertyPath: speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6534996604238580251, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1887952922}
     - target: {fileID: 6534996604238580251, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: _animator
       value: 
