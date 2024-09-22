@@ -31,7 +31,7 @@ public class CharacterHealth : MonoBehaviour
     private void Start()
     {
         _defaultScale = _cubeSize;
-        _minScale = new Vector3(_cubeSize.x, _cubeSize.y / 3, _cubeSize.z) ;
+        _minScale = new Vector3(_cubeSize.x, _cubeSize.y / 7, _cubeSize.z) ;
     }
 
     private void FixedUpdate()
