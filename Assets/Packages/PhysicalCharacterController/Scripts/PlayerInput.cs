@@ -82,7 +82,6 @@ public class PlayerInput : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
             {
                 physicalCC.inertiaVelocity.y = 0f;
-				physicalCC.inertiaVelocity.y += jumpHeight * 1.4f;
 				physicalCC.inertiaVelocity.y += jumpHeight;
 				_animator.SetTrigger("IsJump");
 				OnJump?.Invoke();
