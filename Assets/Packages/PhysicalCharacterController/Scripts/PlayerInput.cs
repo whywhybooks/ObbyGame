@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TouchControlsKit;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerInput : MonoBehaviour
 	public PhysicalCC physicalCC;
     float m_TurnAmount;
 	float m_ForwardAmount;
+    public float turnSpeed = 10f;
+
+    float horizontalInput = 0;
+    float verticalInput = 0;
 
     public Transform bodyRender;
 	IEnumerator sitCort;
@@ -27,11 +32,6 @@ public class PlayerInput : MonoBehaviour
 	{
 		if (physicalCC.isGround)
 		{
-			float horizontalInput = 0;
-
-			float verticalInput = 0;
-
-
 			if (_debugMode)
 			{
 				horizontalInput = Input.GetAxis("Horizontal");
@@ -95,9 +95,15 @@ public class PlayerInput : MonoBehaviour
 			
 			}
 		}
-		m_ForwardAmount = physicalCC.moveInput.z;
-        m_TurnAmount = Mathf.Atan2(physicalCC.moveInput.x, physicalCC.moveInput.z);
-		ApplyExtraTurnRotation();
+        //	m_ForwardAmount = physicalCC.moveInput.z;
+        //  m_TurnAmount = Mathf.Atan2(physicalCC.moveInput.x, physicalCC.moveInput.z);
+        //ApplyExtraTurnRotation();
+
+
+        // Плавное вращение игрока в сторону движения
+	/*	float targetAngle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSpeed, 0.1f);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);*/
     }
 
     void ApplyExtraTurnRotation()
