@@ -358,6 +358,10 @@ PrefabInstance:
       propertyPath: _collisionPoint
       value: 
       objectReference: {fileID: 267261783}
+    - target: {fileID: 8595420779065782982, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
+      propertyPath: _characterHealth
+      value: 
+      objectReference: {fileID: 1378307331}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 402278224437126774, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
