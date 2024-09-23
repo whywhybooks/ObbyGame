@@ -4,17 +4,26 @@ using System.Collections.Generic;
 using TouchControlsKit;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
 	[Header("Main parametrs")]
 	[SerializeField] private bool _debugMode;
 	[SerializeField] private Animator _animator;
+	[SerializeField] private Transform _camera;
+	[SerializeField] private CharacterHealth _characterHealth;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
+    float m_TurnAmount;
+	float m_ForwardAmount;
+    public float turnSpeed = 10f;
 
-	public Transform bodyRender;
+    float horizontalInput = 0;
+    float verticalInput = 0;
+
+    public Transform bodyRender;
 	IEnumerator sitCort;
 	public bool isSitting;
 
@@ -22,13 +31,15 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
 	{
+		if (_characterHealth.IsDied)
+		{
+			physicalCC.moveInput = Vector3.zero;
+
+            return;
+		}
+
 		if (physicalCC.isGround)
 		{
-			float horizontalInput = 0;
-
-			float verticalInput = 0;
-
-
 			if (_debugMode)
 			{
 				horizontalInput = Input.GetAxis("Horizontal");
@@ -61,7 +72,7 @@ public class PlayerInput : MonoBehaviour
                      verticalInput = move.y;
             }
 
-            physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
+            physicalCC.moveInput = Vector3.ClampMagnitude(_camera.forward
 							* verticalInput
                             + transform.right
 							* horizontalInput, 1f) * speed;
@@ -79,7 +90,7 @@ public class PlayerInput : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
             {
                 physicalCC.inertiaVelocity.y = 0f;
-                physicalCC.inertiaVelocity.y += jumpHeight;
+				physicalCC.inertiaVelocity.y += jumpHeight;
 				_animator.SetTrigger("IsJump");
 				OnJump?.Invoke();
 
@@ -92,9 +103,24 @@ public class PlayerInput : MonoBehaviour
 			
 			}
 		}
+        //	m_ForwardAmount = physicalCC.moveInput.z;
+        //  m_TurnAmount = Mathf.Atan2(physicalCC.moveInput.x, physicalCC.moveInput.z);
+        //ApplyExtraTurnRotation();
+
+
+        // Плавное вращение игрока в сторону движения
+	/*	float targetAngle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSpeed, 0.1f);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);*/
     }
 
-	public void LongJump(float longJumpHeight, float delayTime)
+    void ApplyExtraTurnRotation()
+    {
+        float turnSpeed = Mathf.Lerp(100, 360, m_ForwardAmount);
+        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+    }
+
+    public void LongJump(float longJumpHeight, float delayTime)
 	{
         physicalCC.inertiaVelocity.y = 0f;
         physicalCC.inertiaVelocity.y += longJumpHeight;
