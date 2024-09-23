@@ -300,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 1196089750}
     - target: {fileID: 6534996604238580251, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: _debugMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6534996604238580251, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: jumpHeight
@@ -85378,7 +85378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e36acffb8786240b2f6352eaea9427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugMode: 0
+  _debugMode: 1
   cameraMode: 0
   mouseInput: 00000000
   mouseSensitivity: {x: 1.5, y: 1}
