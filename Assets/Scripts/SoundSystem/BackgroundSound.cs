@@ -12,13 +12,15 @@ public class BackgroundSound : MonoBehaviour
 
     private void OnEnable()
     {
-        _characterHealth.OnDied += StopSound;
+        _characterHealth.OnDiedFromFall += StopSound;
+        _characterHealth.OnDiedOfShock += StopSound;
         _checkPointController.OnRestart += StatSound;
     }
 
     private void OnDisable()
     {
-        _characterHealth.OnDied -= StopSound;
+        _characterHealth.OnDiedFromFall -= StopSound;
+        _characterHealth.OnDiedOfShock -= StopSound;
         _checkPointController.OnRestart -= StatSound;
     }
 
