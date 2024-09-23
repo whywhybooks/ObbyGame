@@ -65,21 +65,15 @@ public class PlayerInput : MonoBehaviour
         verticalInput = 0;
     }
 
-    private void LateUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
-        {
-			Jump();
-        }
-    }
-
 	public void Jump()
-	{
-        physicalCC.inertiaVelocity.y = 0f;
-        physicalCC.inertiaVelocity.y += jumpHeight;
-        _animator.SetTrigger("IsJump");
-        OnJump?.Invoke();
-
+    {
+		if (physicalCC.isGround)
+		{
+			physicalCC.inertiaVelocity.y = 0f;
+			physicalCC.inertiaVelocity.y += jumpHeight;
+			_animator.SetTrigger("IsJump");
+			OnJump?.Invoke();
+		}
     }
 
     void Update()
@@ -134,9 +128,12 @@ public class PlayerInput : MonoBehaviour
 			{
 				_animator.SetBool("IsRun", false);
 			}
-			//physicalCC.moveInput.y = 0f;
+            //physicalCC.moveInput.y = 0f;
 
-
+            if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
+            {
+                Jump();
+            }
 
             if (Input.GetKeyDown(KeyCode.C) && sitCort == null)
 			{
