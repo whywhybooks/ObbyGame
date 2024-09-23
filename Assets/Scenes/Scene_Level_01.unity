@@ -364,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 1378307342}
     - target: {fileID: 7069351250650091138, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: _restartDelay
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7069351250650091138, guid: 31b2f1b276738ad43b4ec7aae809d72d, type: 3}
       propertyPath: _collisionPoint
@@ -20748,7 +20748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &715549446
 MonoBehaviour:
   m_ObjectHideFlags: 0
