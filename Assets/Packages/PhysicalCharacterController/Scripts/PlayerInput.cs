@@ -3,6 +3,7 @@ using System.Collections;
 using TouchControlsKit;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private Transform _camera;
 	[SerializeField] private CharacterHealth _characterHealth;
 	[SerializeField] private TCKJoystick _joystick;
+	[SerializeField] private Button _jumpButton;
 	public float speed = 5;
     private float defaultSpeed;
     public float floataccelerationReductionInertia;
@@ -61,6 +63,23 @@ public class PlayerInput : MonoBehaviour
 		m_IsMoving = false;
         horizontalInput = 0;
         verticalInput = 0;
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
+        {
+			Jump();
+        }
+    }
+
+	public void Jump()
+	{
+        physicalCC.inertiaVelocity.y = 0f;
+        physicalCC.inertiaVelocity.y += jumpHeight;
+        _animator.SetTrigger("IsJump");
+        OnJump?.Invoke();
+
     }
 
     void Update()
@@ -117,14 +136,7 @@ public class PlayerInput : MonoBehaviour
 			}
 			//physicalCC.moveInput.y = 0f;
 
-            if (Input.GetKeyDown(KeyCode.Space) || TCKInput.GetAction("jumpBtn", EActionEvent.Down))
-            {
-                physicalCC.inertiaVelocity.y = 0f;
-				physicalCC.inertiaVelocity.y += jumpHeight;
-				_animator.SetTrigger("IsJump");
-				OnJump?.Invoke();
 
-            }
 
             if (Input.GetKeyDown(KeyCode.C) && sitCort == null)
 			{
