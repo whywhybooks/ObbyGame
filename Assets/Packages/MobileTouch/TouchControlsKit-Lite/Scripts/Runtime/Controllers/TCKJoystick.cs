@@ -10,6 +10,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 namespace TouchControlsKit
 {
@@ -23,6 +24,8 @@ namespace TouchControlsKit
     {
         public Image joystickImage, backgroundImage;
         public RectTransform joystickRT, backgroundRT;
+        public event UnityAction OnPointerUpEvent;
+        public event UnityAction OnPointerDownEvent;
         
         [SerializeField, Label( "Mode" )]
         private bool isStatic = true;
@@ -97,7 +100,7 @@ namespace TouchControlsKit
         // Update Position
         protected override void UpdatePosition( Vector2 touchPos )
         {
-            if( !axisX.enabled && !axisY.enabled )
+            if ( !axisX.enabled && !axisY.enabled )
                 return;
 
             base.UpdatePosition( touchPos );
@@ -168,12 +171,13 @@ namespace TouchControlsKit
         {
             bool smoothReturnIsRun = true;
             int defPosMagnitude = Mathf.RoundToInt( defaultPosition.sqrMagnitude );
-
-            while( smoothReturnIsRun && touchDown == false )
+            currentPosition = defaultPosition;
+            UpdateJoystickPosition();
+            while ( smoothReturnIsRun && touchDown == false )
             {                
                 float smoothTime = smoothFactor * Time.smoothDeltaTime;
 
-                currentPosition = Vector2.Lerp( currentPosition, defaultPosition, smoothTime );
+           //     currentPosition = Vector2.Lerp( currentPosition, defaultPosition, smoothTime ); //Плавное смещение джойстика
 
                 if( isStatic == false )
                 {
@@ -191,7 +195,7 @@ namespace TouchControlsKit
                     }                                           
                 }
 
-                UpdateJoystickPosition();
+              //  UpdateJoystickPosition();
                 yield return null;
             }
         }
@@ -202,17 +206,19 @@ namespace TouchControlsKit
         {
             base.ControlReset();
 
-            if( smoothReturn )
-            {
-                StopCoroutine( "SmoothReturnRun" );
-                StartCoroutine( "SmoothReturnRun" );
-            }
-            else
-            {
+            //if( smoothReturn )
+            //{
+            //    StopCoroutine( "SmoothReturnRun" );
+            //    StartCoroutine( "SmoothReturnRun" );
+            //    Debug.Log(11111111);
+            //}
+            //else
+            //{
                 joystickImage.enabled = backgroundImage.enabled = isStatic;
                 currentPosition = defaultPosition;
                 UpdateJoystickPosition();
-            }
+                Debug.Log(22222222);
+           // }
         }
 
 
@@ -223,6 +229,7 @@ namespace TouchControlsKit
             {
                 touchId = pointerData.pointerId;
                 UpdatePosition( pointerData.position );
+                OnPointerDownEvent?.Invoke();
             }
         }
 
@@ -239,6 +246,10 @@ namespace TouchControlsKit
         {
             UpdatePosition( pointerData.position );
             ControlReset();
+            ResetAxes();
+            OnPointerUpEvent?.Invoke();
+            currentPosition.x = 0;
+            currentPosition.y = 0;
         }
     };
 }

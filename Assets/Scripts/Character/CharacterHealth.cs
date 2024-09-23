@@ -13,6 +13,7 @@ public class CharacterHealth : MonoBehaviour
     [SerializeField] private PhysicalCC _physicalCC;
     [SerializeField] private float _restartDelay;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _playerModel;
 
     private Vector3 _defaultScale;
     private Vector3 _minScale;
@@ -24,8 +25,10 @@ public class CharacterHealth : MonoBehaviour
     public event UnityAction OnShieldOver;
 
     private Coroutine _stopShieldCoroutine;
+    private Coroutine _diedCoroutine;
     private bool _isShield;
     private bool _isDied;
+    private bool _isFastKill;
     private float _shieldTime;
     private float _shieldElapsedTime;
 
@@ -54,13 +57,30 @@ public class CharacterHealth : MonoBehaviour
         {
             _cubeSize = _minScale;
         }
+
         CheckCollision();
     }
 
     private void CheckCollision()
     {
         if (IsDied == true)
+        {
+           if (_physicalCC.isGround && _isFastKill == false)
+            {
+                _isFastKill = true;
+
+                if (_diedCoroutine != null)
+                {
+                    StopCoroutine(_diedCoroutine);
+                    _diedCoroutine = null;
+                }
+
+                _animator.SetTrigger("Dead");
+                _diedCoroutine = StartCoroutine(StartDiedEvent());
+            }
+
             return;
+        }
 
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _enemyLayer))
         {
@@ -68,7 +88,7 @@ public class CharacterHealth : MonoBehaviour
                 return;
 
             IsDied = true;
-            StartCoroutine(StartDiedEvent());
+            _diedCoroutine = StartCoroutine(StartDiedEvent());
             OnDiedOfShock?.Invoke();
             _animator.SetTrigger("Dead");
             _animator.SetBool("IsRun", false);
@@ -76,9 +96,9 @@ public class CharacterHealth : MonoBehaviour
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _onlyKillLayer))
         {
             IsDied = true;
-            StartCoroutine(StartDiedEvent());
+            _diedCoroutine = StartCoroutine(StartDiedEvent());
             OnDiedFromFall?.Invoke();
-            _animator.SetTrigger("Dead");
+            // _animator.SetTrigger("Dead");
             _animator.SetBool("IsRun", false);
             Debug.Log(3456789);
         }
@@ -106,9 +126,18 @@ public class CharacterHealth : MonoBehaviour
 
     private IEnumerator StartDiedEvent()
     {
-        yield return new WaitForSeconds(_restartDelay);
+        float elapsedTime = 0;
+        while (elapsedTime < _restartDelay)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+     //   yield return new WaitForSeconds(_restartDelay);
         OnDied?.Invoke();
         IsDied = false;
+        _isFastKill = false;
+        _animator.Play("Idle");
+      //  _playerModel.transform.eulerAngles = Vector3.zero;
     }
 
     private IEnumerator StopShield()
