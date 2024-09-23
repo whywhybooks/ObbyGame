@@ -104,7 +104,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 6.6
+  MaxDistance: 30
   Length: 10581
 --- !u!114 &-5073930753505289545
 MonoBehaviour:
@@ -131,7 +131,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 3984
 --- !u!114 &-4546156210888774438
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 6.8
+  MaxDistance: 30
   Length: 0
 --- !u!114 &-3051637694801187885
 MonoBehaviour:
@@ -264,7 +264,6 @@ MonoBehaviour:
   - {fileID: 3270914594849956545}
   - {fileID: -6052920324463378442}
   - {fileID: -3051637694801187885}
-  - {fileID: 5947482660446840908}
   - {fileID: 3863063406830535578}
   - {fileID: 5952882767160679790}
   - {fileID: 2886399826158767150}
@@ -281,7 +280,7 @@ MonoBehaviour:
   - {fileID: 3048980799204862789}
   StringsBanks:
   - {fileID: 4427407928478634160}
-  cacheTime: 638624611462170668
+  cacheTime: 638626981663808164
   cacheVersion: 131618
 --- !u!114 &420840936886749334
 MonoBehaviour:
@@ -336,7 +335,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 2798
 --- !u!114 &982226470037361033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,7 +456,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638624611462150721
+  lastModified: 638626981663788217
   FileSizes: []
   Exists: 1
 --- !u!114 &3270914594849956545
@@ -486,7 +485,7 @@ MonoBehaviour:
   Parameters:
   - {fileID: 2297436337416149494}
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 45984
 --- !u!114 &3863063406830535578
 MonoBehaviour:
@@ -513,7 +512,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 11437
 --- !u!114 &4427407928478634160
 MonoBehaviour:
@@ -530,10 +529,10 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Mobile/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638624611462170668
+  lastModified: 638626981663808164
   FileSizes:
   - Name: 
-    Value: 2382
+    Value: 2334
   Exists: 1
 --- !u!114 &4489770365639761299
 MonoBehaviour:
@@ -560,7 +559,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 2500
 --- !u!114 &5848048237453204116
 MonoBehaviour:
@@ -588,35 +587,8 @@ MonoBehaviour:
   Parameters:
   - {fileID: -4546156210888774438}
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 31048
---- !u!114 &5947482660446840908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX/Player/Death electr
-  m_EditorClassIdentifier: 
-  Path: event:/FX/Player/Death electr
-  Guid:
-    Data1: -1541798574
-    Data2: 1096171508
-    Data3: -141133155
-    Data4: -333530882
-  Banks:
-  - {fileID: 3048980799204862789}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &5952882767160679790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +614,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 1500
 --- !u!114 &7279875643993429309
 MonoBehaviour:
@@ -693,7 +665,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 0
 --- !u!114 &7474335412889523462
 MonoBehaviour:
@@ -747,7 +719,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 4704
 --- !u!114 &8699110519366153341
 MonoBehaviour:
