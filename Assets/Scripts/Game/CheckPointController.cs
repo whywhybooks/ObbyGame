@@ -36,7 +36,7 @@ public class CheckPointController : MonoBehaviour
 
         _character.OnDied += Restart;
 
-        for (int i = 10; i < _checkPoints.Count; i++)
+        for (int i = 15; i < _checkPoints.Count; i++)
         {
             _checkPoints[i].SetActiveSoholdingZone(false);
         }
@@ -91,9 +91,9 @@ public class CheckPointController : MonoBehaviour
 
         _currentCheckPoint = checkPoint;
 
-        if (checkPoint.Index > 7 && checkPoint.Index < _checkPoints.Count)
+        if (checkPoint.Index > 15 && checkPoint.Index < _checkPoints.Count)
         {
-            for (int i = checkPoint.Index - 7; i >= 0; i--)
+            for (int i = checkPoint.Index - 15; i >= 0; i--)
             {
                 _checkPoints[i].SetActiveSoholdingZone(false);
             }

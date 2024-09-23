@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using TouchControlsKit;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -15,7 +13,9 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private CharacterHealth _characterHealth;
 	[SerializeField] private TCKJoystick _joystick;
 	public float speed = 5;
-	public float jumpHeight = 15;
+    private float defaultSpeed;
+    public float floataccelerationReductionInertia;
+    public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
     float m_TurnAmount;
 	float m_ForwardAmount;
@@ -24,11 +24,44 @@ public class PlayerInput : MonoBehaviour
     float horizontalInput = 0;
     float verticalInput = 0;
 
+	private bool m_IsMoving = false;
+
     public Transform bodyRender;
 	IEnumerator sitCort;
 	public bool isSitting;
+	private Coroutine _smoothRemoveAccelerationCoroutine;
 
-	public event UnityAction OnJump;
+
+    public event UnityAction OnJump;
+
+    private void OnEnable()
+    {
+		_joystick.OnPointerUpEvent += DisableMove;
+		_joystick.OnPointerDownEvent += EnableMove;
+    }
+
+    private void Start()
+    {
+		defaultSpeed = speed;
+    }
+
+    private void OnDisable()
+    {
+        _joystick.OnPointerUpEvent -= DisableMove;
+        _joystick.OnPointerDownEvent -= EnableMove;
+    }
+
+    private void EnableMove()
+    {
+		m_IsMoving = true;
+    }
+
+    private void DisableMove()
+    {
+		m_IsMoving = false;
+        horizontalInput = 0;
+        verticalInput = 0;
+    }
 
     void Update()
 	{
@@ -45,10 +78,9 @@ public class PlayerInput : MonoBehaviour
 		{
 			if (_debugMode)
 			{
-				horizontalInput = Input.GetAxis("Horizontal");
+                horizontalInput = Input.GetAxis("Horizontal");
 				verticalInput = Input.GetAxis("Vertical");
-
-
+			  
                 if (Math.Abs(horizontalInput) < 1)
                 {
                     horizontalInput = 0;
@@ -63,19 +95,14 @@ public class PlayerInput : MonoBehaviour
 			{
                 Vector2 move = TCKInput.GetAxis("Joystick");
 
-
-                 if (Input.GetAxis("Horizontal") != 0)
-                     horizontalInput = Input.GetAxis("Horizontal");
-                 else if (move.x != 0)
-                     horizontalInput = move.x;
-
-                 if (Input.GetAxis("Vertical") != 0)
-                     verticalInput = Input.GetAxis("Vertical");
-                 else if (move.y != 0)
-                     verticalInput = move.y;
+                if (m_IsMoving)
+				{
+                    horizontalInput = move.x;
+                    verticalInput = move.y;
+                }
             }
 
-            physicalCC.moveInput = Vector3.ClampMagnitude(_camera.forward
+            physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
 							* verticalInput
                             + transform.right
 							* horizontalInput, 1f) * speed;
@@ -132,14 +159,48 @@ public class PlayerInput : MonoBehaviour
 
 	public void BoostSpeed(float multiplier)
 	{
+		if (_smoothRemoveAccelerationCoroutine != null)
+		{
+			StopCoroutine( _smoothRemoveAccelerationCoroutine );
+			_smoothRemoveAccelerationCoroutine = null;
+		}
+
+		if (speed > defaultSpeed)
+		{
+			speed = defaultSpeed;
+		}
+
 		speed *= multiplier;
 		_animator.SetFloat("Speed", 1.5f);
+	}
+
+	public void SmoothRemoveAcceleration(float multiplier)
+	{
+        _smoothRemoveAccelerationCoroutine = StartCoroutine(SmoothRemoveAccelerationCoroutine(multiplier));
 	}
 
     public void RemoveAcceleration(float multiplier)
     {
         speed /= multiplier;
         _animator.SetFloat("Speed", 1);
+    }
+
+	private IEnumerator SmoothRemoveAccelerationCoroutine(float multiplier)
+	{
+		float targetSpeed = speed / multiplier;
+		float currentSpeed = speed;
+		float elapsedTime = 0;
+
+		while (speed > targetSpeed)
+		{
+			elapsedTime += Time.deltaTime;
+			speed = Mathf.MoveTowards(currentSpeed, targetSpeed, elapsedTime * floataccelerationReductionInertia);
+
+			yield return null;
+		}
+
+		speed = targetSpeed;
+		_smoothRemoveAccelerationCoroutine = null;
     }
 
     IEnumerator sitDown()
