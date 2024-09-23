@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Door : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class Door : MonoBehaviour
     private CharacterKeys _characterKeys;
 
     public int TargetKeys { get => _targetKeys; private set => _targetKeys = value; }
+    public Transform LeftDoor { get => _leftDoor; private set => _leftDoor = value; }
+    public Transform RightDoor { get => _rightDoor; private set => _rightDoor = value; }
+
+    public event UnityAction Unlocked;
 
     private void Start()
     {
@@ -45,6 +50,7 @@ public class Door : MonoBehaviour
                 if (_characterKeys.TryOpenDoor(_targetKeys))
                 {
                     StartCoroutine(Open());
+                    Unlocked?.Invoke();
                 }
                 else
                 {

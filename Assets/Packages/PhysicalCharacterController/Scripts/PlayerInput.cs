@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private bool _debugMode;
 	[SerializeField] private Animator _animator;
 	[SerializeField] private Transform _camera;
+	[SerializeField] private CharacterHealth _characterHealth;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
@@ -30,6 +31,13 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
 	{
+		if (_characterHealth.IsDied)
+		{
+			physicalCC.moveInput = Vector3.zero;
+
+            return;
+		}
+
 		if (physicalCC.isGround)
 		{
 			if (_debugMode)

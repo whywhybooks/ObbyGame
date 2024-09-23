@@ -11,22 +11,28 @@ public class CharacterHealth : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private LayerMask _onlyKillLayer;
     [SerializeField] private PhysicalCC _physicalCC;
+    [SerializeField] private float _restartDelay;
+    [SerializeField] private Animator _animator;
 
     private Vector3 _defaultScale;
     private Vector3 _minScale;
 
     public event UnityAction OnDied;
+    public event UnityAction OnDiedOfShock;
+    public event UnityAction OnDiedFromFall;
     public event UnityAction OnShieldPickUp;
     public event UnityAction OnShieldOver;
 
     private Coroutine _stopShieldCoroutine;
     private bool _isShield;
+    private bool _isDied;
     private float _shieldTime;
     private float _shieldElapsedTime;
 
     public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
     public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
     public float ShieldLeftTime => ShieldTime - ShieldElapsedTime;
+    public bool IsDied { get => _isDied; private set => _isDied = value; }
 
     private void Start()
     {
@@ -36,7 +42,6 @@ public class CharacterHealth : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckCollision();
     }
 
     private void Update()
@@ -49,20 +54,31 @@ public class CharacterHealth : MonoBehaviour
         {
             _cubeSize = _minScale;
         }
+        CheckCollision();
     }
 
     private void CheckCollision()
     {
+        if (IsDied == true)
+            return;
+
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _enemyLayer))
         {
             if (_isShield)
                 return;
 
-            OnDied?.Invoke();
+            IsDied = true;
+            StartCoroutine(StartDiedEvent());
+            OnDiedOfShock?.Invoke();
+            _animator.SetTrigger("Dead");
         }
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _onlyKillLayer))
         {
-            OnDied?.Invoke();
+            IsDied = true;
+            StartCoroutine(StartDiedEvent());
+            OnDiedFromFall?.Invoke();
+            _animator.SetTrigger("Dead");
+            Debug.Log(3456789);
         }
     }
 
@@ -84,6 +100,13 @@ public class CharacterHealth : MonoBehaviour
             if (_stopShieldCoroutine == null)
                 _stopShieldCoroutine = StartCoroutine(StopShield());
         }
+    }
+
+    private IEnumerator StartDiedEvent()
+    {
+        yield return new WaitForSeconds(_restartDelay);
+        OnDied?.Invoke();
+        IsDied = false;
     }
 
     private IEnumerator StopShield()

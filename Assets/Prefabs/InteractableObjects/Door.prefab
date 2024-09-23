@@ -336,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6789756556016459889}
   - component: {fileID: 8013367511528964387}
+  - component: {fileID: 7384617414220288139}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -381,3 +382,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _triggerCollider: {fileID: 2203941260165168142}
+--- !u!114 &7384617414220288139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521417797108175271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94fc86d17163fdc4a834d4398c84d58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _doors: {fileID: 8013367511528964387}
+  _lockSound:
+    Guid:
+      Data1: 1501908725
+      Data2: 1155287736
+      Data3: -566569561
+      Data4: -1701202417
+    Path: event:/FX/Environment/Door/Lock
+  _openSound:
+    Guid:
+      Data1: 1642346892
+      Data2: 1330130391
+      Data3: -1898784869
+      Data4: 1822837464
+    Path: event:/FX/Environment/Door/Door_Open

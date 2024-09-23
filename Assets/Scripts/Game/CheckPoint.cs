@@ -41,7 +41,6 @@ public class CheckPoint : MonoBehaviour
     {
         if (Physics.CheckBox(_boxCollider.position, _boxCollider.lossyScale / 2, transform.rotation, _characterLayer))
         {
-
             if (_activated == false)
             {
                 OnCollisionEnter?.Invoke(this);
@@ -49,10 +48,10 @@ public class CheckPoint : MonoBehaviour
                 StartCoroutine(Activate());
             }
         }
-        else
+      /*  else
         {
             _activated = false;
-        }
+        }*/
     }
 
     private IEnumerator Activate()
