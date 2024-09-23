@@ -71,6 +71,7 @@ public class CharacterHealth : MonoBehaviour
             StartCoroutine(StartDiedEvent());
             OnDiedOfShock?.Invoke();
             _animator.SetTrigger("Dead");
+            _animator.SetBool("IsRun", false);
         }
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _onlyKillLayer))
         {
@@ -78,6 +79,7 @@ public class CharacterHealth : MonoBehaviour
             StartCoroutine(StartDiedEvent());
             OnDiedFromFall?.Invoke();
             _animator.SetTrigger("Dead");
+            _animator.SetBool("IsRun", false);
             Debug.Log(3456789);
         }
     }

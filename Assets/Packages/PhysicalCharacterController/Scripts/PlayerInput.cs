@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private Animator _animator;
 	[SerializeField] private Transform _camera;
 	[SerializeField] private CharacterHealth _characterHealth;
+	[SerializeField] private TCKJoystick _joystick;
 	public float speed = 5;
 	public float jumpHeight = 15;
 	public PhysicalCC physicalCC;
@@ -34,7 +35,9 @@ public class PlayerInput : MonoBehaviour
 		if (_characterHealth.IsDied)
 		{
 			physicalCC.moveInput = Vector3.zero;
-
+			_joystick.ResetAxes();
+			horizontalInput = 0;
+			verticalInput = 0;
             return;
 		}
 

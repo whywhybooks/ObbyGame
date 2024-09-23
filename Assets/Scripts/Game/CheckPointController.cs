@@ -14,16 +14,16 @@ public class CheckPointController : MonoBehaviour
     [SerializeField] private List<CheckPoint> _checkPoints = new List<CheckPoint>();
 
     private CheckPoint _currentCheckPoint;
+    private int _currentCheckPointIndex;
 
     public List<CheckPoint> CheckPoints { get => _checkPoints; private set => _checkPoints = value; }
 
     public event UnityAction OnRestart;
 
-    private void OnEnable()
+    private void Awake()
     {
-       // _checkPoints = GetComponentsInChildren<CheckPoint>().ToList();
-
         _currentCheckPoint = _checkPoints[0];
+        _currentCheckPointIndex = 0;
         _nextButton.onClick.AddListener(NextCheckPoint);
         _previousButton.onClick.AddListener(PreviousCheckPoint);
 
@@ -35,6 +35,11 @@ public class CheckPointController : MonoBehaviour
         }
 
         _character.OnDied += Restart;
+
+        for (int i = 10; i < _checkPoints.Count; i++)
+        {
+            _checkPoints[i].SetActiveSoholdingZone(false);
+        }
     }
 
     private void Start()
@@ -85,13 +90,25 @@ public class CheckPointController : MonoBehaviour
         }
 
         _currentCheckPoint = checkPoint;
+
+        if (checkPoint.Index > 7 && checkPoint.Index < _checkPoints.Count)
+        {
+            for (int i = checkPoint.Index - 7; i >= 0; i--)
+            {
+                _checkPoints[i].SetActiveSoholdingZone(false);
+            }
+        }
+
+        for (int i = checkPoint.Index; i < checkPoint.Index + 7; i++)
+        {
+            _checkPoints[i].SetActiveSoholdingZone(true);
+        }
     }
 
     private void Restart()
     {
         CharacterSetPosition(_currentCheckPoint.RestartPosition);
         StartCoroutine(RestartDelay());
-        //CharacterSetPosition(_currentCheckPoint.RestartPosition);
     }
 
     private IEnumerator RestartDelay()

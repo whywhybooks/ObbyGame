@@ -57,6 +57,7 @@ public class PhysicalCC : MonoBehaviour
 
     private void FixedUpdate()
     {
+		
         GroundCheck();
         FixedCheck();
 
