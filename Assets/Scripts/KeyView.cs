@@ -33,6 +33,6 @@ public class KeyView : MonoBehaviour
 
     private void UpdateText()
     {
-        _counter.text = $"{_characterKeys.CurrentCount} / {_doorsManager.TargetKeysCount}";
+        _counter.text = $"{_characterKeys.CurrentCount}/{_doorsManager.TargetKeysCount}";
     }
 }
