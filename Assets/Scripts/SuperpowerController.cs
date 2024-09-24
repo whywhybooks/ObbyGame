@@ -21,11 +21,13 @@ public class SuperpowerController : MonoBehaviour
 
     public event UnityAction ChangeSuperItemCount;
     public event UnityAction OverSuperItemCount;
+    public event UnityAction FillSuperItemCount;
 
     private void Start()
     {
         //Подгрузка из памяти количества супер айтемов
         ChangeSuperItemCount?.Invoke();
+        CheckCuperItemCount();
     }
 
     private void Update()
@@ -53,12 +55,41 @@ public class SuperpowerController : MonoBehaviour
         }
     }
 
+    public void PlayPower()
+    {
+        if (_superItemCount <= 0)
+            return;
+
+       // if (Input.GetKeyDown(KeyCode.LeftControl)) // Если это девочка
+       // {
+            _playerInput.LongJump(_longJumpHeight, _delayTime);
+            _superItemCount--;
+            ChangeSuperItemCount?.Invoke();
+
+            CheckCuperItemCount();
+        // }
+
+        /*if (Input.GetKeyDown(KeyCode.LeftShift)) // Если это мальчик
+        {
+            _playerInput.BoostSpeed(_multiplier);
+            StartCoroutine(SpeedBoost());
+            _superItemCount--;
+            ChangeSuperItemCount?.Invoke();
+
+            CheckCuperItemCount();
+        }*/
+    }
+
 
     private void CheckCuperItemCount()
     {
         if (_superItemCount == 0)
         {
             OverSuperItemCount?.Invoke();
+        }
+        else
+        {
+            FillSuperItemCount?.Invoke();
         }
     }
 
@@ -69,6 +100,7 @@ public class SuperpowerController : MonoBehaviour
             _superItemCount++;
             ChangeSuperItemCount?.Invoke();
             superItem.gameObject.SetActive(false);
+            CheckCuperItemCount();
         }
     }
 
