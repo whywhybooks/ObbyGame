@@ -55,6 +55,7 @@ MonoBehaviour:
   _restartPoint: {fileID: 6547370968127204112}
   _effectPrefab: {fileID: 5719904448287110155, guid: 89e435504c601eb4885e4e7429dc7030, type: 3}
   _defaultObject: {fileID: 937987914999502761}
+  _soholdingZone: []
 --- !u!1 &2580812518564467608
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,8 +141,8 @@ MonoBehaviour:
       Data4: -157681264
     Path: event:/FX/Environment/Checkpoint/Checkpoint
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 30
 --- !u!114 &8472424263660449047
 MonoBehaviour:
   m_ObjectHideFlags: 0

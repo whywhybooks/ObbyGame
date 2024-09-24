@@ -70,7 +70,7 @@ public class CheckPoint : MonoBehaviour
         // Если префаб указан, создаём его на месте удалённого объекта
         if (_effectPrefab != null)
         {
-            Instantiate(_effectPrefab, _defaultObject.transform.position, _defaultObject.transform.rotation);
+            Instantiate(_effectPrefab, _defaultObject.transform.position, _defaultObject.transform.rotation, transform);
         }
 
         // Удаляем объект

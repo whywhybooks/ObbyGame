@@ -18,11 +18,13 @@ public class InstantiatePrefabOnDestroy1 : MonoBehaviour
             if (parentTransform != null)
             {
                 // Instantiate the prefab as a child of the specified parent, at the parent's position
-                Instantiate(prefabToInstantiate, parentTransform.position, parentTransform.rotation, parentTransform);
+                Instantiate(prefabToInstantiate, parentTransform.position, parentTransform.rotation, parentTransform.parent);
+                Debug.Log(000);
             }
             else
             {
                 // Instantiate the prefab without a specific parent, at the current position
+                Debug.Log(123);
                 Instantiate(prefabToInstantiate, transform.position, transform.rotation);
             }
         }

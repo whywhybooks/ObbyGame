@@ -99,7 +99,7 @@ public class CheckPointController : MonoBehaviour
             }
         }
 
-        for (int i = checkPoint.Index; i < checkPoint.Index + 7; i++)
+        for (int i = checkPoint.Index; i < checkPoint.Index + 15; i++)
         {
             _checkPoints[i].SetActiveSoholdingZone(true);
         }
