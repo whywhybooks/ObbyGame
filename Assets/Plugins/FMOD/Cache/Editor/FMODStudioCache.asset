@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: -7714646029982135210}
   MinDistance: 1
   MaxDistance: 20
-  Length: 154821
+  Length: 158000
 --- !u!114 &-7714646029982135210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: 3048980799204862789}
   StringsBanks:
   - {fileID: 4427407928478634160}
-  cacheTime: 638627300137638036
+  cacheTime: 638627461549569158
   cacheVersion: 131618
 --- !u!114 &420840936886749334
 MonoBehaviour:
@@ -456,7 +456,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638627300137638036
+  lastModified: 638627461549569158
   FileSizes: []
   Exists: 1
 --- !u!114 &3270914594849956545
