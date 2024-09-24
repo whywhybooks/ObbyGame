@@ -212,8 +212,8 @@ MonoBehaviour:
       Data4: 40446544
     Path: event:/FX/Environment/Cage/Cage_1
   Event: 
-  PlayEvent: 0
-  StopEvent: 0
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
