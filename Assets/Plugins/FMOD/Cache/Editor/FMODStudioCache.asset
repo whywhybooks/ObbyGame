@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: -7714646029982135210}
   MinDistance: 1
   MaxDistance: 20
-  Length: 154821
+  Length: 158000
 --- !u!114 &-7714646029982135210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     Data4: 40446544
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
@@ -99,7 +99,7 @@ MonoBehaviour:
     Data4: 2112287212
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
@@ -177,7 +177,7 @@ MonoBehaviour:
     Data4: -1492438405
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: 3048980799204862789}
   StringsBanks:
   - {fileID: 4427407928478634160}
-  cacheTime: 638627300137638036
+  cacheTime: 638627420574335038
   cacheVersion: 131618
 --- !u!114 &420840936886749334
 MonoBehaviour:
@@ -456,7 +456,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638627300137638036
+  lastModified: 638627420574305118
   FileSizes: []
   Exists: 1
 --- !u!114 &3270914594849956545
@@ -507,7 +507,7 @@ MonoBehaviour:
     Data4: -1185899963
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
@@ -529,7 +529,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Mobile/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638626986806565337
+  lastModified: 638627420574335038
   FileSizes:
   - Name: 
     Value: 2334
@@ -581,7 +581,7 @@ MonoBehaviour:
     Data4: -1058544151
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
@@ -687,7 +687,7 @@ MonoBehaviour:
     Data4: -691735400
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
