@@ -90,7 +90,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dead
-  m_Speed: 2
+  m_Speed: 1.4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4215137934388976386}
@@ -177,7 +177,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.91573036
   m_HasExitTime: 1
@@ -394,7 +394,7 @@ AnimatorStateMachine:
     m_Position: {x: 320, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7747621494070384467}
-    m_Position: {x: 620, y: -120, z: 0}
+    m_Position: {x: 620, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7338557324326158364}
     m_Position: {x: 590, y: 80, z: 0}
@@ -434,7 +434,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 40ab2768c532a4c429959ce8fc46b8ba, type: 2}
     m_Threshold: 35
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: 11, y: 0}
     m_TimeScale: 0.1
     m_CycleOffset: 0
     m_DirectBlendParameter: 
@@ -515,7 +515,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Run
-  m_Speed: 1
+  m_Speed: 1.1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 360680491921650904}

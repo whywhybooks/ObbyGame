@@ -53,8 +53,8 @@ MonoBehaviour:
       Data4: -1185899963
     Path: event:/FX/Environment/Electricity/Electricity
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 15.5
 --- !u!1001 &2604532201673506393
 PrefabInstance:
   m_ObjectHideFlags: 0

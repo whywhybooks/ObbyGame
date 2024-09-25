@@ -159,8 +159,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 6.8
+  OverrideMaxDistance: 30
 --- !u!1 &1997514855484113636
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,8 +275,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -338,8 +338,8 @@ MonoBehaviour:
       Data4: -691735400
     Path: event:/FX/Environment/Cage/Cage_2
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -401,8 +401,8 @@ MonoBehaviour:
       Data4: 40446544
     Path: event:/FX/Environment/Cage/Cage_1
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -570,8 +570,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -686,8 +686,8 @@ MonoBehaviour:
       Data4: -691735400
     Path: event:/FX/Environment/Cage/Cage_2
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -908,8 +908,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 1
-  StopEvent: 2
+  PlayEvent: 11
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

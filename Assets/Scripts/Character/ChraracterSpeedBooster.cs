@@ -26,7 +26,7 @@ public class ChraracterSpeedBooster : MonoBehaviour
         _characterHealth.OnDied -= BoostReset;
     }
 
-    public void BoosSpeed(float multiplier, float duration)
+    public void BoostSpeed(float multiplier, float duration)
     {
         if (_isBoosted)
             return;
@@ -41,6 +41,26 @@ public class ChraracterSpeedBooster : MonoBehaviour
         _currentMultiplier = multiplier;
         _playerInput.BoostSpeed(multiplier); 
         _removeAccelerationCoroutine = StartCoroutine(RemoveAcceleration(duration));
+    }
+
+    public void PermanentBoostSpeed(float multiplier)
+    {
+        if (_isBoosted)
+            return;
+
+        _isBoosted = true;
+
+        _currentMultiplier = multiplier;
+        _playerInput.BoostSpeed(multiplier);
+    }
+
+    public void DeletePermanentBoostSpeed(float multiplier)
+    {
+        if (_isBoosted)
+        {
+            _playerInput.SmoothRemoveAcceleration(multiplier);
+            _isBoosted = false;
+        }
     }
 
     private void BoostReset()

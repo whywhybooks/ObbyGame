@@ -13,6 +13,7 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private Transform _restartPoint;
     [SerializeField] private GameObject _effectPrefab;
     [SerializeField] private GameObject _defaultObject;
+    [SerializeField] private List<GameObject> _soholdingZone = new List<GameObject>();
 
     private bool _activated;
     public int Index { get; private set; }
@@ -35,6 +36,14 @@ public class CheckPoint : MonoBehaviour
     public void Initialize(int index)
     {
         Index = index;
+    }
+
+    public void SetActiveSoholdingZone(bool isActive)
+    {
+        foreach (GameObject t in _soholdingZone)
+        {
+            t.SetActive(isActive);
+        }
     }
 
     private void CheckCollision()
@@ -61,7 +70,7 @@ public class CheckPoint : MonoBehaviour
         // Если префаб указан, создаём его на месте удалённого объекта
         if (_effectPrefab != null)
         {
-            Instantiate(_effectPrefab, _defaultObject.transform.position, _defaultObject.transform.rotation);
+            Instantiate(_effectPrefab, _defaultObject.transform.position, _defaultObject.transform.rotation, transform);
         }
 
         // Удаляем объект

@@ -1,18 +1,27 @@
+using FMOD;
 using FMODUnity;
 using UnityEngine;
 
 public class CharacterHealthSound : MonoBehaviour
 {
     [SerializeField] private CharacterHealth _characterHealth;
+    [SerializeField] private CharacterTypeChanger _characterTypeChanger;
     [SerializeField] private EventReference _shokSound;
-    [SerializeField] private EventReference _voiceSound;
     [SerializeField] private EventReference _reviveSound;
+    [SerializeField] private EventReference _manVoiceSound;
+    [SerializeField] private EventReference _girlVoiceSound;
+    [SerializeField] string _genderParametrName;
 
     private void OnEnable()
     {
         _characterHealth.OnDiedOfShock += PlayShockSound;
         _characterHealth.OnDiedFromFall += PlayVoiceSound;
         _characterHealth.OnDied += Revive;
+    }
+
+    private void Start()
+    {
+        //instance.start();
     }
 
     private void OnDisable()
@@ -30,11 +39,23 @@ public class CharacterHealthSound : MonoBehaviour
     private void PlayShockSound()
     {
         FMODUnity.RuntimeManager.PlayOneShotAttached(_shokSound, gameObject);
-        FMODUnity.RuntimeManager.PlayOneShotAttached(_voiceSound, gameObject);
+        PlayVoice();
     }
 
     private void PlayVoiceSound()
     {
-        FMODUnity.RuntimeManager.PlayOneShotAttached(_voiceSound, gameObject);
+        PlayVoice();
+    }
+
+    private void PlayVoice()
+    {
+        if (_characterTypeChanger.CharacterType == CharacterType.Man)
+        {
+            FMODUnity.RuntimeManager.PlayOneShotAttached(_manVoiceSound, gameObject);
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShotAttached(_girlVoiceSound, gameObject);
+        }
     }
 }

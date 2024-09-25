@@ -11,6 +11,7 @@ public class PhysicalCC : MonoBehaviour
 
 	[Header("Fixed check")]
 	public LayerMask _fixedMask;
+	public LayerMask _groundMask;
 	public Vector3 _boxScale;
 	public float _checkFixedDistance;
 
@@ -57,6 +58,7 @@ public class PhysicalCC : MonoBehaviour
 
     private void FixedUpdate()
     {
+		
         GroundCheck();
         FixedCheck();
 
@@ -155,7 +157,7 @@ public class PhysicalCC : MonoBehaviour
 	{
 		//if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, cc.height / 2 - _radius + 0.01f))
 
-		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius) )
+		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius, _groundMask))
 		{
 			if (isGround == false)
 			{

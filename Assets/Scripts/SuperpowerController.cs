@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class SuperpowerController : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private CharacterTypeChanger _characterTypeChanger;
 
     [Header("Long-jump")]
     [SerializeField] private float _delayTime;
@@ -20,12 +21,15 @@ public class SuperpowerController : MonoBehaviour
     public int SuperItemCount { get => _superItemCount; private set => _superItemCount = value; }
 
     public event UnityAction ChangeSuperItemCount;
+    public event UnityAction PickupSuperItemCount;
     public event UnityAction OverSuperItemCount;
+    public event UnityAction FillSuperItemCount;
 
     private void Start()
     {
         //Подгрузка из памяти количества супер айтемов
         ChangeSuperItemCount?.Invoke();
+        CheckCuperItemCount();
     }
 
     private void Update()
@@ -53,12 +57,45 @@ public class SuperpowerController : MonoBehaviour
         }
     }
 
+    public bool PlayPower()
+    {
+        if (_superItemCount <= 0)
+            return false;
+
+        if (_characterTypeChanger.CharacterType == CharacterType.Girl) // Если это девочка
+        {
+            _playerInput.LongJump(_longJumpHeight, _delayTime);
+            _superItemCount--;
+            ChangeSuperItemCount?.Invoke();
+
+            CheckCuperItemCount();
+            return true;
+         }
+
+        if (_characterTypeChanger.CharacterType == CharacterType.Man) // Если это мальчик
+        {
+            _playerInput.BoostSpeed(_multiplier);
+            StartCoroutine(SpeedBoost());
+            _superItemCount--;
+            ChangeSuperItemCount?.Invoke();
+
+            CheckCuperItemCount();
+            return true;
+        }
+
+        return true;
+    }
+
 
     private void CheckCuperItemCount()
     {
         if (_superItemCount == 0)
         {
             OverSuperItemCount?.Invoke();
+        }
+        else
+        {
+            FillSuperItemCount?.Invoke();
         }
     }
 
@@ -68,7 +105,9 @@ public class SuperpowerController : MonoBehaviour
         {
             _superItemCount++;
             ChangeSuperItemCount?.Invoke();
+            PickupSuperItemCount?.Invoke();
             superItem.gameObject.SetActive(false);
+            CheckCuperItemCount();
         }
     }
 

@@ -85,9 +85,11 @@ namespace TouchControlsKit
             OnApplyShowTouchZone();
         }
 
+       
+
                 
         // ResetAxes
-        protected void ResetAxes()
+        public void ResetAxes()
         {
             SetAxes( 0f, 0f );
         }
