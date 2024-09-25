@@ -15,7 +15,7 @@ public class CheckpointSound : MonoBehaviour
 
         if (_isActive)
         {
-             _emitterRef.Target.SetParameter(_emitterRef.Params[0].Name, 1);         
+             _emitterRef.Target.SetParameter(_emitterRef.Params[0].Name, 1);
         }
     }
 

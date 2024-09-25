@@ -57,10 +57,6 @@ public class CheckPoint : MonoBehaviour
                 StartCoroutine(Activate());
             }
         }
-      /*  else
-        {
-            _activated = false;
-        }*/
     }
 
     private IEnumerator Activate()
