@@ -157,6 +157,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-4492838677755606237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Death Girl/Gender
+  m_EditorClassIdentifier: 
+  Name: Gender
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3549936724
+    data2: 780423565
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-3583487865758258421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +235,61 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2169093335533930851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX/Player/Death Girl
+  m_EditorClassIdentifier: 
+  Path: event:/FX/Player/Death Girl
+  Guid:
+    Data1: -152403700
+    Data2: 1283529842
+    Data3: 1007153828
+    Data4: 1733543326
+  Banks:
+  - {fileID: 3048980799204862789}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -4492838677755606237}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2406
+--- !u!114 &-898006110550158598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX/Player/Death Boy
+  m_EditorClassIdentifier: 
+  Path: event:/FX/Player/Death Boy
+  Guid:
+    Data1: -1811491119
+    Data2: 1202830723
+    Data3: -959713375
+    Data4: -1106306609
+  Banks:
+  - {fileID: 3048980799204862789}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1467
 --- !u!114 &-233398854506653063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,15 +351,16 @@ MonoBehaviour:
   - {fileID: 613201846696614246}
   - {fileID: -5073930753505289545}
   - {fileID: -3583487865758258421}
-  - {fileID: 8699110519366153341}
   - {fileID: 7489990190390815675}
   - {fileID: 7324989854123549133}
+  - {fileID: -2169093335533930851}
+  - {fileID: -898006110550158598}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3048980799204862789}
   StringsBanks:
   - {fileID: 4427407928478634160}
-  cacheTime: 638627851474640244
+  cacheTime: 638628729837332718
   cacheVersion: 131618
 --- !u!114 &420840936886749334
 MonoBehaviour:
@@ -456,7 +536,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638627851474620298
+  lastModified: 638628729837312772
   FileSizes: []
   Exists: 1
 --- !u!114 &3270914594849956545
@@ -529,10 +609,10 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Mobile/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638627851474640244
+  lastModified: 638628729837332718
   FileSizes:
   - Name: 
-    Value: 2334
+    Value: 2384
   Exists: 1
 --- !u!114 &4489770365639761299
 MonoBehaviour:
@@ -616,30 +696,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 30
   Length: 1500
---- !u!114 &7279875643993429309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Death/Gender
-  m_EditorClassIdentifier: 
-  Name: Gender
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3549936724
-    data2: 780423565
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &7324989854123549133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,31 +777,3 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 30
   Length: 4704
---- !u!114 &8699110519366153341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX/Player/Death
-  m_EditorClassIdentifier: 
-  Path: event:/FX/Player/Death
-  Guid:
-    Data1: -1811491119
-    Data2: 1202830723
-    Data3: -959713375
-    Data4: -1106306609
-  Banks:
-  - {fileID: 3048980799204862789}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 7279875643993429309}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2406
