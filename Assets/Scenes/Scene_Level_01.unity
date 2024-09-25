@@ -22696,7 +22696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &715549446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65617,6 +65617,14 @@ PrefabInstance:
       value: CheckPoint02
       objectReference: {fileID: 0}
     - target: {fileID: 7433905481121658379, guid: 6f8b82573fd303948b4c3ce41a2eb1b2, type: 3}
+      propertyPath: Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433905481121658379, guid: 6f8b82573fd303948b4c3ce41a2eb1b2, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433905481121658379, guid: 6f8b82573fd303948b4c3ce41a2eb1b2, type: 3}
       propertyPath: OverrideMaxDistance
       value: 30
       objectReference: {fileID: 0}
@@ -69986,6 +69994,26 @@ PrefabInstance:
       propertyPath: CollisionTag
       value: AudioActivator
       objectReference: {fileID: 0}
+    - target: {fileID: 7678067139745878737, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
+      propertyPath: m_Size.x
+      value: 17.97756
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678067139745878737, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
+      propertyPath: m_Size.z
+      value: 15.90676
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678067139745878737, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
+      propertyPath: m_Center.x
+      value: -0.1661091
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678067139745878737, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
+      propertyPath: m_Center.y
+      value: 1.434551
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678067139745878737, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
+      propertyPath: m_Center.z
+      value: 1.119131
+      objectReference: {fileID: 0}
     - target: {fileID: 7982305968939185833, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
       propertyPath: CollisionTag
       value: AudioActivator
@@ -70012,7 +70040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9077356399164509876, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0000029504295
+      value: 0.000002950429
       objectReference: {fileID: 0}
     - target: {fileID: 9077356399164509876, guid: cd4de79b47959434fac88d60a31e07c3, type: 3}
       propertyPath: m_LocalRotation.x

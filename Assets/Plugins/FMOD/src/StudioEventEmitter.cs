@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace FMODUnity
 {
@@ -42,6 +43,8 @@ namespace FMODUnity
         public FMOD.Studio.EventInstance EventInstance { get { return instance; } }
 
         public bool IsActive { get; private set; }
+
+        public event UnityAction<bool> Activated;
 
         private float MaxDistance
         {
@@ -210,6 +213,7 @@ namespace FMODUnity
             eventDescription.is3D(out is3D);
 
             IsActive = true;
+            Activated?.Invoke(IsActive);
 
             if (is3D && !isOneshot && Settings.Instance.StopEventsOutsideMaxDistance)
             {
@@ -297,6 +301,7 @@ namespace FMODUnity
         {
             DeregisterActiveEmitter(this);
             IsActive = false;
+            Activated?.Invoke(IsActive);
             cachedParams.Clear();
             StopInstance();
         }
