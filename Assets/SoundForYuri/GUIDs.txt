@@ -1,0 +1,41 @@
+{5f02d825-41dc-417e-865d-087f711c288f} bank:/Master
+{c71ff8f1-30a7-0d3c-0014-828180ef2e17} bank:/Master.strings
+{46b7955b-d9db-4580-b581-c6477c4d3791} bus:/
+{2ff66dda-67d9-47d8-bc7a-5cc96c2c85ea} bus:/Music
+{1f82676e-74a1-4b23-af3f-b61055c7b1cf} bus:/Reverb
+{b35e33b0-7f43-4622-8682-85fb2a89c6c1} bus:/SFX
+{f9a57e40-cd10-4d54-813a-d68d07ae31b4} bus:/SFX/Amb
+{3ddea4db-0106-4eae-a713-2421991a2407} bus:/SFX/Enemy
+{583fb4b6-a3ff-479e-a65d-caaad9da3a6d} bus:/SFX/Objects
+{9b27376f-225c-4ffc-9834-4199c1734847} bus:/SFX/Player
+{1045e74e-71de-408c-81d9-b4335ca45696} bus:/SFX/UI
+{37b3c0e4-92a2-45ea-99f7-a53ee6ae850b} bus:/SFX/interactibles
+{f7e7c760-2a05-4e81-a98f-948a502a6902} event:/FX/Environment/Cage/Cage_1
+{766ecf2d-8688-4575-bd30-821b98f4c4d6} event:/FX/Environment/Cage/Cage_2
+{82afacc8-b6b3-45a5-83b6-bee75fea4ace} event:/FX/Environment/Checkpoint/Activation Checkpoint
+{6f727427-14fb-40ab-b6ca-bea590f999f6} event:/FX/Environment/Checkpoint/Checkpoint
+{61e4398c-2dd7-4f48-9bd7-d28ed84aa66c} event:/FX/Environment/Door/Door_Open
+{59854ef5-4ab8-44dc-a7d5-3ade0fb6999a} event:/FX/Environment/Door/Lock
+{5b3be4e7-7c0d-41b9-b90b-f16caf8c6eaa} event:/FX/Environment/Electricity/Electricity
+{46169456-e6fb-40e2-9e67-534c459a50b9} event:/FX/Environment/Electricity/Electricity_OFF
+{12e38071-c543-4f47-b8ee-83d4c9619033} event:/FX/Environment/Electricity/Shock
+{08839586-ee5f-43b7-811d-c30fe9e5e7c0} event:/FX/Environment/Gears/Gears
+{7ba2a3cd-87f4-4a48-a2d4-b4357b320ba7} event:/FX/Environment/Jet/Engine Loop
+{8f171d36-149f-4630-9f4a-0f29ecf1e67d} event:/FX/Environment/Moving objects/Moving Objects
+{1498abf4-4b3b-4c51-a230-07e83828632f} event:/FX/Environment/Vent/Vent
+{9406d6d1-bd83-47b1-a1ef-cbc6cf190fbe} event:/FX/Player/Death Boy
+{f6ea810c-1c72-4c81-a4f2-073c9ec55367} event:/FX/Player/Death Girl
+{455eaf8f-de0f-44a5-9cb1-884ff42e9eab} event:/FX/Player/Jump Landing
+{0677b078-e448-406f-8233-54de1fe5c345} event:/FX/Player/Jump Start
+{b3f3c3c5-2e02-437a-93ed-3ede5127a56e} event:/FX/Player/Revive
+{3b0cc45d-da26-40bb-b03b-dfb25e0b3ab0} event:/FX/Player/Steps
+{6fe4f781-6926-4b3f-ad9c-4ac83c01ec5f} event:/FX/UI/Button
+{12149e81-e532-4e03-90d4-3df2ab153da8} event:/FX/UI/Pickup
+{630ee150-7a27-4efc-b970-07bf6a89f5eb} event:/FX/UI/Quest End
+{bbca8a7c-0bd6-4d6d-819e-535791547321} event:/Music/Music
+{9567915d-a261-4530-8ed2-b6d58a949682} parameter:/Activation
+{892daf6c-380a-404d-a60c-f9cc8db33462} parameter:/Death
+{6bdcd1bd-f8da-4116-94e0-62916eeac3a8} parameter:/Event Cone Angle
+{b123171a-df31-4b8f-b102-db21ea5fc3f6} parameter:/Gender
+{bf3e1829-a329-4424-93d8-95929766cbad} parameter:/Speed
+{7600bad2-fb31-4d3e-b47c-d6fabbf1c9b9} vca:/New VCA
