@@ -13,7 +13,7 @@ public class CheckpointSound : MonoBehaviour
     private void OnEnable()
     {
         _checkPoint.OnCollisionEnter += StartActivateSoundSound;
-        _emitterRefff.
+      //  _emitterRefff.
 
         if (_isActive)
         {
