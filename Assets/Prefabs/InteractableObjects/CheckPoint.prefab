@@ -98,7 +98,8 @@ GameObject:
   - component: {fileID: 1896246666428584592}
   - component: {fileID: 7433905481121658379}
   - component: {fileID: 8472424263660449047}
-  m_Layer: 3
+  - component: {fileID: 3702822545625351477}
+  m_Layer: 12
   m_Name: CheckpointSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 1869771815
@@ -141,8 +142,8 @@ MonoBehaviour:
       Data4: -157681264
     Path: event:/FX/Environment/Checkpoint/Checkpoint
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -170,6 +171,27 @@ MonoBehaviour:
     - Name: Activation
       Value: 0
   aSound: event:/FX/Environment/Checkpoint/Activation Checkpoint
+--- !u!135 &3702822545625351477
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675304001123613547}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8637694506737169688
 GameObject:
   m_ObjectHideFlags: 0

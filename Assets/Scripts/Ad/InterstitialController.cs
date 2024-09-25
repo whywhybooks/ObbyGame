@@ -14,6 +14,7 @@ public class InterstitialController : MonoBehaviour
 
     private float _coffeBreakElapsedTime;
     private bool _inGame;
+    private bool _isPosible;
 
     private void OnEnable()
     {
@@ -21,6 +22,7 @@ public class InterstitialController : MonoBehaviour
         _interstitialAdObject.OnAdShown.AddListener(AdShowHandler);
         _skipLevelAdObject.OnShowAd += ResetTimer;
         _checkPointController.OnActiveCheckpoint += ShowAd;
+        _checkPointController.OnReachedUnlockLevel += GivePosible;
     }
 
     private void OnDisable()
@@ -29,6 +31,7 @@ public class InterstitialController : MonoBehaviour
         _interstitialAdObject.OnAdShown.RemoveListener(AdShowHandler);
         _skipLevelAdObject.OnShowAd -= ResetTimer;
         _checkPointController.OnActiveCheckpoint -= ShowAd;
+        _checkPointController.OnReachedUnlockLevel -= GivePosible;
     }
 
     void Update()
@@ -39,7 +42,13 @@ public class InterstitialController : MonoBehaviour
       /*  if (_inGame == false)
             return;*/
 
-        _coffeBreakElapsedTime += Time.deltaTime;
+        if (_isPosible)
+            _coffeBreakElapsedTime += Time.deltaTime;
+    }
+
+    private void GivePosible()
+    {
+        _isPosible = true;
     }
 
     private void ShowAd()
@@ -74,11 +83,11 @@ public class InterstitialController : MonoBehaviour
 
     private void AdClosedHandler()
     {
-        Time.timeScale = 1;
+      //  Time.timeScale = 1;
     }
 
     private void AdShowHandler()
     {
-        Time.timeScale = 0;
+      //  Time.timeScale = 0;
     }
 }
