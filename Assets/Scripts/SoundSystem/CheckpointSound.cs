@@ -5,6 +5,7 @@ public class CheckpointSound : MonoBehaviour
 {
     [SerializeField] private CheckPoint _checkPoint;
     [SerializeField] private EmitterRef _emitterRef;
+    [SerializeField] private StudioEventEmitter _emitterRefff;
     [SerializeField][FMODUnity.EventRef] private string aSound;
 
     bool _isActive;
@@ -12,6 +13,7 @@ public class CheckpointSound : MonoBehaviour
     private void OnEnable()
     {
         _checkPoint.OnCollisionEnter += StartActivateSoundSound;
+        _emitterRefff.
 
         if (_isActive)
         {

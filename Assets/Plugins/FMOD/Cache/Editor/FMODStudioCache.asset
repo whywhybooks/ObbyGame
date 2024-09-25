@@ -360,7 +360,7 @@ MonoBehaviour:
   - {fileID: 8170282889928709220}
   StringsBanks:
   - {fileID: 6350762737845914361}
-  cacheTime: 638629072915365253
+  cacheTime: 638629137679164757
   cacheVersion: 131618
 --- !u!114 &420840936886749334
 MonoBehaviour:
@@ -673,7 +673,7 @@ MonoBehaviour:
   Path: C:/Users/Greetrays/Desktop/Unity/ObbyGame/Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Mobile/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638629072915365253
+  lastModified: 638629137679164757
   FileSizes:
   - Name: 
     Value: 2384
@@ -774,7 +774,7 @@ MonoBehaviour:
   Path: C:/Users/Greetrays/Desktop/Unity/ObbyGame/Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638629072915345262
+  lastModified: 638629137679144759
   FileSizes:
   - Name: 
     Value: 13957216
