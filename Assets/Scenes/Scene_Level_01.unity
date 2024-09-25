@@ -7517,6 +7517,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7562,7 +7566,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -16337,6 +16342,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -16382,7 +16391,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4136591355859553610, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -19207,6 +19217,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -19252,7 +19266,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -22851,6 +22866,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -22896,7 +22915,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4136591355859553610, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -25163,6 +25183,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -25208,7 +25232,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -43923,6 +43948,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -43968,7 +43997,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -44771,6 +44801,10 @@ PrefabInstance:
       propertyPath: _isReverse
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -44816,7 +44850,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -67847,13 +67882,20 @@ MonoBehaviour:
       Data3: -566301293
       Data4: 1856317265
     Path: event:/FX/Player/Revive
-  _voiceSound:
+  _manVoiceSound:
     Guid:
       Data1: -1811491119
       Data2: 1202830723
       Data3: -959713375
       Data4: -1106306609
-    Path: event:/FX/Player/Death
+    Path: event:/FX/Player/Death Boy
+  _girlVoiceSound:
+    Guid:
+      Data1: -152403700
+      Data2: 1283529842
+      Data3: 1007153828
+      Data4: 1733543326
+    Path: event:/FX/Player/Death Girl
   _genderParametrName: Gender
 --- !u!114 &1354679461
 MonoBehaviour:
@@ -72683,6 +72725,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -72728,7 +72774,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4136591355859553610, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -78315,7 +78362,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4136591355859553610, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -79583,6 +79631,10 @@ PrefabInstance:
       propertyPath: _isReverse
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -79628,7 +79680,8 @@ PrefabInstance:
       value: -4.294
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -80838,7 +80891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.838361, y: 0.13031095}
   m_AnchorMax: {x: 0.838361, y: 0.13031095}
-  m_AnchoredPosition: {x: 48.6, y: 98.9}
+  m_AnchoredPosition: {x: 48.600098, y: 98.900024}
   m_SizeDelta: {x: 256, y: 269}
   m_Pivot: {x: 0.4999998, y: 0.49999976}
 --- !u!114 &1757370967
@@ -93310,6 +93363,10 @@ PrefabInstance:
       propertyPath: _isReverse
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -93355,7 +93412,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
@@ -108984,6 +109042,10 @@ PrefabInstance:
       propertyPath: _isReverse
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7025311391950180049, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8481949578033032274, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -109029,7 +109091,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5048245068000142614, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4304863658516420827, guid: bd17ac22421567e4c9de0a46751888d6, type: 3}
       insertIndex: -1
