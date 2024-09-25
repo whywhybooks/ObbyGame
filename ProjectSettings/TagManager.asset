@@ -7,6 +7,8 @@ TagManager:
   - Platform
   - 1
   - 2
+  - Item
+  - AudioActivator
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - Fixed
   - OnlyKill
   - ModelUI
-  - 
-  - 
+  - AudioActivator
+  - AudioSource
   - 
   - 
   - 

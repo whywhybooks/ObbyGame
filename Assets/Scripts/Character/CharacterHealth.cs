@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +31,9 @@ public class CharacterHealth : MonoBehaviour
     private float _shieldTime;
     private float _shieldElapsedTime;
 
+    private float _maxNotGroundTime = 3;
+    private float _elapsedNotGroundTime;
+
     public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
     public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
     public float ShieldLeftTime => ShieldTime - ShieldElapsedTime;
@@ -49,6 +51,25 @@ public class CharacterHealth : MonoBehaviour
 
     private void Update()
     {
+        if (_physicalCC.isGround == false)
+        {
+            _elapsedNotGroundTime += Time.deltaTime;
+
+            if (_elapsedNotGroundTime > _maxNotGroundTime)
+            {
+                IsDied = true;
+                _diedCoroutine = StartCoroutine(StartDiedEvent());
+                OnDiedOfShock?.Invoke();
+                _animator.SetTrigger("Dead");
+                _animator.SetBool("IsRun", false);
+                _elapsedNotGroundTime = 0;
+            }
+        }
+        else
+        {
+            _elapsedNotGroundTime = 0;
+        }
+
         if (_physicalCC.isGround == true)
         {
             _cubeSize = _defaultScale;

@@ -48,7 +48,7 @@ public class SkipLevelAdObject : MonoBehaviour
     private void CloseRewardPanel()
     {
         _rewardPanel.SetActive(false);
-        Time.timeScale = 1;
+      //  Time.timeScale = 1;
 
         if (PlayerPrefs.GetInt("IsAdsRemove") == 0)
         {
@@ -73,7 +73,7 @@ public class SkipLevelAdObject : MonoBehaviour
           //  theBusASoundPassesThrough.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             // FMOD.Studio.EventInstance.setPaused(false);
             //  Studio.EventInstance.setPaused(false);
-            Time.timeScale = 0;
+         //   Time.timeScale = 0;
         }
     }
 
@@ -86,7 +86,7 @@ public class SkipLevelAdObject : MonoBehaviour
 
     public void ShowAd()
     {
-        Time.timeScale = 1;
+     //   Time.timeScale = 1;
         _rewardPanel.SetActive(false);
 
         if (PlayerPrefs.GetInt("IsAdsRemove") == 0)
