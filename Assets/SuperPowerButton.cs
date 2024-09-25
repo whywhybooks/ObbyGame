@@ -3,11 +3,15 @@ using UnityEngine.UI;
 
 public class SuperPowerButton : MonoBehaviour
 {
+    [SerializeField] private ButtonIconChanger _buttonIconChanger;
+
     [Header("SuperPower")]
     [SerializeField] private SuperpowerController _superpowerController;
     [SerializeField] private Image _icon;
     [SerializeField] private Sprite _iconNormal;
     [SerializeField] private Sprite _iconLock;
+
+    private bool _changePosible;
 
     private void OnEnable()
     {
@@ -28,7 +32,20 @@ public class SuperPowerButton : MonoBehaviour
 
     public void ChangePress()
     {
-        _superpowerController.PlayPower();
+        if (_superpowerController.PlayPower())
+        {
+            _buttonIconChanger.ChangePress();
+            _changePosible = true;
+        }
+    }
+
+    public void ChangeNormal()
+    {
+        if (_changePosible == true)
+        {
+            _buttonIconChanger.ChangeNormal();
+            _changePosible = false;
+        }
     }
 
     private void ActivateButton()

@@ -100,7 +100,6 @@ public class CharacterHealth : MonoBehaviour
             OnDiedFromFall?.Invoke();
             // _animator.SetTrigger("Dead");
             _animator.SetBool("IsRun", false);
-            Debug.Log(3456789);
         }
     }
 

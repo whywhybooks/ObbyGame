@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ThirdPersonCamera;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class CheckPointController : MonoBehaviour
 {
     [SerializeField] private CharacterHealth _character;
     [SerializeField] private CharacterController _characterController;
+    [SerializeField] private ThirdPersonCamera.CameraController _camera; //Она здесь, чтобы поворачивать в нужную сторону при респауне
     [SerializeField] private Button _nextButton;
     [SerializeField] private Button _previousButton;
     [SerializeField] private List<CheckPoint> _checkPoints = new List<CheckPoint>();
@@ -17,8 +19,10 @@ public class CheckPointController : MonoBehaviour
     private int _currentCheckPointIndex;
 
     public List<CheckPoint> CheckPoints { get => _checkPoints; private set => _checkPoints = value; }
+    public int CurrentCheckPointIndex { get => _currentCheckPointIndex; private set => _currentCheckPointIndex = value; }
 
     public event UnityAction OnRestart;
+    public event UnityAction OnActiveCheckpoint;
 
     private void Awake()
     {
@@ -79,7 +83,7 @@ public class CheckPointController : MonoBehaviour
             SetCheckPoint(_checkPoints[index]);
         }
 
-        CharacterSetPosition(_currentCheckPoint.RestartPosition);
+        CharacterSetPosition(_currentCheckPoint.RestartPosition, _currentCheckPoint.transform.eulerAngles);
     }
 
     private void SetCheckPoint(CheckPoint checkPoint)
@@ -90,6 +94,8 @@ public class CheckPointController : MonoBehaviour
         }
 
         _currentCheckPoint = checkPoint;
+        _currentCheckPointIndex = _currentCheckPoint.Index;
+        OnActiveCheckpoint?.Invoke();
 
         if (checkPoint.Index > 15 && checkPoint.Index < _checkPoints.Count)
         {
@@ -107,7 +113,7 @@ public class CheckPointController : MonoBehaviour
 
     private void Restart()
     {
-        CharacterSetPosition(_currentCheckPoint.RestartPosition);
+        CharacterSetPosition(_currentCheckPoint.RestartPosition, _currentCheckPoint.transform.eulerAngles);
         StartCoroutine(RestartDelay());
     }
 
@@ -128,7 +134,7 @@ public class CheckPointController : MonoBehaviour
             SetCheckPoint(_checkPoints[_currentCheckPoint.Index + 1]);
         }
 
-        CharacterSetPosition(_currentCheckPoint.RestartPosition);
+        CharacterSetPosition(_currentCheckPoint.RestartPosition, _currentCheckPoint.transform.eulerAngles);
     }
 
     private void PreviousCheckPoint()
@@ -142,13 +148,16 @@ public class CheckPointController : MonoBehaviour
             SetCheckPoint(_checkPoints[_currentCheckPoint.Index - 1]);
         }
 
-        CharacterSetPosition(_currentCheckPoint.RestartPosition);
+        CharacterSetPosition(_currentCheckPoint.RestartPosition, _currentCheckPoint.transform.eulerAngles);
     }
 
-    private void CharacterSetPosition(Vector3 targetPosition)
+    private void CharacterSetPosition(Vector3 targetPosition, Vector3 targetRotation)
     {
         _characterController.enabled = false;
         _character.transform.position = targetPosition;
+        targetRotation.y += 90;
+        targetRotation.x = 30;
+        _camera.SetRotation(targetRotation);
         _characterController.enabled = true;
     }
 }

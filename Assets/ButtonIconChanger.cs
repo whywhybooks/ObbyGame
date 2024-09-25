@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,13 +14,19 @@ public class ButtonIconChanger : MonoBehaviour
 
     public void ChangePress()
     {
-        _icon.sprite = _iconPress;
-        _background.sprite = _backgroundPress;
+        if (_icon != null) 
+            _icon.sprite = _iconPress;
+
+        if (_background != null )
+            _background.sprite = _backgroundPress;
     }
 
     public void ChangeNormal()
     {
-        _icon.sprite = _iconNormal;
-        _background.sprite = _backgroundNormal;
+        if (_icon != null)
+            _icon.sprite = _iconNormal;
+
+        if (_background != null)
+            _background.sprite = _backgroundNormal;
     }    
 }

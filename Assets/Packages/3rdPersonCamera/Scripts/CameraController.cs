@@ -891,5 +891,10 @@ namespace ThirdPersonCamera
             var slerpedRotation = Quaternion.Slerp(from, to, timeModifier);
             return Quaternion.Euler(slerpedRotation.eulerAngles.x, slerpedRotation.eulerAngles.y, 0);
         }
+
+        public void SetRotation(Vector3 targerRotation)
+        {
+            cameraRotation = Quaternion.Euler(targerRotation);
+        }
     }
 }

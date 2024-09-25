@@ -14,17 +14,17 @@ public class BackgroundSound : MonoBehaviour
     {
         _characterHealth.OnDiedFromFall += StopSound;
         _characterHealth.OnDiedOfShock += StopSound;
-        _checkPointController.OnRestart += StatSound;
+        _checkPointController.OnRestart += StartSound;
     }
 
     private void OnDisable()
     {
         _characterHealth.OnDiedFromFall -= StopSound;
         _characterHealth.OnDiedOfShock -= StopSound;
-        _checkPointController.OnRestart -= StatSound;
+        _checkPointController.OnRestart -= StartSound;
     }
 
-    private void StatSound()
+    private void StartSound()
     {
         _emitterRef.Target.SetParameter(_emitterRef.Params[0].Name, 0);
     }

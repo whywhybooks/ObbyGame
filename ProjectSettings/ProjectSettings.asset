@@ -264,7 +264,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: V:/Unity Projects/OBBY.keystore
+  AndroidKeystoreName: C:/Users/Greetrays/Desktop/Unity/OBBY.keystore
   AndroidKeyaliasName: whywhy
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0

@@ -15,7 +15,7 @@ public class CharacterKeys : MonoBehaviour
 
     private void Start()
     {
-        OnGetKey?.Invoke();
+       // OnGetKey?.Invoke();
     }
 
     public bool TryOpenDoor(int targetCount)

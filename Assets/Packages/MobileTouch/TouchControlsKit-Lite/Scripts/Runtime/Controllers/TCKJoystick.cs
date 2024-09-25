@@ -217,7 +217,6 @@ namespace TouchControlsKit
                 joystickImage.enabled = backgroundImage.enabled = isStatic;
                 currentPosition = defaultPosition;
                 UpdateJoystickPosition();
-                Debug.Log(22222222);
            // }
         }
 

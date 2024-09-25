@@ -77,7 +77,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Length: 15500
 --- !u!114 &-6052920324463378442
 MonoBehaviour:
@@ -103,8 +103,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 30
+  MinDistance: 0.8
+  MaxDistance: 15
   Length: 10581
 --- !u!114 &-5073930753505289545
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 12.5
   Length: 0
 --- !u!114 &-3051637694801187885
 MonoBehaviour:
@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: 3048980799204862789}
   StringsBanks:
   - {fileID: 4427407928478634160}
-  cacheTime: 638627760808490803
+  cacheTime: 638627977663323854
   cacheVersion: 131618
 --- !u!114 &420840936886749334
 MonoBehaviour:
@@ -456,7 +456,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Mobile/Master
   StudioPath: bank:/Master
-  lastModified: 638627760808490803
+  lastModified: 638627977663323854
   FileSizes: []
   Exists: 1
 --- !u!114 &3270914594849956545
@@ -479,7 +479,7 @@ MonoBehaviour:
     Data4: -157681264
   Banks:
   - {fileID: 3048980799204862789}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
@@ -691,8 +691,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0.52
+  MaxDistance: 30
   Length: 23000
 --- !u!114 &7489990190390815675
 MonoBehaviour:
