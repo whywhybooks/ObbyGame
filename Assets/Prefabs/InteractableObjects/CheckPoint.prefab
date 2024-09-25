@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1896246666428584592}
   - component: {fileID: 7433905481121658379}
   - component: {fileID: 8472424263660449047}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CheckpointSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,6 +318,10 @@ PrefabInstance:
       value: SM_Checkpoint_Button_01
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36b1dc47d5c854149a814fcfb61d59f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36b1dc47d5c854149a814fcfb61d59f5, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -344,9 +348,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8853953900224455329}
     m_Modifications:
+    - target: {fileID: 3355526562355840527, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3600828691504843802, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
       propertyPath: m_Name
       value: Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600828691504843802, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040375429535739792, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202794524553920744, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4229836837626975904, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -387,6 +407,10 @@ PrefabInstance:
     - target: {fileID: 4229836837626975904, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230353452857492812, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5590018529614196248, guid: 135602491315fa74b9fedf424e09ff8d, type: 3}
       propertyPath: m_Size.y

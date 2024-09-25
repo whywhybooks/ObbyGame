@@ -69,7 +69,7 @@ public class MovingObject : MonoBehaviour
             _startPos = _startPositionGizmos;
         }
 
-        _movementObject.GetChild(0).AddComponent<Fixator>();
+       // _movementObject.GetChild(0).AddComponent<Fixator>();
 
         switch (_axis)
         {

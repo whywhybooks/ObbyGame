@@ -114,6 +114,12 @@ namespace ThirdPersonCamera
             inputFreeForm = newInput;
         }
 
+        public void ResetRotation()
+        {
+            x = 0;
+            y = 0;
+        }
+
         public void LateUpdate()
         {
             if (!cameraEnabled)

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class SuperpowerController : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private CharacterTypeChanger _characterTypeChanger;
 
     [Header("Long-jump")]
     [SerializeField] private float _delayTime;
@@ -20,6 +21,7 @@ public class SuperpowerController : MonoBehaviour
     public int SuperItemCount { get => _superItemCount; private set => _superItemCount = value; }
 
     public event UnityAction ChangeSuperItemCount;
+    public event UnityAction PickupSuperItemCount;
     public event UnityAction OverSuperItemCount;
     public event UnityAction FillSuperItemCount;
 
@@ -55,21 +57,22 @@ public class SuperpowerController : MonoBehaviour
         }
     }
 
-    public void PlayPower()
+    public bool PlayPower()
     {
         if (_superItemCount <= 0)
-            return;
+            return false;
 
-       // if (Input.GetKeyDown(KeyCode.LeftControl)) // Если это девочка
-       // {
+        if (_characterTypeChanger.CharacterType == CharacterType.Girl) // Если это девочка
+        {
             _playerInput.LongJump(_longJumpHeight, _delayTime);
             _superItemCount--;
             ChangeSuperItemCount?.Invoke();
 
             CheckCuperItemCount();
-        // }
+            return true;
+         }
 
-        /*if (Input.GetKeyDown(KeyCode.LeftShift)) // Если это мальчик
+        if (_characterTypeChanger.CharacterType == CharacterType.Man) // Если это мальчик
         {
             _playerInput.BoostSpeed(_multiplier);
             StartCoroutine(SpeedBoost());
@@ -77,7 +80,10 @@ public class SuperpowerController : MonoBehaviour
             ChangeSuperItemCount?.Invoke();
 
             CheckCuperItemCount();
-        }*/
+            return true;
+        }
+
+        return true;
     }
 
 
@@ -99,6 +105,7 @@ public class SuperpowerController : MonoBehaviour
         {
             _superItemCount++;
             ChangeSuperItemCount?.Invoke();
+            PickupSuperItemCount?.Invoke();
             superItem.gameObject.SetActive(false);
             CheckCuperItemCount();
         }
