@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PhysicalCC : MonoBehaviour
 {
 	public Animator _animator;
+	public Transform _rootObject;
 	public CharacterController cc { get; private set; }
 	private IEnumerator dampingCor;
 
@@ -91,6 +92,15 @@ public class PhysicalCC : MonoBehaviour
 		else if (_animator.GetBool("IsGround") == true && isGround == false)
 		{
             _animator.SetBool("IsGround", false);
+        }
+    }
+
+	public void SetRotation(Vector3 rotatioinInput)
+	{
+        if (rotatioinInput != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(rotatioinInput, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 500 * Time.deltaTime);
         }
     }
 

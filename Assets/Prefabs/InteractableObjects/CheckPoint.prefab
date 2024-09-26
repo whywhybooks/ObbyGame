@@ -148,7 +148,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
-  Params: []
+  Params:
+  - Name: Activation
+    Value: 0
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 30
@@ -165,12 +167,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _checkPoint: {fileID: 8149713331097491851}
-  _emitterRef:
-    Target: {fileID: 7433905481121658379}
-    Params:
-    - Name: Activation
-      Value: 0
-  aSound: event:/FX/Environment/Checkpoint/Activation Checkpoint
+  _emitter: {fileID: 7433905481121658379}
+  aSound:
+    Guid:
+      Data1: -2102416184
+      Data2: 1168488115
+      Data3: -406931837
+      Data4: -833951137
+    Path: event:/FX/Environment/Checkpoint/Activation Checkpoint
 --- !u!135 &3702822545625351477
 SphereCollider:
   m_ObjectHideFlags: 0

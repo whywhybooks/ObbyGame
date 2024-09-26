@@ -71,20 +71,19 @@ public class Door : MonoBehaviour
     {
         float elapsedTime = 0;
 
-        Vector3 leftDoorOfsetPosition = new Vector3(_leftDoor.position.x - _offset, _leftDoor.position.y, _leftDoor.position.z);
-        Vector3 rightDoorOfsetPosition = new Vector3(_rightDoor.position.x + _offset, _rightDoor.position.y, _rightDoor.position.z);
+        Vector3 leftDoorOfsetPosition = new Vector3(_leftDoor.localPosition.x - _offset, _leftDoor.localPosition.y, _leftDoor.localPosition.z);
+        Vector3 rightDoorOfsetPosition = new Vector3(_rightDoor.localPosition.x + _offset, _rightDoor.localPosition.y, _rightDoor.localPosition.z);
 
-        Vector3 leftDoorStartPosition = _leftDoor.position;
-        Vector3 rightDoorStartPosition = _rightDoor.position;
+        Vector3 leftDoorStartPosition = _leftDoor.localPosition;
+        Vector3 rightDoorStartPosition = _rightDoor.localPosition;
 
         _isOpen = true;
-        Debug.Log("Дверь открыта!");
 
         while (elapsedTime <= _openingTime)
         {
             elapsedTime += Time.deltaTime;
-            _leftDoor.position = Vector3.Lerp(leftDoorStartPosition, leftDoorOfsetPosition, elapsedTime / _openingTime);
-            _rightDoor.position = Vector3.Lerp(rightDoorStartPosition, rightDoorOfsetPosition, elapsedTime / _openingTime);
+            _leftDoor.localPosition = Vector3.Lerp(leftDoorStartPosition, leftDoorOfsetPosition, elapsedTime / _openingTime);
+            _rightDoor.localPosition = Vector3.Lerp(rightDoorStartPosition, rightDoorOfsetPosition, elapsedTime / _openingTime);
             yield return null;
         }
     }

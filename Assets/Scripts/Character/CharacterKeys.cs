@@ -20,7 +20,6 @@ public class CharacterKeys : MonoBehaviour
 
     public bool TryOpenDoor(int targetCount)
     {
-        Debug.Log("Проверка наличия ключей");
         if (_currentCount >= targetCount)
         {
             _currentCount -= targetCount;

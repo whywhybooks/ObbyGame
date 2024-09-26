@@ -42,7 +42,6 @@ public class DoorsManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Двери кончились!");
             OnOverDoors?.Invoke();
         }
     }
