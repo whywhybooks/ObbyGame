@@ -116,7 +116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2016695685932424922}
   - component: {fileID: 495231544902405886}
-  m_Layer: 0
+  - component: {fileID: 4566907936546565072}
+  m_Layer: 12
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 2074256333
@@ -159,8 +160,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 6
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -168,7 +169,28 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 30
+  OverrideMaxDistance: 12.5
+--- !u!135 &4566907936546565072
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189331408104142605}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1997514855484113636
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +254,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4613043210202114715}
   - component: {fileID: 3013981077437775523}
-  m_Layer: 0
+  - component: {fileID: 4621132945089312596}
+  m_Layer: 12
   m_Name: Sound (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 2074256333
@@ -275,8 +298,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -284,7 +307,28 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 6.8
+  OverrideMaxDistance: 12.5
+--- !u!135 &4621132945089312596
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705299387809373008}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2795620415430681051
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,8 +339,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7317751301326980265}
   - component: {fileID: 5799084030687203934}
-  m_Layer: 0
-  m_Name: GameObject (1)
+  - component: {fileID: 159894971481953516}
+  m_Layer: 12
+  m_Name: SoundCage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 1986973485
@@ -338,16 +383,37 @@ MonoBehaviour:
       Data4: -691735400
     Path: event:/FX/Environment/Cage/Cage_2
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 0.52
+  OverrideMaxDistance: 30
+--- !u!135 &159894971481953516
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795620415430681051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3323009755364098120
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,8 +424,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4411045673085649359}
   - component: {fileID: 255396283752790376}
-  m_Layer: 0
-  m_Name: GameObject
+  - component: {fileID: 6572712565354885663}
+  m_Layer: 12
+  m_Name: SoundCage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: -135805088
@@ -401,8 +468,8 @@ MonoBehaviour:
       Data4: 40446544
     Path: event:/FX/Environment/Cage/Cage_1
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -410,7 +477,28 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 30
+--- !u!135 &6572712565354885663
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323009755364098120}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4394911021288620945
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +615,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7887001726764647499}
   - component: {fileID: 7982305968939185833}
-  m_Layer: 0
+  - component: {fileID: 77940493345041558}
+  m_Layer: 12
   m_Name: Sound (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 2074256333
@@ -570,8 +659,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -579,7 +668,28 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 6.8
+  OverrideMaxDistance: 12.5
+--- !u!135 &77940493345041558
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4698579038200399304}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4780125538032449788
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,8 +753,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7958169010125286117}
   - component: {fileID: 7222885806821588034}
-  m_Layer: 0
-  m_Name: GameObject (3)
+  - component: {fileID: 5507307798992210267}
+  m_Layer: 12
+  m_Name: SoundCage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,7 +788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 1986973485
@@ -686,16 +797,37 @@ MonoBehaviour:
       Data4: -691735400
     Path: event:/FX/Environment/Cage/Cage_2
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 0.52
+  OverrideMaxDistance: 30
+--- !u!135 &5507307798992210267
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5181842760773875589}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6475365616281741099
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +997,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4856828215646031150}
   - component: {fileID: 2427071698306747222}
-  m_Layer: 0
+  - component: {fileID: 4281649739734605526}
+  m_Layer: 12
   m_Name: Sound (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +1032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: AudioActivator
   EventReference:
     Guid:
       Data1: 2074256333
@@ -908,8 +1041,8 @@ MonoBehaviour:
       Data4: -1492438405
     Path: event:/FX/Environment/Jet/Engine Loop
   Event: 
-  PlayEvent: 11
-  StopEvent: 12
+  PlayEvent: 3
+  StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -917,7 +1050,28 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 6.8
+  OverrideMaxDistance: 12.5
+--- !u!135 &4281649739734605526
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817858296242509701}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7309308138950192267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,6 +1300,15 @@ PrefabInstance:
       addedObject: {fileID: 7887001726764647499}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4411045673085649359}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7317751301326980265}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7958169010125286117}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4629911368715663027}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
       insertIndex: -1
@@ -1180,15 +1343,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2900290177345396205}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4411045673085649359}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7317751301326980265}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8acce679967d44341aa252597089beae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7958169010125286117}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8acce679967d44341aa252597089beae, type: 3}
       insertIndex: -1

@@ -2,6 +2,7 @@ using CAS.AdObject;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InterstitialController : MonoBehaviour
 {
@@ -12,8 +13,12 @@ public class InterstitialController : MonoBehaviour
     [SerializeField] private GameObject _breakPanel;
     [SerializeField] private TMP_Text _timerText;
 
+    [SerializeField] private TMP_Text _text; //Удалить потом
+
     private float _coffeBreakElapsedTime;
     private bool _inGame;
+    private bool _isPosible;
+    public event UnityAction OnShowAd;
 
     private void OnEnable()
     {
@@ -21,6 +26,7 @@ public class InterstitialController : MonoBehaviour
         _interstitialAdObject.OnAdShown.AddListener(AdShowHandler);
         _skipLevelAdObject.OnShowAd += ResetTimer;
         _checkPointController.OnActiveCheckpoint += ShowAd;
+        _checkPointController.OnReachedUnlockLevel += GivePosible;
     }
 
     private void OnDisable()
@@ -29,6 +35,7 @@ public class InterstitialController : MonoBehaviour
         _interstitialAdObject.OnAdShown.RemoveListener(AdShowHandler);
         _skipLevelAdObject.OnShowAd -= ResetTimer;
         _checkPointController.OnActiveCheckpoint -= ShowAd;
+        _checkPointController.OnReachedUnlockLevel -= GivePosible;
     }
 
     void Update()
@@ -39,7 +46,18 @@ public class InterstitialController : MonoBehaviour
       /*  if (_inGame == false)
             return;*/
 
-        _coffeBreakElapsedTime += Time.deltaTime;
+        if (_isPosible)
+            _coffeBreakElapsedTime += Time.deltaTime;
+
+        if (_coffeBreakElapsedTime > _coffeBreak)
+            _text.text = $"Брейк готов!";
+        else
+            _text.text = $"Время брейка: {Mathf.Round(_coffeBreakElapsedTime)}";
+    }
+
+    private void GivePosible()
+    {
+        _isPosible = true;
     }
 
     private void ShowAd()
@@ -56,15 +74,24 @@ public class InterstitialController : MonoBehaviour
 
     private IEnumerator StartCountdown()
     {
+        _isPosible = false;
         _breakPanel.SetActive(true);
         _timerText.text = "3";
+
         yield return new WaitForSeconds(1);
+
         _timerText.text = "2";
+
         yield return new WaitForSeconds(1);
+
         _timerText.text = "1";
+
         yield return new WaitForSeconds(1);
+
         _breakPanel.SetActive(false);
         _interstitialAdObject.Present();
+        OnShowAd?.Invoke();
+        _isPosible = true;
     }
 
     private void ResetTimer()
@@ -74,11 +101,11 @@ public class InterstitialController : MonoBehaviour
 
     private void AdClosedHandler()
     {
-        Time.timeScale = 1;
+      //  Time.timeScale = 1;
     }
 
     private void AdShowHandler()
     {
-        Time.timeScale = 0;
+      //  Time.timeScale = 0;
     }
 }

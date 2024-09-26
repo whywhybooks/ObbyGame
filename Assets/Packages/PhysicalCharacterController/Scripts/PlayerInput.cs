@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private CharacterHealth _characterHealth;
 	[SerializeField] private TCKJoystick _joystick;
 	[SerializeField] private Button _jumpButton;
+
 	public float speed = 5;
     private float defaultSpeed;
     public float floataccelerationReductionInertia;
@@ -22,6 +23,8 @@ public class PlayerInput : MonoBehaviour
     float m_TurnAmount;
 	float m_ForwardAmount;
     public float turnSpeed = 10f;
+	private Vector3 _cameraForward;
+	private Vector3 _cameraRight;
 
     float horizontalInput = 0;
     float verticalInput = 0;
@@ -115,12 +118,17 @@ public class PlayerInput : MonoBehaviour
                 }
             }
 
-            physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
-							* verticalInput
-                            + transform.right
-							* horizontalInput, 1f) * speed;
+			_cameraForward = new Vector3(_camera.transform.forward.x, 0, _camera.transform.forward.z);
+			_cameraRight = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z);
 
-	    	if (physicalCC.moveInput.magnitude > 1)
+            physicalCC.moveInput =  Vector3.ClampMagnitude(_cameraForward.normalized
+                            * verticalInput
+                            + _cameraRight
+                            * horizontalInput, 1f) * speed;
+
+			physicalCC.SetRotation(physicalCC.moveInput);
+
+            if (physicalCC.moveInput.magnitude > 1)
 			{
 				_animator.SetBool("IsRun", true);
 			}
@@ -142,22 +150,8 @@ public class PlayerInput : MonoBehaviour
 			
 			}
 		}
-        //	m_ForwardAmount = physicalCC.moveInput.z;
-        //  m_TurnAmount = Mathf.Atan2(physicalCC.moveInput.x, physicalCC.moveInput.z);
-        //ApplyExtraTurnRotation();
-
-
-        // Плавное вращение игрока в сторону движения
-	/*	float targetAngle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSpeed, 0.1f);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);*/
     }
 
-    void ApplyExtraTurnRotation()
-    {
-        float turnSpeed = Mathf.Lerp(100, 360, m_ForwardAmount);
-        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
-    }
 
     public void LongJump(float longJumpHeight, float delayTime)
 	{

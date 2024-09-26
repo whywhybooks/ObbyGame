@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,6 +22,7 @@ public class CharacterHealth : MonoBehaviour
     public event UnityAction OnDiedFromFall;
     public event UnityAction OnShieldPickUp;
     public event UnityAction OnShieldOver;
+    public event UnityAction OnRevive;
 
     private Coroutine _stopShieldCoroutine;
     private Coroutine _diedCoroutine;
@@ -31,6 +31,9 @@ public class CharacterHealth : MonoBehaviour
     private bool _isFastKill;
     private float _shieldTime;
     private float _shieldElapsedTime;
+
+    private float _maxNotGroundTime = 5;
+    private float _elapsedNotGroundTime;
 
     public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
     public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
@@ -49,6 +52,25 @@ public class CharacterHealth : MonoBehaviour
 
     private void Update()
     {
+        if (_physicalCC.isGround == false)
+        {
+            _elapsedNotGroundTime += Time.deltaTime;
+
+            if (_elapsedNotGroundTime > _maxNotGroundTime)
+            {
+                IsDied = true;
+                _diedCoroutine = StartCoroutine(StartDiedEvent());
+                OnDiedOfShock?.Invoke();
+                _animator.SetTrigger("Dead");
+                _animator.SetBool("IsRun", false);
+                _elapsedNotGroundTime = 0;
+            }
+        }
+        else
+        {
+            _elapsedNotGroundTime = 0;
+        }
+
         if (_physicalCC.isGround == true)
         {
             _cubeSize = _defaultScale;
@@ -59,6 +81,11 @@ public class CharacterHealth : MonoBehaviour
         }
 
         CheckCollision();
+    }
+
+    public void Restart()
+    {
+        OnRevive?.Invoke();
     }
 
     private void CheckCollision()

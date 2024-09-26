@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using ThirdPersonCamera;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -23,6 +21,9 @@ public class CheckPointController : MonoBehaviour
 
     public event UnityAction OnRestart;
     public event UnityAction OnActiveCheckpoint;
+    public event UnityAction OnReachedUnlockLevel;
+
+    private const int UnlockLevel = 29;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class CheckPointController : MonoBehaviour
             checkPoint.OnCollisionEnter += SetCheckPoint;
         }
 
-        _character.OnDied += Restart;
+       // _character.OnDied += Restart;
 
         for (int i = 15; i < _checkPoints.Count; i++)
         {
@@ -61,7 +62,7 @@ public class CheckPointController : MonoBehaviour
             checkPoint.OnCollisionEnter -= SetCheckPoint;
         }
 
-        _character.OnDied -= Restart;
+       // _character.OnDied -= Restart;
     }
 
     private void Update()
@@ -88,6 +89,9 @@ public class CheckPointController : MonoBehaviour
 
     private void SetCheckPoint(CheckPoint checkPoint)
     {
+        if (checkPoint.Index == _currentCheckPointIndex)
+            return;
+
         if (_currentCheckPoint != null)
         {
             _currentCheckPoint = null;
@@ -95,23 +99,29 @@ public class CheckPointController : MonoBehaviour
 
         _currentCheckPoint = checkPoint;
         _currentCheckPointIndex = _currentCheckPoint.Index;
+
+        if (_currentCheckPointIndex == UnlockLevel)
+        {
+            OnReachedUnlockLevel?.Invoke();
+        }
+
         OnActiveCheckpoint?.Invoke();
 
-        if (checkPoint.Index > 15 && checkPoint.Index < _checkPoints.Count)
+        if (checkPoint.Index > 10 && checkPoint.Index < _checkPoints.Count)
         {
-            for (int i = checkPoint.Index - 15; i >= 0; i--)
+            for (int i = checkPoint.Index - 10; i >= 0; i--)
             {
                 _checkPoints[i].SetActiveSoholdingZone(false);
             }
         }
 
-        for (int i = checkPoint.Index; i < checkPoint.Index + 15; i++)
+        for (int i = checkPoint.Index; i < Mathf.Min(_checkPoints.Count, checkPoint.Index + 10); i++)
         {
             _checkPoints[i].SetActiveSoholdingZone(true);
         }
     }
 
-    private void Restart()
+    public void Restart()
     {
         CharacterSetPosition(_currentCheckPoint.RestartPosition, _currentCheckPoint.transform.eulerAngles);
         StartCoroutine(RestartDelay());
@@ -156,6 +166,7 @@ public class CheckPointController : MonoBehaviour
         _characterController.enabled = false;
         _character.transform.position = targetPosition;
         targetRotation.y += 90;
+        _character.transform.eulerAngles = targetRotation;
         targetRotation.x = 30;
         _camera.SetRotation(targetRotation);
         _characterController.enabled = true;
