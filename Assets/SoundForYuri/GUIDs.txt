@@ -1,15 +1,15 @@
 {5f02d825-41dc-417e-865d-087f711c288f} bank:/Master
 {c71ff8f1-30a7-0d3c-0014-828180ef2e17} bank:/Master.strings
 {46b7955b-d9db-4580-b581-c6477c4d3791} bus:/
+{f9a57e40-cd10-4d54-813a-d68d07ae31b4} bus:/Amb
+{3ddea4db-0106-4eae-a713-2421991a2407} bus:/Enemy
 {2ff66dda-67d9-47d8-bc7a-5cc96c2c85ea} bus:/Music
 {1f82676e-74a1-4b23-af3f-b61055c7b1cf} bus:/Reverb
 {b35e33b0-7f43-4622-8682-85fb2a89c6c1} bus:/SFX
-{f9a57e40-cd10-4d54-813a-d68d07ae31b4} bus:/SFX/Amb
-{3ddea4db-0106-4eae-a713-2421991a2407} bus:/SFX/Enemy
 {583fb4b6-a3ff-479e-a65d-caaad9da3a6d} bus:/SFX/Objects
 {9b27376f-225c-4ffc-9834-4199c1734847} bus:/SFX/Player
-{1045e74e-71de-408c-81d9-b4335ca45696} bus:/SFX/UI
-{37b3c0e4-92a2-45ea-99f7-a53ee6ae850b} bus:/SFX/interactibles
+{1045e74e-71de-408c-81d9-b4335ca45696} bus:/UI
+{37b3c0e4-92a2-45ea-99f7-a53ee6ae850b} bus:/interactibles
 {f7e7c760-2a05-4e81-a98f-948a502a6902} event:/FX/Environment/Cage/Cage_1
 {766ecf2d-8688-4575-bd30-821b98f4c4d6} event:/FX/Environment/Cage/Cage_2
 {82afacc8-b6b3-45a5-83b6-bee75fea4ace} event:/FX/Environment/Checkpoint/Activation Checkpoint
@@ -33,9 +33,16 @@
 {12149e81-e532-4e03-90d4-3df2ab153da8} event:/FX/UI/Pickup
 {630ee150-7a27-4efc-b970-07bf6a89f5eb} event:/FX/UI/Quest End
 {bbca8a7c-0bd6-4d6d-819e-535791547321} event:/Music/Music
+{10067450-e8b9-4405-ad8d-0fcb78b2786b} event:/Snapshots/GameStatus
+{d09099f8-1c26-4531-88fe-ebd2da947be9} event:/Snapshots/Music status
 {9567915d-a261-4530-8ed2-b6d58a949682} parameter:/Activation
 {892daf6c-380a-404d-a60c-f9cc8db33462} parameter:/Death
 {6bdcd1bd-f8da-4116-94e0-62916eeac3a8} parameter:/Event Cone Angle
+{751cc5d2-080a-4110-9395-c7058113679c} parameter:/Game Start
 {b123171a-df31-4b8f-b102-db21ea5fc3f6} parameter:/Gender
+{95cc4c37-21e3-4c18-937c-53e714bf230b} parameter:/Music controll
 {bf3e1829-a329-4424-93d8-95929766cbad} parameter:/Speed
-{7600bad2-fb31-4d3e-b47c-d6fabbf1c9b9} vca:/New VCA
+{e58f07bd-fa67-4082-b46b-e326f1beecca} snapshot:/Music Off
+{4dc8ff3f-6bf9-4a73-ace1-4e4caa1577e5} snapshot:/Start game
+{7600bad2-fb31-4d3e-b47c-d6fabbf1c9b9} vca:/MUSIC VCA
+{a60b9111-abee-4c50-8909-da54611d9978} vca:/Scene VCA
