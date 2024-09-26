@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,8 +12,8 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private Transform _restartPoint;
     [SerializeField] private GameObject _effectPrefab;
     [SerializeField] private GameObject _defaultObject;
-    [SerializeField] private List<GameObject> _soholdingZone = new List<GameObject>();
 
+    private GameObject _soholdingZone;
     private bool _activated;
     public int Index { get; private set; }
     public Vector3 RestartPosition => _restartPoint.position;
@@ -26,6 +25,11 @@ public class CheckPoint : MonoBehaviour
     private void FixedUpdate()
     {
         CheckCollision();
+    }
+
+    private void OnEnable()
+    {
+        _soholdingZone = transform.parent.gameObject;
     }
 
     private void Start()
@@ -40,10 +44,8 @@ public class CheckPoint : MonoBehaviour
 
     public void SetActiveSoholdingZone(bool isActive)
     {
-        foreach (GameObject t in _soholdingZone)
-        {
-            t.SetActive(isActive);
-        }
+        _soholdingZone.SetActive(isActive);
+        
     }
 
     private void CheckCollision()
