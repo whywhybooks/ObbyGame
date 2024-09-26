@@ -121,7 +121,7 @@ public class PlayerInput : MonoBehaviour
 			_cameraForward = new Vector3(_camera.transform.forward.x, 0, _camera.transform.forward.z);
 			_cameraRight = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z);
 
-            physicalCC.moveInput =  Vector3.ClampMagnitude(_cameraForward
+            physicalCC.moveInput =  Vector3.ClampMagnitude(_cameraForward.normalized
                             * verticalInput
                             + _cameraRight
                             * horizontalInput, 1f) * speed;

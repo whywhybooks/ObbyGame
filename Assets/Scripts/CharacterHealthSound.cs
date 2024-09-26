@@ -16,7 +16,7 @@ public class CharacterHealthSound : MonoBehaviour
     {
         _characterHealth.OnDiedOfShock += PlayShockSound;
         _characterHealth.OnDiedFromFall += PlayVoiceSound;
-        _characterHealth.OnDied += Revive;
+        _characterHealth.OnRevive += Revive;
     }
 
     private void Start()
@@ -28,17 +28,17 @@ public class CharacterHealthSound : MonoBehaviour
     {
         _characterHealth.OnDiedOfShock -= PlayShockSound;
         _characterHealth.OnDiedFromFall -= PlayVoiceSound;
-        _characterHealth.OnDied -= Revive;
+        _characterHealth.OnRevive -= Revive;
     }
 
     private void Revive()
     {
-        FMODUnity.RuntimeManager.PlayOneShotAttached(_reviveSound, gameObject);
+        RuntimeManager.PlayOneShotAttached(_reviveSound, gameObject);
     }
 
     private void PlayShockSound()
     {
-        FMODUnity.RuntimeManager.PlayOneShotAttached(_shokSound, gameObject);
+        RuntimeManager.PlayOneShotAttached(_shokSound, gameObject);
         PlayVoice();
     }
 
@@ -51,11 +51,11 @@ public class CharacterHealthSound : MonoBehaviour
     {
         if (_characterTypeChanger.CharacterType == CharacterType.Man)
         {
-            FMODUnity.RuntimeManager.PlayOneShotAttached(_manVoiceSound, gameObject);
+            RuntimeManager.PlayOneShotAttached(_manVoiceSound, gameObject);
         }
         else
         {
-            FMODUnity.RuntimeManager.PlayOneShotAttached(_girlVoiceSound, gameObject);
+            RuntimeManager.PlayOneShotAttached(_girlVoiceSound, gameObject);
         }
     }
 }

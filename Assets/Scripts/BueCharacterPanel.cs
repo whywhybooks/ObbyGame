@@ -65,7 +65,6 @@ public class BueCharacterPanel : UIPanel
     public void Buy()
     {
         //Покупка. Если покупка прошла, устанавливаем персонажа в управление
-        Debug.Log("Покупка");
         _characterTypeChanger.SetIsOpen(_lockedCharacter.CharacterType, true);
         _characterTypeChanger.SetCharacter(_lockedCharacter.CharacterType);
         OnBue?.Invoke(_lockedCharacter.CharacterType);

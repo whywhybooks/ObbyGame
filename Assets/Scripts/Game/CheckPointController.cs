@@ -23,7 +23,7 @@ public class CheckPointController : MonoBehaviour
     public event UnityAction OnActiveCheckpoint;
     public event UnityAction OnReachedUnlockLevel;
 
-    private const int UnlockLevel = 30;
+    private const int UnlockLevel = 29;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class CheckPointController : MonoBehaviour
             checkPoint.OnCollisionEnter += SetCheckPoint;
         }
 
-        _character.OnDied += Restart;
+       // _character.OnDied += Restart;
 
         for (int i = 15; i < _checkPoints.Count; i++)
         {
@@ -62,7 +62,7 @@ public class CheckPointController : MonoBehaviour
             checkPoint.OnCollisionEnter -= SetCheckPoint;
         }
 
-        _character.OnDied -= Restart;
+       // _character.OnDied -= Restart;
     }
 
     private void Update()
@@ -121,7 +121,7 @@ public class CheckPointController : MonoBehaviour
         }
     }
 
-    private void Restart()
+    public void Restart()
     {
         CharacterSetPosition(_currentCheckPoint.RestartPosition, _currentCheckPoint.transform.eulerAngles);
         StartCoroutine(RestartDelay());
@@ -166,6 +166,7 @@ public class CheckPointController : MonoBehaviour
         _characterController.enabled = false;
         _character.transform.position = targetPosition;
         targetRotation.y += 90;
+        _character.transform.eulerAngles = targetRotation;
         targetRotation.x = 30;
         _camera.SetRotation(targetRotation);
         _characterController.enabled = true;

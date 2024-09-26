@@ -22,6 +22,7 @@ public class CharacterHealth : MonoBehaviour
     public event UnityAction OnDiedFromFall;
     public event UnityAction OnShieldPickUp;
     public event UnityAction OnShieldOver;
+    public event UnityAction OnRevive;
 
     private Coroutine _stopShieldCoroutine;
     private Coroutine _diedCoroutine;
@@ -31,7 +32,7 @@ public class CharacterHealth : MonoBehaviour
     private float _shieldTime;
     private float _shieldElapsedTime;
 
-    private float _maxNotGroundTime = 3;
+    private float _maxNotGroundTime = 5;
     private float _elapsedNotGroundTime;
 
     public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
@@ -80,6 +81,11 @@ public class CharacterHealth : MonoBehaviour
         }
 
         CheckCollision();
+    }
+
+    public void Restart()
+    {
+        OnRevive?.Invoke();
     }
 
     private void CheckCollision()
