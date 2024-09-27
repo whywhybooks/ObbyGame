@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class SelectCharacterPanel : UIPanel
     {
         _selectType = CharacterType.Man;
         SetCharacterView();
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, Menu);
     }
 
     private void OnEnable()
@@ -96,6 +98,11 @@ public class SelectCharacterPanel : UIPanel
         }
     }
 
+    [SerializeField][FMODUnity.ParamRef] private string aGlobalParameter;
+
+    [SerializeField] private string SceneStart;
+    [SerializeField] private string Menu;
+
     private void SelectCharacter()
     {
         PlayAnimation();
@@ -111,6 +118,7 @@ public class SelectCharacterPanel : UIPanel
     {
         yield return new WaitForSeconds(_delayForClose);
 
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, SceneStart);
         Close();
     }
 }

@@ -1,6 +1,4 @@
 using FMODUnity;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AllSoundEnabler : MonoBehaviour
@@ -10,7 +8,12 @@ public class AllSoundEnabler : MonoBehaviour
     [SerializeField] private string MusicOn;
     [SerializeField] private string MusicOff;
 
-    private void Start()
+    public void On()
+    {
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, MusicOn);
+    }
+
+    public void Off()
     {
         RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, MusicOff);
     }
