@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprites/application icon.meta
 guid: 56ff3492c8217cf4aa2f319184b2505f
 folderAsset: yes
+========
+guid: 656da88aada01364f9fb51d12e3d0afb
+>>>>>>>> 49d611b6b1fbeda89545b9490d27eaba36599313:Assets/Scene_Level_01fix.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
