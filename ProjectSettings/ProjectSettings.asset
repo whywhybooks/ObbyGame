@@ -385,7 +385,9 @@ PlayerSettings:
       m_SubKind: App Store
   - m_BuildTarget: Android
     m_Icons:
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: d5d722f0e62d8cf4b916ff4b2f4eba1d, type: 3}
+      - {fileID: 2800000, guid: 906069eb7d2959c48815fcf953c07771, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2

@@ -11631,7 +11631,7 @@ MonoBehaviour:
     spawnPrefab: {fileID: 3775273307930507393, guid: b8cbf0802f081c245853f60240f107cc, type: 3}
   - tagName: 2
     newMaterial: {fileID: 2100000, guid: aa6662f287b80b4418f5663f0bd05d59, type: 2}
-    amplitude: 0.08
+    amplitude: 0
     speed: 20
     destroyDelay: 0.11
     spawnPrefab: {fileID: 5719904448287110155, guid: 89e435504c601eb4885e4e7429dc7030, type: 3}

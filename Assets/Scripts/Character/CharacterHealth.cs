@@ -5,10 +5,29 @@ using UnityEngine.Events;
 public class CharacterHealth : MonoBehaviour
 {
     [Header("Collision Parametrs")]
+    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
+    [SerializeField] private Material _defaultMaterila;
+    [SerializeField] private Material _shiledMaterial;
+    [SerializeField] private ParticleSystem _particleSystem;
+
+    private bool _isShield;
+    private float _shieldTime;
+    private float _shieldElapsedTime;
+    private Coroutine _stopShieldCoroutine;
+
+    public event UnityAction OnShieldOver;
+
+    public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
+    public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
+    public float ShieldLeftTime => ShieldTime - ShieldElapsedTime;
+
+    [Header("Collision Parametrs")]
     [SerializeField] private Transform _collisionPoint;
     [SerializeField] private Vector3 _cubeSize;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private LayerMask _onlyKillLayer;
+
+    [Header("Other Parametrs")]
     [SerializeField] private PhysicalCC _physicalCC;
     [SerializeField] private float _restartDelay;
     [SerializeField] private Animator _animator;
@@ -21,23 +40,15 @@ public class CharacterHealth : MonoBehaviour
     public event UnityAction OnDiedOfShock;
     public event UnityAction OnDiedFromFall;
     public event UnityAction OnShieldPickUp;
-    public event UnityAction OnShieldOver;
+
     public event UnityAction OnRevive;
 
-    private Coroutine _stopShieldCoroutine;
     private Coroutine _diedCoroutine;
-    private bool _isShield;
     private bool _isDied;
     private bool _isFastKill;
-    private float _shieldTime;
-    private float _shieldElapsedTime;
 
-    private float _maxNotGroundTime = 5;
+    private float _maxNotGroundTime = 3.5f;
     private float _elapsedNotGroundTime;
-
-    public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
-    public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
-    public float ShieldLeftTime => ShieldTime - ShieldElapsedTime;
     public bool IsDied { get => _isDied; private set => _isDied = value; }
 
     private void Start()
@@ -46,39 +57,11 @@ public class CharacterHealth : MonoBehaviour
         _minScale = new Vector3(_cubeSize.x, _cubeSize.y / 7, _cubeSize.z) ;
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     private void Update()
     {
-        if (_physicalCC.isGround == false)
-        {
-            _elapsedNotGroundTime += Time.deltaTime;
+        CheckFreez();
 
-            if (_elapsedNotGroundTime > _maxNotGroundTime)
-            {
-                IsDied = true;
-                _diedCoroutine = StartCoroutine(StartDiedEvent());
-                OnDiedOfShock?.Invoke();
-                _animator.SetTrigger("Dead");
-                _animator.SetBool("IsRun", false);
-                _elapsedNotGroundTime = 0;
-            }
-        }
-        else
-        {
-            _elapsedNotGroundTime = 0;
-        }
-
-        if (_physicalCC.isGround == true)
-        {
-            _cubeSize = _defaultScale;
-        }
-        else
-        {
-            _cubeSize = _minScale;
-        }
+        ChangeSizeCollisionCubeForJump();
 
         CheckCollision();
     }
@@ -111,22 +94,66 @@ public class CharacterHealth : MonoBehaviour
 
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _enemyLayer))
         {
-            if (_isShield)
-                return;
-
-            IsDied = true;
-            _diedCoroutine = StartCoroutine(StartDiedEvent());
-            OnDiedOfShock?.Invoke();
-            _animator.SetTrigger("Dead");
-            _animator.SetBool("IsRun", false);
+            DiedForShock();
         }
         if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _onlyKillLayer))
         {
-            IsDied = true;
-            _diedCoroutine = StartCoroutine(StartDiedEvent());
-            OnDiedFromFall?.Invoke();
-            // _animator.SetTrigger("Dead");
-            _animator.SetBool("IsRun", false);
+            DiedForOnlyKill();
+        }
+    }
+
+    private void DiedForOnlyKill()
+    {
+        IsDied = true;
+        _diedCoroutine = StartCoroutine(StartDiedEvent());
+        OnDiedFromFall?.Invoke();
+        // _animator.SetTrigger("Dead");
+        _animator.SetBool("IsRun", false);
+    }
+
+    private void DiedForShock()
+    {
+        if (_isShield)
+            return;
+
+        IsDied = true;
+        _diedCoroutine = StartCoroutine(StartDiedEvent());
+        OnDiedOfShock?.Invoke();
+        _animator.SetTrigger("Dead");
+        _animator.SetBool("IsRun", false);
+    }
+
+    private void CheckFreez()
+    {
+        if (_physicalCC.isGround == false)
+        {
+            _elapsedNotGroundTime += Time.deltaTime;
+
+            if (_elapsedNotGroundTime > _maxNotGroundTime)
+            {
+                IsDied = true;
+                _diedCoroutine = StartCoroutine(StartDiedEvent());
+                OnDiedOfShock?.Invoke();
+                _animator.SetTrigger("Dead");
+                _animator.SetBool("IsRun", false);
+                _elapsedNotGroundTime = 0;
+            }
+        }
+        else
+        {
+            _elapsedNotGroundTime = 0;
+        }
+    }
+
+    private void ChangeSizeCollisionCubeForJump()
+    {
+        if (_physicalCC.isGround == true)
+        {
+            _cubeSize = _defaultScale;
+        }
+        else
+        {
+            _cubeSize = _minScale;
         }
     }
 
@@ -136,17 +163,39 @@ public class CharacterHealth : MonoBehaviour
         Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
     }
 
+    private void ShiledActivate(Shield shield)
+    {
+        OnShieldPickUp?.Invoke();
+        _isShield = true;
+        _shieldTime += shield.Duration;
+        shield.Disable();
+        _skinnedMeshRenderer.material = _shiledMaterial;
+        _particleSystem.gameObject.SetActive(true);
+
+        if (_stopShieldCoroutine == null)
+            _stopShieldCoroutine = StartCoroutine(StopShieldTimer());
+    }
+
+    private void ShiledDeactivate()
+    {
+        if (_isShield == false)
+            return;
+
+        StopCoroutine(StopShieldTimer());
+        OnShieldOver?.Invoke();
+        _shieldTime = 0;
+        _shieldElapsedTime = 0;
+        _isShield = false;
+        _stopShieldCoroutine = null;
+        _skinnedMeshRenderer.material = _defaultMaterila;
+        _particleSystem.gameObject.SetActive(false);
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.collider.TryGetComponent(out Shield shield))
         {
-            OnShieldPickUp?.Invoke();
-            _isShield = true;
-            _shieldTime += shield.Duration;
-            shield.gameObject.SetActive(false);
-
-            if (_stopShieldCoroutine == null)
-                _stopShieldCoroutine = StartCoroutine(StopShield());
+            ShiledActivate(shield);
         }
     }
 
@@ -158,26 +207,22 @@ public class CharacterHealth : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-     //   yield return new WaitForSeconds(_restartDelay);
+
         OnDied?.Invoke();
         IsDied = false;
         _isFastKill = false;
         _animator.Play("Idle");
-      //  _playerModel.transform.eulerAngles = Vector3.zero;
+        ShiledDeactivate();
     }
 
-    private IEnumerator StopShield()
+    private IEnumerator StopShieldTimer()
     {
         while (_shieldElapsedTime < _shieldTime)
         {
-            _shieldElapsedTime += Time.deltaTime; 
+            _shieldElapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        OnShieldOver?.Invoke();
-        _shieldTime = 0;
-        _shieldElapsedTime = 0;
-        _isShield = false;
-        _stopShieldCoroutine = null;
+        ShiledDeactivate();
     }
 }

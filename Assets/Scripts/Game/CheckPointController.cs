@@ -166,7 +166,7 @@ public class CheckPointController : MonoBehaviour
         _characterController.enabled = false;
         _character.transform.position = targetPosition;
         targetRotation.y += 90;
-        _character.transform.eulerAngles = targetRotation;
+        _character.transform.eulerAngles = new Vector3(0, targetRotation.y, 0);
         targetRotation.x = 30;
         _camera.SetRotation(targetRotation);
         _characterController.enabled = true;

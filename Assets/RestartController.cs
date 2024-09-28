@@ -25,6 +25,7 @@ public class RestartController : MonoBehaviour
 
     public event UnityAction Restart;
     public event UnityAction SkipLevel;
+    public event UnityAction SkipPanelActivate;
 
     private void OnEnable()
     {
@@ -54,6 +55,7 @@ public class RestartController : MonoBehaviour
         {
             _dieCounter = 0;
             _oopsPanel.SetActive(true);
+            SkipPanelActivate?.Invoke();
         }
     }
 

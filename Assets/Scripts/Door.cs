@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,6 +26,8 @@ public class Door : MonoBehaviour
     public Transform RightDoor { get => _rightDoor; private set => _rightDoor = value; }
 
     public event UnityAction Unlocked;
+    public event UnityAction Show;
+    public event UnityAction Hide;
 
     private void Start()
     {
@@ -54,7 +57,7 @@ public class Door : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Недостаточно ключей!");
+                    Show?.Invoke();
                 }
             }
         }
@@ -63,6 +66,7 @@ public class Door : MonoBehaviour
             if (_isCollision == true)
             {
                 _isCollision = false;
+                Hide?.Invoke();
             }
         }
     }

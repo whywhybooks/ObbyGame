@@ -15,6 +15,7 @@ public class CharacterTypeChanger : MonoBehaviour
     public List<CharacterTypeConfigure> ConfiguresCharacter { get => _configuresCharacter; private set => _configuresCharacter = value; }
 
     public event UnityAction OnChangeOpenValueForCharacter;
+    public event UnityAction<CharacterType> OnChangeCharacter;
 
     private void Start()
     {
@@ -58,6 +59,8 @@ public class CharacterTypeChanger : MonoBehaviour
                 break;
             }
         }
+
+        OnChangeCharacter?.Invoke(_characterType);
 
         return true;
     }

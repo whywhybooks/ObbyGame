@@ -48,12 +48,10 @@ public class SkipLevelAdObject : MonoBehaviour
 
     public void ShowInterstitial()
     {
-        //  Time.timeScale = 1;
         if (PlayerPrefs.GetInt("IsAdsRemove") == 0)
         {
             if (_elapsedTime >= _delay)
             {
-                Debug.Log(234);
                 _interstitialAdObject.Present();
                 OnShowAd?.Invoke();
                 _elapsedTime = 0;
