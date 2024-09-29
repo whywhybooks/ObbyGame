@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +10,13 @@ public class Door : MonoBehaviour
     [SerializeField] private Transform _rightDoor;
     [SerializeField] private float _openingTime;
     [SerializeField] private float _offset;
+
+    [Header("Collision parametrs:")]
+    [SerializeField] private Transform _triggerZoneForKey;
+
+    private bool _isTriggeringZoneForKey;
+
+    public event UnityAction<bool, int> OnTriggerEnterForKey;
 
     [Header("Collision parametrs:")]
     [SerializeField] private LayerMask _playerLayer;
@@ -31,6 +37,7 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
+        _triggerZoneForKey.GetComponent<MeshRenderer>().enabled = false;
         _triggerCollider.GetComponent<MeshRenderer>().enabled = false;
     }
 
@@ -67,6 +74,23 @@ public class Door : MonoBehaviour
             {
                 _isCollision = false;
                 Hide?.Invoke();
+            }
+        }
+
+        if (Physics.CheckBox(_triggerZoneForKey.position, _triggerZoneForKey.localScale / 2, transform.rotation, _playerLayer))
+        {
+            if (_isTriggeringZoneForKey == false)
+            {
+                _isTriggeringZoneForKey = true;
+                OnTriggerEnterForKey?.Invoke(_isTriggeringZoneForKey, TargetKeys);
+            }
+        }
+        else
+        {
+            if (_isTriggeringZoneForKey == true)
+            {
+                _isTriggeringZoneForKey = false;
+                OnTriggerEnterForKey?.Invoke(_isTriggeringZoneForKey, TargetKeys);
             }
         }
     }

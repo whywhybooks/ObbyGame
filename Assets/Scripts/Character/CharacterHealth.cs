@@ -47,7 +47,7 @@ public class CharacterHealth : MonoBehaviour
     private bool _isDied;
     private bool _isFastKill;
 
-    private float _maxNotGroundTime = 3.5f;
+    private float _maxNotGroundTime = 2f;
     private float _elapsedNotGroundTime;
     public bool IsDied { get => _isDied; private set => _isDied = value; }
 

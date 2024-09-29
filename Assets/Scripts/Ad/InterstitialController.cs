@@ -104,12 +104,11 @@ public class InterstitialController : MonoBehaviour
 
     private void AdClosedHandler()
     {
-        //  Time.timeScale = 1;
         AdClosed?.Invoke();
     }
 
     private void AdShowHandler()
     {
-      //  Time.timeScale = 0;
+
     }
 }

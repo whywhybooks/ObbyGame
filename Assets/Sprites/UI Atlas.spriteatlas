@@ -70,6 +70,7 @@ SpriteAtlas:
     - cde39b30a5b02984fb0f2667dd36c494: 21300000
     - bb0b0c501ad6ec74c9b755588c61dcf4: 21300000
     - e1cde1702a4c84d46abb055ed30782f7: 21300000
+    - 3ed2df700c8edb14e82fffe8c2a8ad88: 21300000
     - 30a4958015b432041bef193ba0b7b00f: 21300000
     - 65ac1c9095f37124db007597e9ef846b: 21300000
     - fab5c4c0760216e4ba249ffd9557dfd6: 21300000
@@ -106,10 +107,15 @@ SpriteAtlas:
     - 0e4f75763ed63a945837cbd67fd449c0: 21300000
     - c7ac32861b3f0724e8425b5f3121cf9c: 21300000
     - 20a71f864031a52418c78fa0accad071: 21300000
+    - b321c1b6432455e458139e84d2fbc7b7: 21300000
     - ac8c4e4715a39ac46b2948dd273546a0: 21300000
+    - b238ca57202e2074d845f20e516d7aef: 21300000
+    - 6c3a5f673557db14f94978af8a7d9c64: 21300000
     - cd5264b7099722640b1e33628dac689d: 21300000
     - f0bcfbc772bfb714fa76883393081641: 21300000
+    - 7f4e7ad7f3ff96346b7a271818eedfac: 21300000
     - 3cd6d208a9c643348b4f1457258588ce: 21300000
+    - a02453081d0e9814c86c03729a849320: 21300000
     - eb138c88864bceb499c079d4c9726499: 21300000
     - 6ab79398742e571418c16976541f7fbe: 21300000
     - 9790b2c85a3d65543a821e43dc6838de: 21300000
@@ -142,6 +148,7 @@ SpriteAtlas:
     - 243ed7ecd44d64d49be9e542519bbff3: 21300000
     - 7d61291d8d529f54a811378173dd4303: 21300000
     - 7fa3c06db788bb4419d87f4aa0be723d: 21300000
+    - dacb1e0e5ce6a0748bece78ce098fc61: 21300000
     - 28da475ef407a424791c5d2f260a22d0: 21300000
     - 2710079ea966fe542a419392392f60b6: 21300000
     - d03eb1ce17cef1c4eb9cc29508d428fc: 21300000
@@ -163,6 +170,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cde39b30a5b02984fb0f2667dd36c494, type: 3}
   - {fileID: 21300000, guid: bb0b0c501ad6ec74c9b755588c61dcf4, type: 3}
   - {fileID: 21300000, guid: e1cde1702a4c84d46abb055ed30782f7, type: 3}
+  - {fileID: 21300000, guid: 3ed2df700c8edb14e82fffe8c2a8ad88, type: 3}
   - {fileID: 21300000, guid: 30a4958015b432041bef193ba0b7b00f, type: 3}
   - {fileID: 21300000, guid: 65ac1c9095f37124db007597e9ef846b, type: 3}
   - {fileID: 21300000, guid: fab5c4c0760216e4ba249ffd9557dfd6, type: 3}
@@ -199,10 +207,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0e4f75763ed63a945837cbd67fd449c0, type: 3}
   - {fileID: 21300000, guid: c7ac32861b3f0724e8425b5f3121cf9c, type: 3}
   - {fileID: 21300000, guid: 20a71f864031a52418c78fa0accad071, type: 3}
+  - {fileID: 21300000, guid: b321c1b6432455e458139e84d2fbc7b7, type: 3}
   - {fileID: 21300000, guid: ac8c4e4715a39ac46b2948dd273546a0, type: 3}
+  - {fileID: 21300000, guid: b238ca57202e2074d845f20e516d7aef, type: 3}
+  - {fileID: 21300000, guid: 6c3a5f673557db14f94978af8a7d9c64, type: 3}
   - {fileID: 21300000, guid: cd5264b7099722640b1e33628dac689d, type: 3}
   - {fileID: 21300000, guid: f0bcfbc772bfb714fa76883393081641, type: 3}
+  - {fileID: 21300000, guid: 7f4e7ad7f3ff96346b7a271818eedfac, type: 3}
   - {fileID: 21300000, guid: 3cd6d208a9c643348b4f1457258588ce, type: 3}
+  - {fileID: 21300000, guid: a02453081d0e9814c86c03729a849320, type: 3}
   - {fileID: 21300000, guid: eb138c88864bceb499c079d4c9726499, type: 3}
   - {fileID: 21300000, guid: 6ab79398742e571418c16976541f7fbe, type: 3}
   - {fileID: 21300000, guid: 9790b2c85a3d65543a821e43dc6838de, type: 3}
@@ -235,6 +248,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 243ed7ecd44d64d49be9e542519bbff3, type: 3}
   - {fileID: 21300000, guid: 7d61291d8d529f54a811378173dd4303, type: 3}
   - {fileID: 21300000, guid: 7fa3c06db788bb4419d87f4aa0be723d, type: 3}
+  - {fileID: 21300000, guid: dacb1e0e5ce6a0748bece78ce098fc61, type: 3}
   - {fileID: 21300000, guid: 28da475ef407a424791c5d2f260a22d0, type: 3}
   - {fileID: 21300000, guid: 2710079ea966fe542a419392392f60b6, type: 3}
   - {fileID: 21300000, guid: d03eb1ce17cef1c4eb9cc29508d428fc, type: 3}
@@ -255,6 +269,7 @@ SpriteAtlas:
   - back red2
   - jump_button_press
   - yellow button_normal
+  - Finish 2
   - Group 74 (1)
   - Chica_form1
   - star_icon_normal
@@ -292,10 +307,15 @@ SpriteAtlas:
   - reward icon_normal
   - start_3
   - form 1
+  - start_2
   - Baddy button_press
+  - Finish 1
+  - start_1
   - jump_button
   - Frame 7 (2)
+  - hand_icon
   - Baddy_full size 1
+  - start_3
   - white button_little
   - Frame 10 (2)
   - Baddy button_normal
@@ -329,6 +349,7 @@ SpriteAtlas:
   - Baddy button_Unavailable
   - Group 74 (3)
   - Chica_full size
+  - Finish 3
   - key_icon
   - Connection with space is lost... (1)
   - Frame 3

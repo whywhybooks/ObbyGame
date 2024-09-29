@@ -18,6 +18,6 @@ public class SuperItemView : MonoBehaviour
 
     private void SuperItemPickUp()
     {
-        _superItemCountText.text = _superPowerController.SuperItemCount.ToString();
+        _superItemCountText.text = _superPowerController.SuperItemCount.ToString() + " / 100";
     }
 }
