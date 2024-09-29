@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameStatusSoundController : MonoBehaviour
 {
+    [SerializeField] private FinalTrigger _finalTrigger;
     [SerializeField] private RestartController _restartController;
     [SerializeField] private InterstitialController _interstitialController;
 
@@ -21,6 +22,8 @@ public class GameStatusSoundController : MonoBehaviour
         _interstitialController.AdClosed += SetSceneStart;
         _restartController.SkipLevel += SetSceneStart;
         _restartController.Restart += SetSceneStart;
+
+        _finalTrigger.IsActive += SetMenu;
     }
 
     private void OnDisable()
@@ -31,6 +34,8 @@ public class GameStatusSoundController : MonoBehaviour
         _interstitialController.AdClosed -= SetSceneStart;
         _restartController.SkipLevel -= SetSceneStart;
         _restartController.Restart -= SetSceneStart;
+
+        _finalTrigger.IsActive -= SetMenu;
     }
 
     private void SetSceneStart()
