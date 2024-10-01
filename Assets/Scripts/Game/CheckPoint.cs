@@ -12,8 +12,8 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private Transform _restartPoint;
     [SerializeField] private GameObject _effectPrefab;
     [SerializeField] private GameObject _defaultObject;
+    [SerializeField] private GameObject _soholdingZone;
 
-    private GameObject _soholdingZone;
     private bool _activated;
     public int Index { get; private set; }
     public Vector3 RestartPosition => _restartPoint.position;
@@ -25,11 +25,6 @@ public class CheckPoint : MonoBehaviour
     private void FixedUpdate()
     {
         CheckCollision();
-    }
-
-    private void OnEnable()
-    {
-        _soholdingZone = transform.parent.gameObject;
     }
 
     private void Start()

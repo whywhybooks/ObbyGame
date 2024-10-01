@@ -25,6 +25,9 @@ public class CheckPointController : MonoBehaviour
 
     private const int UnlockLevel = 29;
 
+    private const int _maxActivateNextLevelsCount = 15;
+    private const int _maxActivatePreviousLevelsCount = 3;
+
     private void Awake()
     {
         _currentCheckPoint = _checkPoints[0];
@@ -41,7 +44,7 @@ public class CheckPointController : MonoBehaviour
 
        // _character.OnDied += Restart;
 
-        for (int i = 15; i < _checkPoints.Count; i++)
+        for (int i = _maxActivateNextLevelsCount; i < _checkPoints.Count; i++)
         {
             _checkPoints[i].SetActiveSoholdingZone(false);
         }
@@ -107,15 +110,30 @@ public class CheckPointController : MonoBehaviour
 
         OnActiveCheckpoint?.Invoke();
 
-        if (checkPoint.Index > 10 && checkPoint.Index < _checkPoints.Count)
+        DisablePreviousLevels(checkPoint);
+
+        EnableNextLevels(checkPoint);
+    }
+
+    private void DisablePreviousLevels(CheckPoint checkPoint)
+    {
+        if (checkPoint.Index > _maxActivatePreviousLevelsCount && checkPoint.Index < _checkPoints.Count)
         {
-            for (int i = checkPoint.Index - 10; i >= 0; i--)
+            for (int i = checkPoint.Index - _maxActivatePreviousLevelsCount; i >= 0; i--)
             {
                 _checkPoints[i].SetActiveSoholdingZone(false);
             }
-        }
 
-        for (int i = checkPoint.Index; i < Mathf.Min(_checkPoints.Count, checkPoint.Index + 10); i++)
+            for (int i = checkPoint.Index; i >= checkPoint.Index - _maxActivatePreviousLevelsCount; i--)
+            {
+                _checkPoints[i].SetActiveSoholdingZone(true);
+            }
+        }
+    }
+
+    private void EnableNextLevels(CheckPoint checkPoint)
+    {
+        for (int i = checkPoint.Index; i < Mathf.Min(_checkPoints.Count, checkPoint.Index + _maxActivateNextLevelsCount); i++)
         {
             _checkPoints[i].SetActiveSoholdingZone(true);
         }
@@ -166,7 +184,7 @@ public class CheckPointController : MonoBehaviour
         _characterController.enabled = false;
         _character.transform.position = targetPosition;
         targetRotation.y += 90;
-        _character.transform.eulerAngles = targetRotation;
+        _character.transform.eulerAngles = new Vector3(0, targetRotation.y, 0);
         targetRotation.x = 30;
         _camera.SetRotation(targetRotation);
         _characterController.enabled = true;

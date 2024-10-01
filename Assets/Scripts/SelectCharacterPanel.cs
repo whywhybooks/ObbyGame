@@ -2,6 +2,7 @@ using FMODUnity;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SelectCharacterPanel : UIPanel
@@ -21,6 +22,8 @@ public class SelectCharacterPanel : UIPanel
 
     private CharacterType _selectType;
     private CharacterTypeConfigure _selectCharacter;
+
+    public event UnityAction<CharacterType> OnSelectCharacter;
 
     private void Awake()
     {
@@ -112,6 +115,7 @@ public class SelectCharacterPanel : UIPanel
         _characterTypeChanger.SetCharacter(_selectType);
         _characterTypeChanger.SetIsOpen(_selectType, true);
         _changeSkinButton.enabled = false;
+        OnSelectCharacter?.Invoke(_selectType);
     }
 
     private IEnumerator ClosePanel()

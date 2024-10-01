@@ -13,10 +13,16 @@ public class DoorsManager : MonoBehaviour
 
     public event UnityAction OnSetNewDoor;
     public event UnityAction OnOverDoors;
+    public event UnityAction<bool, int> TriggerEnterForKey;
 
     private void OnEnable()
     {
         _characterKeys.OnOpen += SetNewDoor;
+
+        foreach (var door in _doors)
+        {
+            door.OnTriggerEnterForKey += OnTriggerEnterForKey;
+        }
     }
 
     private void Start()
@@ -28,6 +34,14 @@ public class DoorsManager : MonoBehaviour
         foreach (Door door in _doors)
         {
             door.Initialize(_characterKeys);
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var door in _doors)
+        {
+            door.OnTriggerEnterForKey -= OnTriggerEnterForKey;
         }
     }
 
@@ -44,6 +58,11 @@ public class DoorsManager : MonoBehaviour
         {
             OnOverDoors?.Invoke();
         }
+    }
+
+    private void OnTriggerEnterForKey(bool isTrigger, int keyCount)
+    {
+        TriggerEnterForKey?.Invoke(isTrigger, keyCount);
     }
 }
 
