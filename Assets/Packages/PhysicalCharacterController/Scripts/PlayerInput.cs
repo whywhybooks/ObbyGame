@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FIMSpace.Basics;
+using System;
 using System.Collections;
 using TouchControlsKit;
 using UnityEngine;
@@ -31,7 +32,7 @@ public class PlayerInput : MonoBehaviour
     float verticalInput = 0;
 
 	private bool m_IsMoving = false;
-	private bool m_IsJump = false;
+	private bool m_IsJump = true;
     [SerializeField] private float m_TimeForCoyoteJump;
 	private float m_elapsedCoyoteJumpTime;
 
@@ -74,17 +75,15 @@ public class PlayerInput : MonoBehaviour
 
 	public void Jump()
     {
-		if (m_IsJump) 
+		if (m_IsJump == false) 
 		{
             physicalCC.inertiaVelocity.y = 0f;
 			physicalCC.inertiaVelocity.y += jumpHeight;
 			_animator.SetTrigger("IsJump");
 			OnJump?.Invoke();
-			m_IsJump = false;
+			m_IsJump = true;
         }
     }
-
-    private float _vevdsv;
 
     void Update()
 	{
@@ -97,31 +96,25 @@ public class PlayerInput : MonoBehaviour
 			return;
 		}
 
-		/*if (m_IsJump == false)
-		{
-			if (physicalCC.isGround)
-			{
-				m_IsJump = true;
-				Debug.Log(_vevdsv);
-			}
-		}
-        _vevdsv = physicalCC.VelocityY;*/
+        if (physicalCC.isGround == false)
+        {
+            m_elapsedCoyoteJumpTime += Time.deltaTime;
 
-        if (m_IsJump == false)
-		{
-			m_elapsedCoyoteJumpTime += Time.deltaTime;
 
-			if (physicalCC.isGround && physicalCC.inertiaVelocity.y < 0)
-			{
+            if (m_elapsedCoyoteJumpTime > m_TimeForCoyoteJump)
+            {
                 m_IsJump = true;
                 m_elapsedCoyoteJumpTime = 0;
-
             }
+        }
 
-			if (m_elapsedCoyoteJumpTime > m_TimeForCoyoteJump)
+        if (m_IsJump == true)
+		{
+			if (physicalCC.isGround && physicalCC.inertiaVelocity.y < 0)
 			{
-				m_IsJump = true;
-				m_elapsedCoyoteJumpTime = 0;
+                m_IsJump = false;
+                m_elapsedCoyoteJumpTime = 0;
+
             }
 		}
 
@@ -281,3 +274,46 @@ public class PlayerInput : MonoBehaviour
 		yield break;
 	}
 }
+
+//class DF
+//{
+//	[SerializeField] private float m_TimeForCoyoteJump; //Устанавливаем время, за которое можно будет прожать Койот-джамп с момента схода с земли.
+
+//	private float m_elapsedCoyoteJumpTime; //Прошедшее время с момента схода с земли.
+//	private bool m_IsJump = true; //Становится false, когда мы стоим на земле. True когда нажали на кнопку прыжка
+	
+//	//Jump - Срабатывает, когда кликаем на кнопку прыжка
+//	public void Jump()
+//	{
+//		if (m_IsJump == false)
+//		{
+//			//Ваша логика прыжка
+//			m_IsJump = true;
+//		}
+//	}
+
+//	public void Update()
+//	{
+//        if (/*игрок НЕ стоит на земле*/)
+//        {
+//            m_elapsedCoyoteJumpTime += Time.deltaTime; //считаем время для койот-джампа
+
+//            if (m_elapsedCoyoteJumpTime > m_TimeForCoyoteJump) //Если время вышло, то 
+//            {
+//                m_IsJump = true; //Говорим, что мы прыгнули, тем самым забирая возможность прожать прыжок
+//                m_elapsedCoyoteJumpTime = 0;//Обнуляем прошедшее время для койот джампа
+//            }
+//        }
+
+//        if (m_IsJump == true) //Если было нажатие на кнопку прыжка
+//        {
+//            if (/*Игрок стоит на земле*/ && /*Velocity по Y меньше 0 (что сигнализирует о том, что игрок именно приземлился на платформу)*/) //Если ваш Velocity.Y обнуляется в момент приземления, то вам надо будет запоминать его значение с прыдыдущего кадра
+//            {
+//                m_IsJump = false; //Даём возможность прожать прыжок
+//                m_elapsedCoyoteJumpTime = 0; //Обнуляем прошедшее время для койот джампа
+//            }
+//        }
+//    }
+//}
+
+
