@@ -52,6 +52,8 @@ public class PhysicalCC : MonoBehaviour
 
 	public event UnityAction OnGround;
 
+	public float VelocityY => moveVelocity.y;
+
 	private void Start()
 	{
 		cc = GetComponent<CharacterController>();
@@ -62,6 +64,7 @@ public class PhysicalCC : MonoBehaviour
         GroundCheck();
         FixedCheck();
 
+
         if (isGround)
         {
             moveVelocity = ProjectMoveOnGround ? Vector3.ProjectOnPlane(moveInput, groundNormal) : moveInput;
@@ -71,7 +74,7 @@ public class PhysicalCC : MonoBehaviour
 		else
 		{
 			_animator.SetFloat("Jump", cc.velocity.y);
-
+            moveVelocity = ProjectMoveOnGround ? Vector3.ProjectOnPlane(moveInput, groundNormal) : moveInput;
         }
 
 
@@ -82,7 +85,7 @@ public class PhysicalCC : MonoBehaviour
 	{
 		Vector3 moveDirection = (moveVelocity + inertiaVelocity + platformVelocity + externalVelocity);
 
-		cc.Move(moveDirection * Time.deltaTime);
+        cc.Move(moveDirection * Time.deltaTime);
 
 		if (_animator.GetBool("IsGround") == false && isGround == true)
 		{
@@ -96,10 +99,15 @@ public class PhysicalCC : MonoBehaviour
 
 	public void SetRotation(Vector3 rotatioinInput)
 	{
+		if (transform.parent != null)
+		{
+			transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);	
+		}
+
         if (rotatioinInput != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(rotatioinInput, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 500 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 1000 * Time.deltaTime);
         }
     }
 
@@ -158,14 +166,15 @@ public class PhysicalCC : MonoBehaviour
 
 		resistanceAngle = resistanceAngle == 0 ? 90 : resistanceAngle;
 
-		//НИЖЕ ПРОБЛЕМА!!
 		inertiaVelocity = (inertiaVelocity + moveVelocity).magnitude <= 0.1f ? Vector3.zero : Vector3.SmoothDamp(inertiaVelocity, Vector3.zero, ref a, inertiaDampingTime / (3 / (180 / resistanceAngle)));
 	}
 
+	[SerializeField] private Vector3 _cubeSize;
 	private void GroundCheck()
 	{
 		//if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, cc.height / 2 - _radius + 0.01f))
 
+		//if (Physics.BoxCast(_legs.position, _cubeSize / 2, Vector3.down, out RaycastHit hit, transform.rotation, _radius, _groundMask))
 		if (Physics.SphereCast(_legs.position, _radius, Vector3.down, out RaycastHit hit, _radius, _groundMask))
 		{
 			if (isGround == false)
@@ -246,5 +255,8 @@ public class PhysicalCC : MonoBehaviour
 	{
 		Gizmos.color = new Color(0, 1, 1, 0.5f);
 		Gizmos.DrawSphere(_legs.position, _radius);
-	}
+
+        Gizmos.color = new Color(0, 1, 1, 0.5f);
+        Gizmos.DrawCube(_legs.position, _cubeSize);
+    }
 }

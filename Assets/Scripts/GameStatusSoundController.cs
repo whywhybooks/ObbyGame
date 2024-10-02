@@ -14,7 +14,14 @@ public class GameStatusSoundController : MonoBehaviour
 
     private void OnEnable() //≈—À» »√–¿ ”∆≈ ¡€À¿ «¿œ”Ÿ≈Õ¿, “Œ ¬ Àﬁ◊¿≈Ã «¬” 
     {
-        RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, Menu);
+        if (PlayerPrefs.GetInt(PlayerPrefsParametrs.FirstGameStart) == 1)
+        {
+            RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, SceneStart);
+        }
+        else
+        {
+            RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, Menu);
+        }
 
         _interstitialController.BreakPanelActivate += SetMenu;
         _restartController.SkipPanelActivate += SetMenu;

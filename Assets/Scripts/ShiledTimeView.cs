@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShiledTimeView : MonoBehaviour
 {
     [SerializeField] private GameObject _shieldTimePanel;
-    [SerializeField] private CharacterHealth _chatacterHealth;
+    [SerializeField] private CharacterShield _chatacterHealth;
     [SerializeField] private TMP_Text _shieldTimeText;
 
     private bool _isView;

@@ -39,8 +39,23 @@ public class SelectCharacterButton : MonoBehaviour
 
     public void SetActivate(bool isActive)
     {
-        if (_unlocked == false)
-            return;
+      /*  if (_unlocked == false)
+            return;*/
+
+        if (_characterType == CharacterType.Man)
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsMan) == 0)
+            {
+                return;
+            }
+        }
+        else if (_characterType == CharacterType.Girl)
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsGirl) == 0)
+            {
+                return;
+            }
+        }
 
         if (isActive)
         {

@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private Transform _camera;
 	[SerializeField] private CharacterHealth _characterHealth;
 	[SerializeField] private TCKJoystick _joystick;
+	[SerializeField, Range(0, 1)] private float _joystickDeadZone;
 	[SerializeField] private Button _jumpButton;
 
 	public float speed = 5;
@@ -30,6 +31,9 @@ public class PlayerInput : MonoBehaviour
     float verticalInput = 0;
 
 	private bool m_IsMoving = false;
+	private bool m_IsJump = false;
+    [SerializeField] private float m_TimeForCoyoteJump;
+	private float m_elapsedCoyoteJumpTime;
 
     public Transform bodyRender;
 	IEnumerator sitCort;
@@ -70,14 +74,17 @@ public class PlayerInput : MonoBehaviour
 
 	public void Jump()
     {
-		if (physicalCC.isGround)
+		if (m_IsJump) 
 		{
-			physicalCC.inertiaVelocity.y = 0f;
+            physicalCC.inertiaVelocity.y = 0f;
 			physicalCC.inertiaVelocity.y += jumpHeight;
 			_animator.SetTrigger("IsJump");
 			OnJump?.Invoke();
-		}
+			m_IsJump = false;
+        }
     }
+
+    private float _vevdsv;
 
     void Update()
 	{
@@ -87,36 +94,70 @@ public class PlayerInput : MonoBehaviour
 			_joystick.ResetAxes();
 			horizontalInput = 0;
 			verticalInput = 0;
-            return;
+			return;
 		}
 
-		if (physicalCC.isGround)
+		/*if (m_IsJump == false)
 		{
-			if (_debugMode)
+			if (physicalCC.isGround)
 			{
-                horizontalInput = Input.GetAxis("Horizontal");
-				verticalInput = Input.GetAxis("Vertical");
-			  
-                if (Math.Abs(horizontalInput) < 1)
-                {
-                    horizontalInput = 0;
-                }
+				m_IsJump = true;
+				Debug.Log(_vevdsv);
+			}
+		}
+        _vevdsv = physicalCC.VelocityY;*/
 
-                if (Math.Abs(verticalInput) < 1)
-                {
-                    verticalInput = 0;
-                }
+        if (m_IsJump == false)
+		{
+			m_elapsedCoyoteJumpTime += Time.deltaTime;
+
+			if (physicalCC.isGround && physicalCC.inertiaVelocity.y < 0)
+			{
+                m_IsJump = true;
+                m_elapsedCoyoteJumpTime = 0;
+
             }
-			else
-			{
-                Vector2 move = TCKInput.GetAxis("Joystick");
 
-                if (m_IsMoving)
+			if (m_elapsedCoyoteJumpTime > m_TimeForCoyoteJump)
+			{
+				m_IsJump = true;
+				m_elapsedCoyoteJumpTime = 0;
+            }
+		}
+
+		if (_debugMode)
+		{
+            horizontalInput = Input.GetAxis("Horizontal");
+			verticalInput = Input.GetAxis("Vertical");
+		  
+            if (Math.Abs(horizontalInput) < 1)
+            {
+                horizontalInput = 0;
+            }
+
+            if (Math.Abs(verticalInput) < 1)
+            {
+                verticalInput = 0;
+            }
+        }
+		else
+		{
+            Vector2 move = TCKInput.GetAxis("Joystick");
+
+            if (m_IsMoving)
+			{
+				if (new Vector2 (move.x, move.y).magnitude > _joystickDeadZone * _joystick.sensitivity)
 				{
                     horizontalInput = move.x;
                     verticalInput = move.y;
                 }
+                else
+                {
+                    horizontalInput = 0;
+                    verticalInput = 0;
+                }
             }
+        }
 
 			_cameraForward = new Vector3(_camera.transform.forward.x, 0, _camera.transform.forward.z);
 			_cameraRight = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z);
@@ -125,8 +166,6 @@ public class PlayerInput : MonoBehaviour
                             * verticalInput
                             + _cameraRight
                             * horizontalInput, 1f) * speed;
-
-			physicalCC.SetRotation(physicalCC.moveInput);
 
             if (physicalCC.moveInput.magnitude > 1)
 			{
@@ -149,7 +188,9 @@ public class PlayerInput : MonoBehaviour
 				StartCoroutine(sitCort);
 			
 			}
-		}
+	//	}
+
+        physicalCC.SetRotation(physicalCC.moveInput);
     }
 
 
@@ -180,7 +221,8 @@ public class PlayerInput : MonoBehaviour
 	public void SmoothRemoveAcceleration(float multiplier)
 	{
         _smoothRemoveAccelerationCoroutine = StartCoroutine(SmoothRemoveAccelerationCoroutine(multiplier));
-	}
+        _animator.SetFloat("Speed", 1);
+    }
 
     public void RemoveAcceleration(float multiplier)
     {

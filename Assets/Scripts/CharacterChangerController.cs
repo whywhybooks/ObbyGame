@@ -10,6 +10,22 @@ public class CharacterChangerController : MonoBehaviour
     [SerializeField] private CharacterTypeChanger _characterTypeChanger;
     [SerializeField] private List<SelectCharacterButton> _selectCharacterButtons = new List<SelectCharacterButton>();
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsMan) == 1)
+        {
+            SetCharacter(CharacterType.Man);
+            ChangeButtonState(CharacterType.Man);
+        }
+        else if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsGirl) == 1)
+        {
+            SetCharacter(CharacterType.Girl);
+            ChangeButtonState(CharacterType.Girl);
+        }
+
+        LockButton();
+    }
+
     private void OnEnable()
     {
         _autoBueCharacterPanel.OnBue += UnlockedCharacter;
@@ -65,7 +81,40 @@ public class CharacterChangerController : MonoBehaviour
 
         foreach (var c in _characterTypeChanger.ConfiguresCharacter)
         {
-            if (c.IsOpen == false)
+            if (c.CharacterType == CharacterType.Man)
+            {
+                if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsMan) == 0)
+                {
+                    lockCharaterType = c.CharacterType;
+
+                    foreach (var button in _selectCharacterButtons)
+                    {
+                        if (button.CharacterType == lockCharaterType)
+                        {
+                            button.Lock();
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (c.CharacterType == CharacterType.Girl)
+            {
+                if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsGirl) == 0)
+                {
+                    lockCharaterType = c.CharacterType;
+
+                    foreach (var button in _selectCharacterButtons)
+                    {
+                        if (button.CharacterType == lockCharaterType)
+                        {
+                            button.Lock();
+                            break;
+                        }
+                    }
+                }
+            }
+
+           /* if (c.IsOpen == false)
             {
                 lockCharaterType = c.CharacterType;
 
@@ -77,7 +126,7 @@ public class CharacterChangerController : MonoBehaviour
                         break;
                     }
                 }
-            }
+            }*/
         }
     }
 }

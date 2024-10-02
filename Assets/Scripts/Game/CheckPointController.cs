@@ -1,3 +1,4 @@
+using Analytics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,20 +19,61 @@ public class CheckPointController : MonoBehaviour
 
     public List<CheckPoint> CheckPoints { get => _checkPoints; private set => _checkPoints = value; }
     public int CurrentCheckPointIndex { get => _currentCheckPointIndex; private set => _currentCheckPointIndex = value; }
+    public int AllLevelsCount;
 
     public event UnityAction OnRestart;
     public event UnityAction OnActiveCheckpoint;
     public event UnityAction OnReachedUnlockLevel;
 
-    private const int UnlockLevel = 29;
 
+    private const int UnlockLevel = 29;
     private const int _maxActivateNextLevelsCount = 15;
     private const int _maxActivatePreviousLevelsCount = 3;
 
-    private void Awake()
+    /* private void Awake()
+     {
+         _currentCheckPoint = _checkPoints[0];
+         _currentCheckPointIndex = 0;
+         _nextButton.onClick.AddListener(NextCheckPoint);
+         _previousButton.onClick.AddListener(PreviousCheckPoint);
+
+         for (int i = 0; i < _checkPoints.Count; i++)
+         {
+             CheckPoint checkPoint = _checkPoints[i];
+             checkPoint.Initialize(i);
+             checkPoint.OnCollisionEnter += SetCheckPoint;
+         }
+
+        // _character.OnDied += Restart;
+
+         for (int i = _maxActivateNextLevelsCount; i < _checkPoints.Count; i++)
+         {
+             _checkPoints[i].SetActiveSoholdingZone(false);
+         }
+     }
+
+     private void Start()
+     {
+         Restart();
+     }*/
+
+    private void OnEnable()
     {
-        _currentCheckPoint = _checkPoints[0];
-        _currentCheckPointIndex = 0;
+        AllLevelsCount = _checkPoints.Count;
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(StartGameC()); //корутиной делаем задержку в кадр, чтобы камера нормально повернулась. Иначе камера поворачивается в другую сторону
+    }
+    public IEnumerator StartGameC()
+    {
+        yield return null;  
+
+        _currentCheckPoint = _checkPoints[PlayerPrefs.GetInt(PlayerPrefsParametrs.CurrentNumberCheckpoint)];
+        _currentCheckPointIndex = PlayerPrefs.GetInt(PlayerPrefsParametrs.CurrentNumberCheckpoint);
+        OnActiveCheckpoint?.Invoke();
+
         _nextButton.onClick.AddListener(NextCheckPoint);
         _previousButton.onClick.AddListener(PreviousCheckPoint);
 
@@ -42,16 +84,19 @@ public class CheckPointController : MonoBehaviour
             checkPoint.OnCollisionEnter += SetCheckPoint;
         }
 
-       // _character.OnDied += Restart;
+        DisablePreviousLevels(_currentCheckPoint);
+        EnableNextLevels(_currentCheckPoint);
 
-        for (int i = _maxActivateNextLevelsCount; i < _checkPoints.Count; i++)
+        /*  for (int i = _maxActivateNextLevelsCount; i < _checkPoints.Count; i++)
+          {
+              _checkPoints[i].SetActiveSoholdingZone(false);
+          }*/
+
+        for (int i = Mathf.Min(_checkPoints.Count, _currentCheckPoint.Index + _maxActivateNextLevelsCount); i < _checkPoints.Count; i++)
         {
             _checkPoints[i].SetActiveSoholdingZone(false);
         }
-    }
 
-    private void Start()
-    {
         Restart();
     }
 
@@ -102,6 +147,7 @@ public class CheckPointController : MonoBehaviour
 
         _currentCheckPoint = checkPoint;
         _currentCheckPointIndex = _currentCheckPoint.Index;
+        GameAnalytics.gameAnalytics.LogEvent($"get_point_{_currentCheckPointIndex + 1}");
 
         if (_currentCheckPointIndex == UnlockLevel)
         {
@@ -109,6 +155,8 @@ public class CheckPointController : MonoBehaviour
         }
 
         OnActiveCheckpoint?.Invoke();
+
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.CurrentNumberCheckpoint, _currentCheckPointIndex);
 
         DisablePreviousLevels(checkPoint);
 

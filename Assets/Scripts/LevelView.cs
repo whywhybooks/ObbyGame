@@ -18,6 +18,6 @@ public class LevelView : MonoBehaviour
 
     private void ChangeText()
     {
-        _counterText.text = $"Level {_checkpointController.CurrentCheckPointIndex + 1}";
+        _counterText.text = $"Level {_checkpointController.CurrentCheckPointIndex + 1} / {_checkpointController.AllLevelsCount}";
     }
 }

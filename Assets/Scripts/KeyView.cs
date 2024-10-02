@@ -9,12 +9,13 @@ public class KeyView : MonoBehaviour
     [SerializeField] private TMP_Text _counter;
     [SerializeField] private CanvasGroup _thisPanel;
 
+    private int _targetKey;
+
     private void OnEnable()
     {
-        _characterKeys.OnGetKey += UpdateText;
         _characterKeys.OnOpen += DeactivateDoor;
+        _characterKeys.OnGetKey += UpdateText;
         _doorsManager.OnOverDoors += ClosePanel;
-       // _doorsManager.OnSetNewDoor += UpdateText;
 
         _doorsManager.TriggerEnterForKey += SetActive;
     }
@@ -24,7 +25,6 @@ public class KeyView : MonoBehaviour
         _characterKeys.OnGetKey -= UpdateText;
         _characterKeys.OnOpen -= DeactivateDoor;
         _doorsManager.OnOverDoors -= ClosePanel;
-        //  _doorsManager.OnSetNewDoor -= UpdateText;
 
         _doorsManager.TriggerEnterForKey -= SetActive;
     }
@@ -32,11 +32,6 @@ public class KeyView : MonoBehaviour
     private void ClosePanel()
     {
         gameObject.SetActive(false);
-    }
-
-    private void UpdateText()
-    {
-        _counter.text = $"{_characterKeys.CurrentCount}/{_doorsManager.TargetKeysCount}";
     }
 
     private void SetActive(bool isActive, int keyCount)
@@ -50,7 +45,13 @@ public class KeyView : MonoBehaviour
             _thisPanel.Deactivate();
         }
 
-        _counter.text = $"{_characterKeys.CurrentCount}/{keyCount}";
+        _targetKey = keyCount;
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
+        _counter.text = $"{_characterKeys.CurrentCount}/{_targetKey}";
     }
 
     private void DeactivateDoor()
