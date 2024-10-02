@@ -1,5 +1,5 @@
+using Analytics;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +16,14 @@ public class SuperpowerController : MonoBehaviour
     [SerializeField] private float _accelerationTime;
     [SerializeField] private float _multiplier;
 
+
+    [Header("Collision Parametrs")]
+    [SerializeField] private Transform _collisionPoint;
+    [SerializeField] private Vector3 _cubeSize;
+    [SerializeField] private LayerMask _superItemMask;
+
     private int _superItemCount;
+    private Collider[] _hits;
 
     public int SuperItemCount { get => _superItemCount; private set => _superItemCount = value; }
 
@@ -28,8 +35,14 @@ public class SuperpowerController : MonoBehaviour
     private void Start()
     {
         //Подгрузка из памяти количества супер айтемов
+        _superItemCount = PlayerPrefs.GetInt(PlayerPrefsParametrs.StarsCounter);
         ChangeSuperItemCount?.Invoke();
         CheckCuperItemCount();
+    }
+
+    private void FixedUpdate()
+    {
+        MyOnTriggerEnter();
     }
 
     private void Update()
@@ -99,15 +112,19 @@ public class SuperpowerController : MonoBehaviour
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void MyOnTriggerEnter()
     {
-        if (hit.collider.TryGetComponent(out SuperItem superItem))
+        _hits = Physics.OverlapBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _superItemMask);
+
+        if (_hits.Length > 0)
         {
             _superItemCount++;
+            PlayerPrefs.SetInt(PlayerPrefsParametrs.StarsCounter, _superItemCount);
             ChangeSuperItemCount?.Invoke();
             PickupSuperItemCount?.Invoke();
-            superItem.gameObject.SetActive(false);
+            _hits[0].gameObject.SetActive(false);
             CheckCuperItemCount();
+            GameAnalytics.gameAnalytics.LogEvent("pick_up_star");
         }
     }
 

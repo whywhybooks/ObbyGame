@@ -4,22 +4,7 @@ using UnityEngine.Events;
 
 public class CharacterHealth : MonoBehaviour
 {
-    [Header("Collision Parametrs")]
-    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
-    [SerializeField] private Material _defaultMaterila;
-    [SerializeField] private Material _shiledMaterial;
-    [SerializeField] private ParticleSystem _particleSystem;
-
-    private bool _isShield;
-    private float _shieldTime;
-    private float _shieldElapsedTime;
-    private Coroutine _stopShieldCoroutine;
-
-    public event UnityAction OnShieldOver;
-
-    public float ShieldTime { get => _shieldTime; private set => _shieldTime = value; }
-    public float ShieldElapsedTime { get => _shieldElapsedTime; private set => _shieldElapsedTime = value; }
-    public float ShieldLeftTime => ShieldTime - ShieldElapsedTime;
+    [SerializeField] private CharacterShield _characterShield;
 
     [Header("Collision Parametrs")]
     [SerializeField] private Transform _collisionPoint;
@@ -37,9 +22,9 @@ public class CharacterHealth : MonoBehaviour
     private Vector3 _minScale;
 
     public event UnityAction OnDied;
+    public event UnityAction ChangeDieCounter;
     public event UnityAction OnDiedOfShock;
     public event UnityAction OnDiedFromFall;
-    public event UnityAction OnShieldPickUp;
 
     public event UnityAction OnRevive;
 
@@ -47,12 +32,16 @@ public class CharacterHealth : MonoBehaviour
     private bool _isDied;
     private bool _isFastKill;
 
-    private float _maxNotGroundTime = 2.5f;
+    private float _maxNotGroundTime = 2.7f;
     private float _elapsedNotGroundTime;
     public bool IsDied { get => _isDied; private set => _isDied = value; }
 
+    public int DieCounter { get; private set; }
+
     private void Start()
     {
+        DieCounter = PlayerPrefs.GetInt(PlayerPrefsParametrs.DieCounter);
+        ChangeDieCounter?.Invoke();
         _defaultScale = _cubeSize;
         _minScale = new Vector3(_cubeSize.x, _cubeSize.y / 7, _cubeSize.z) ;
     }
@@ -63,7 +52,12 @@ public class CharacterHealth : MonoBehaviour
 
         ChangeSizeCollisionCubeForJump();
 
-        CheckCollision();
+        CheckKill();
+    }
+
+    private void FixedUpdate()
+    {
+        CheckKillCollision();
     }
 
     public void Restart()
@@ -71,7 +65,7 @@ public class CharacterHealth : MonoBehaviour
         OnRevive?.Invoke();
     }
 
-    private void CheckCollision()
+    private void CheckKill()
     {
         if (IsDied == true)
         {
@@ -91,32 +85,38 @@ public class CharacterHealth : MonoBehaviour
 
             return;
         }
-
-        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _enemyLayer))
-        {
-            DiedForShock();
-        }
-        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _onlyKillLayer))
-        {
-            DiedForOnlyKill();
-        }
     }
 
     private void DiedForOnlyKill()
     {
+        if (IsDied)
+            return;
+
         IsDied = true;
+
+        DieCounter++;
+        ChangeDieCounter?.Invoke();
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.DieCounter, DieCounter);
+        
         _diedCoroutine = StartCoroutine(StartDiedEvent());
         OnDiedFromFall?.Invoke();
-        // _animator.SetTrigger("Dead");
         _animator.SetBool("IsRun", false);
     }
 
     private void DiedForShock()
     {
-        if (_isShield)
+        if (IsDied)
+            return;
+
+        if (_characterShield.IsShield)
             return;
 
         IsDied = true;
+
+        DieCounter++;
+        ChangeDieCounter?.Invoke();
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.DieCounter, DieCounter);
+
         _diedCoroutine = StartCoroutine(StartDiedEvent());
         OnDiedOfShock?.Invoke();
         _animator.SetTrigger("Dead");
@@ -125,6 +125,9 @@ public class CharacterHealth : MonoBehaviour
 
     private void CheckFreez()
     {
+        if (IsDied)
+            return;
+
         if (_physicalCC.isGround == false)
         {
             _elapsedNotGroundTime += Time.deltaTime;
@@ -137,6 +140,10 @@ public class CharacterHealth : MonoBehaviour
                 _animator.SetTrigger("Dead");
                 _animator.SetBool("IsRun", false);
                 _elapsedNotGroundTime = 0;
+
+                DieCounter++;
+                ChangeDieCounter?.Invoke();
+                PlayerPrefs.SetInt(PlayerPrefsParametrs.DieCounter, DieCounter);
             }
         }
         else
@@ -157,51 +164,22 @@ public class CharacterHealth : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void CheckKillCollision()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
-    }
-
-    private void ShiledActivate(Shield shield)
-    {
-        OnShieldPickUp?.Invoke();
-        _isShield = true;
-        _shieldTime += shield.Duration;
-        shield.Disable();
-        _skinnedMeshRenderer.material = _shiledMaterial;
-        _particleSystem.gameObject.SetActive(true);
-
-        if (_stopShieldCoroutine == null)
-            _stopShieldCoroutine = StartCoroutine(StopShieldTimer());
-    }
-
-    private void ShiledDeactivate()
-    {
-        if (_isShield == false)
-            return;
-
-        StopCoroutine(StopShieldTimer());
-        OnShieldOver?.Invoke();
-        _shieldTime = 0;
-        _shieldElapsedTime = 0;
-        _isShield = false;
-        _stopShieldCoroutine = null;
-        _skinnedMeshRenderer.material = _defaultMaterila;
-        _particleSystem.gameObject.SetActive(false);
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.collider.TryGetComponent(out Shield shield))
+        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _enemyLayer))
         {
-            ShiledActivate(shield);
+            DiedForShock();
+        }
+        if (Physics.CheckBox(_collisionPoint.position, _cubeSize / 2, transform.rotation, _onlyKillLayer))
+        {
+            DiedForOnlyKill();
         }
     }
 
     private IEnumerator StartDiedEvent()
     {
         float elapsedTime = 0;
+
         while (elapsedTime < _restartDelay)
         {
             elapsedTime += Time.deltaTime;
@@ -212,17 +190,11 @@ public class CharacterHealth : MonoBehaviour
         IsDied = false;
         _isFastKill = false;
         _animator.Play("Idle");
-        ShiledDeactivate();
     }
 
-    private IEnumerator StopShieldTimer()
+    private void OnDrawGizmos()
     {
-        while (_shieldElapsedTime < _shieldTime)
-        {
-            _shieldElapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        ShiledDeactivate();
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(_collisionPoint.position, _cubeSize);
     }
 }

@@ -1,3 +1,4 @@
+using Analytics;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
@@ -17,17 +18,17 @@ public class InAppRemoveAd : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("IsAdsRemove") == 1)
+        if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsRemove) == 1)
         {
             _openButton.gameObject.SetActive(false);
         }
 
         StandardPurchasingModule.Instance().useFakeStoreAlways = true;
 
-        if (PlayerPrefs.HasKey("FirstStart") == false)
+        if (PlayerPrefs.HasKey(PlayerPrefsParametrs.FirstStartForAd) == false)
         {
             RestoreMyProduct();
-            PlayerPrefs.SetInt("FirstStart", 1);
+            PlayerPrefs.SetInt(PlayerPrefsParametrs.FirstStartForAd, 1);
         }
     }
 
@@ -47,12 +48,12 @@ public class InAppRemoveAd : MonoBehaviour
         _removeAdPanel.Activate();
     }
 
-    private void RemoveAds()
+    public void RemoveAds()
     {
-        PlayerPrefs.SetInt("IsAdsRemove", 1);
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.IsAdsRemove, 1);
         _openButton.gameObject.SetActive(false);
         _removeAdPanel.Deactivate();
-      //  GameAnalytics.gameAnalytics.LogEvent("buy_noads_success");
+        GameAnalytics.gameAnalytics.LogEvent("buy_noads_success");
     }
 
     public void OnPurchasingComlited(string product)
@@ -75,7 +76,7 @@ public class InAppRemoveAd : MonoBehaviour
     {
         if (product.definition.id == "buy_no_ads")
         {
-            // GameAnalytics.gameAnalytics.LogEvent("buy_noads_failed");
+             GameAnalytics.gameAnalytics.LogEvent("buy_noads_failed");
         }
     }
 
@@ -83,8 +84,8 @@ public class InAppRemoveAd : MonoBehaviour
     {
         if (productID == "buy_no_ads")
         {
-            RemoveAds();
-            //GameAnalytics.gameAnalytics.LogEvent("buy_noads");
+          //  RemoveAds();
+            GameAnalytics.gameAnalytics.LogEvent("buy_noads");
         }
     }
 

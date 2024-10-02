@@ -1,3 +1,4 @@
+using Analytics;
 using CAS.AdObject;
 using FMODUnity;
 using UnityEngine;
@@ -61,7 +62,8 @@ public class RestartController : MonoBehaviour
 
     private void OnRestart()
     {
-       // _characterHealth.gameObject.SetActive(true);/////////////////////////////
+        // _characterHealth.gameObject.SetActive(true);/////////////////////////////
+        GameAnalytics.gameAnalytics.LogEvent($"restart_point_{_checkpointController.CurrentCheckPointIndex + 1}");
         RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, SceneStart);
         Restart?.Invoke();
         _oopsPanel.SetActive(false);

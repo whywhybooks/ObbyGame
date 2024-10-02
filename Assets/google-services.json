@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "332518406079",
+    "project_id": "space-obby-prison-escape",
+    "storage_bucket": "space-obby-prison-escape.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332518406079:android:a30b79d8a18347e776d30a",
+        "android_client_info": {
+          "package_name": "space.obby.prison.escape"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKR2-T8GyDCTbLll-bkWeupkHnCrwMWpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

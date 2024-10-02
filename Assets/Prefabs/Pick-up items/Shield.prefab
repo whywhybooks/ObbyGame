@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2270232838667585274}
   - component: {fileID: 2812034809132158821}
   - component: {fileID: 1221355441459213656}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: shield_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   - component: {fileID: 1549620114053416365}
   - component: {fileID: 5256777252561428}
   - component: {fileID: 5406915355847214399}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: shield_root (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9796,7 +9796,7 @@ GameObject:
   - component: {fileID: 7198470661095572673}
   - component: {fileID: 4156821006270986507}
   - component: {fileID: 2507296221555291765}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9885,7 +9885,7 @@ GameObject:
   - component: {fileID: 8834529975307401005}
   - component: {fileID: 4466327932098452357}
   - component: {fileID: 1134648932781624595}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RotatingRisingSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14715,7 +14715,7 @@ GameObject:
   - component: {fileID: 6543936230067398511}
   - component: {fileID: 8534152030258943737}
   - component: {fileID: 8308734100170722650}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HighlightMotes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19545,7 +19545,7 @@ GameObject:
   - component: {fileID: 8814378268474049760}
   - component: {fileID: 2866408858724553308}
   - component: {fileID: 6936385644609405842}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ItemGeo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24503,7 +24503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7219084775373447478}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Item_Shield (1)
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -24538,7 +24538,7 @@ GameObject:
   - component: {fileID: 2245523968215916904}
   - component: {fileID: 4552196697478288020}
   - component: {fileID: 5637483820566224100}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24621,7 +24621,7 @@ GameObject:
   - component: {fileID: 7718307086546718501}
   - component: {fileID: 737924162783158463}
   - component: {fileID: 6335804878640821295}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ItemGeo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29581,7 +29581,7 @@ GameObject:
   - component: {fileID: 5989790599708208310}
   - component: {fileID: 4063078597219923525}
   - component: {fileID: 5921250747853583745}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RotatingRisingSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34411,7 +34411,7 @@ GameObject:
   - component: {fileID: 721156843027580079}
   - component: {fileID: 5874203947882657368}
   - component: {fileID: 4153509577254712403}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HighlightMotes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39239,6 +39239,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1549620114053416365}
     m_Modifications:
     - target: {fileID: 848037545274439920, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037545274439920, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -39270,6 +39274,10 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 848037545310771431, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 848037546851227107, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
@@ -39281,6 +39289,14 @@ PrefabInstance:
     - target: {fileID: 848037546851227107, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.12549019
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037546851227116, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037546976407976, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 848037546976407983, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
@@ -39313,6 +39329,10 @@ PrefabInstance:
     - target: {fileID: 848037547034607184, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_Name
       value: backlight_Coin_Star_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037547034607184, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 848037547034607184, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_IsActive
@@ -39381,6 +39401,10 @@ PrefabInstance:
     - target: {fileID: 848037547034607191, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037547178333913, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 848037547178333916, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
@@ -39414,6 +39438,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2270232838667585274}
     m_Modifications:
     - target: {fileID: 848037545274439920, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037545274439920, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -39445,6 +39473,10 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 848037545310771431, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 848037546851227107, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
@@ -39456,6 +39488,14 @@ PrefabInstance:
     - target: {fileID: 848037546851227107, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.12549019
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037546851227116, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037546976407976, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 848037546976407983, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
@@ -39488,6 +39528,10 @@ PrefabInstance:
     - target: {fileID: 848037547034607184, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_Name
       value: backlight_Coin_Star_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037547034607184, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 848037547034607184, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_IsActive
@@ -39556,6 +39600,10 @@ PrefabInstance:
     - target: {fileID: 848037547034607191, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848037547178333913, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 848037547178333916, guid: d4ccc36a49580f848ba42b93cb730c37, type: 3}
       propertyPath: InitialModule.startColor.minColor.b

@@ -12,7 +12,7 @@ public class AllSoundEnabler : MonoBehaviour
     [SerializeField] private string MusicOn;
     [SerializeField] private string MusicOff;
 
-    private bool _isActive;
+    private bool _isActive = true;
 
     public event UnityAction<bool> SwitchMusic;
 

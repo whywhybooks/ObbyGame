@@ -186,7 +186,6 @@ namespace ThirdPersonCamera
         void Awake()
         {
             initDone = false;
-
             startHits = new RaycastHit[maxThicknessRaycastHitCount];
             endHits = new RaycastHit[maxThicknessRaycastHitCount];
             hits = new RaycastHit[maxRaycastHitCount];
