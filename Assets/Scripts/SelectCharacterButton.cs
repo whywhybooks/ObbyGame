@@ -8,12 +8,12 @@ public class SelectCharacterButton : MonoBehaviour
     [SerializeField] private CharacterChangerController _characterChangerController;
     [SerializeField] private Image _image;
     [SerializeField] private Sprite _lockSprite;
-    [SerializeField] private Sprite _normaSprite;
+    [SerializeField] private Sprite _normalSprite;
+    [SerializeField] private Sprite _activeSprite;
     [SerializeField] private BueCharacterPanel _bueCharacterPanel;
 
-    [SerializeField] private ButtonIconChanger _buttonIconChanger;
-
     private bool _changePosible;
+    private bool _unlocked;
 
     public CharacterType CharacterType { get => _characterType; private set => _characterType = value; }
 
@@ -21,7 +21,6 @@ public class SelectCharacterButton : MonoBehaviour
     {
         if (_characterChangerController.SetCharacter(_characterType))
         {
-            _buttonIconChanger.ChangePress();
             _changePosible = true;
         }
         else
@@ -34,8 +33,37 @@ public class SelectCharacterButton : MonoBehaviour
     {
         if (_changePosible)
         {
-            _buttonIconChanger.ChangeNormal();
             _changePosible = false;
+        }
+    }
+
+    public void SetActivate(bool isActive)
+    {
+      /*  if (_unlocked == false)
+            return;*/
+
+        if (_characterType == CharacterType.Man)
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsMan) == 0)
+            {
+                return;
+            }
+        }
+        else if (_characterType == CharacterType.Girl)
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsGirl) == 0)
+            {
+                return;
+            }
+        }
+
+        if (isActive)
+        {
+            _image.sprite = _activeSprite;
+        }
+        else
+        {
+            _image.sprite = _normalSprite;
         }
     }
 
@@ -46,6 +74,7 @@ public class SelectCharacterButton : MonoBehaviour
 
     internal void Unlock()
     {
-        _image.sprite = _normaSprite;
+        _image.sprite = _normalSprite;
+        _unlocked = true;
     }
 }

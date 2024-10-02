@@ -12,6 +12,13 @@ public class Door : MonoBehaviour
     [SerializeField] private float _offset;
 
     [Header("Collision parametrs:")]
+    [SerializeField] private Transform _triggerZoneForKey;
+
+    private bool _isTriggeringZoneForKey;
+
+    public event UnityAction<bool, int> OnTriggerEnterForKey;
+
+    [Header("Collision parametrs:")]
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private Transform _triggerCollider;
 
@@ -25,9 +32,12 @@ public class Door : MonoBehaviour
     public Transform RightDoor { get => _rightDoor; private set => _rightDoor = value; }
 
     public event UnityAction Unlocked;
+    public event UnityAction Show;
+    public event UnityAction Hide;
 
     private void Start()
     {
+        _triggerZoneForKey.GetComponent<MeshRenderer>().enabled = false;
         _triggerCollider.GetComponent<MeshRenderer>().enabled = false;
     }
 
@@ -54,7 +64,7 @@ public class Door : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Недостаточно ключей!");
+                    Show?.Invoke();
                 }
             }
         }
@@ -63,6 +73,24 @@ public class Door : MonoBehaviour
             if (_isCollision == true)
             {
                 _isCollision = false;
+                Hide?.Invoke();
+            }
+        }
+
+        if (Physics.CheckBox(_triggerZoneForKey.position, _triggerZoneForKey.localScale / 2, transform.rotation, _playerLayer))
+        {
+            if (_isTriggeringZoneForKey == false)
+            {
+                _isTriggeringZoneForKey = true;
+                OnTriggerEnterForKey?.Invoke(_isTriggeringZoneForKey, TargetKeys);
+            }
+        }
+        else
+        {
+            if (_isTriggeringZoneForKey == true)
+            {
+                _isTriggeringZoneForKey = false;
+                OnTriggerEnterForKey?.Invoke(_isTriggeringZoneForKey, TargetKeys);
             }
         }
     }

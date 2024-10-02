@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,14 +6,33 @@ public class CharacterChangerController : MonoBehaviour
 {
     [SerializeField] private BueCharacterPanel _autoBueCharacterPanel;
     [SerializeField] private BueCharacterPanel _bueCharacterPanel;
+    [SerializeField] private SelectCharacterPanel _selectCharacterPanel;
     [SerializeField] private CharacterTypeChanger _characterTypeChanger;
     [SerializeField] private List<SelectCharacterButton> _selectCharacterButtons = new List<SelectCharacterButton>();
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsMan) == 1)
+        {
+            SetCharacter(CharacterType.Man);
+            ChangeButtonState(CharacterType.Man);
+        }
+        else if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsGirl) == 1)
+        {
+            SetCharacter(CharacterType.Girl);
+            ChangeButtonState(CharacterType.Girl);
+        }
+
+        LockButton();
+    }
 
     private void OnEnable()
     {
         _autoBueCharacterPanel.OnBue += UnlockedCharacter;
         _bueCharacterPanel.OnBue += UnlockedCharacter;
         _characterTypeChanger.OnChangeOpenValueForCharacter += LockButton;
+        _characterTypeChanger.OnChangeCharacter += ChangeButtonState;
+        _selectCharacterPanel.OnSelectCharacter += UnlockedCharacter;
     }
 
     private void OnDisable()
@@ -20,6 +40,21 @@ public class CharacterChangerController : MonoBehaviour
         _autoBueCharacterPanel.OnBue -= UnlockedCharacter;
         _bueCharacterPanel.OnBue -= UnlockedCharacter;
         _characterTypeChanger.OnChangeOpenValueForCharacter -= LockButton;
+        _characterTypeChanger.OnChangeCharacter -= ChangeButtonState;
+    }
+
+    private void ChangeButtonState(CharacterType chatacterType)
+    {
+        if (chatacterType == CharacterType.Man)
+        {
+            _selectCharacterButtons[0].SetActivate(false);
+            _selectCharacterButtons[1].SetActivate(true);
+        }
+        else
+        {
+            _selectCharacterButtons[0].SetActivate(true);
+            _selectCharacterButtons[1].SetActivate(false);
+        }
     }
 
     public bool SetCharacter(CharacterType characterType)
@@ -36,6 +71,8 @@ public class CharacterChangerController : MonoBehaviour
                 button.Unlock();
             }
         }
+
+        ChangeButtonState(type);
     }
 
     private void LockButton()
@@ -44,7 +81,40 @@ public class CharacterChangerController : MonoBehaviour
 
         foreach (var c in _characterTypeChanger.ConfiguresCharacter)
         {
-            if (c.IsOpen == false)
+            if (c.CharacterType == CharacterType.Man)
+            {
+                if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsMan) == 0)
+                {
+                    lockCharaterType = c.CharacterType;
+
+                    foreach (var button in _selectCharacterButtons)
+                    {
+                        if (button.CharacterType == lockCharaterType)
+                        {
+                            button.Lock();
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (c.CharacterType == CharacterType.Girl)
+            {
+                if (PlayerPrefs.GetInt(PlayerPrefsParametrs.IsAdsGirl) == 0)
+                {
+                    lockCharaterType = c.CharacterType;
+
+                    foreach (var button in _selectCharacterButtons)
+                    {
+                        if (button.CharacterType == lockCharaterType)
+                        {
+                            button.Lock();
+                            break;
+                        }
+                    }
+                }
+            }
+
+           /* if (c.IsOpen == false)
             {
                 lockCharaterType = c.CharacterType;
 
@@ -56,9 +126,7 @@ public class CharacterChangerController : MonoBehaviour
                         break;
                     }
                 }
-            }
+            }*/
         }
-
-
     }
 }

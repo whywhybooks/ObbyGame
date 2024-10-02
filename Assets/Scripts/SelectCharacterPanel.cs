@@ -1,7 +1,8 @@
+using Analytics;
 using FMODUnity;
-using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SelectCharacterPanel : UIPanel
@@ -22,21 +23,18 @@ public class SelectCharacterPanel : UIPanel
     private CharacterType _selectType;
     private CharacterTypeConfigure _selectCharacter;
 
+    public event UnityAction<CharacterType> OnSelectCharacter;
+
     private void Awake()
     {
-      /*  if (PlayerPrefs.HasKey("FirstStart") == false) //œÓ‚ÂÍ‡ Ì‡ ÔÂ‚˚È Á‡ÔÛÒÍ
-        {
-            PlayerPrefs.SetInt("FirstStart", 1);
-        }
-        else
+        if (PlayerPrefs.GetInt(PlayerPrefsParametrs.FirstGameStart) == 1)
         {
             Close();
-        }*/
+        }
     }
 
     private void Start()
     {
-        _selectType = CharacterType.Man;
         SetCharacterView();
         RuntimeManager.StudioSystem.setParameterByNameWithLabel(aGlobalParameter, Menu);
     }
@@ -91,14 +89,16 @@ public class SelectCharacterPanel : UIPanel
         if (_selectType == CharacterType.Man)
         {
             _animatror.SetTrigger("SelectMan");
+            GameAnalytics.gameAnalytics.LogEvent("tap_animation_baddy");
         }
         else
         {
             _animatror.SetTrigger("SelectGirl");
+            GameAnalytics.gameAnalytics.LogEvent("tap_animation_chica");
         }
     }
 
-    [SerializeField][FMODUnity.ParamRef] private string aGlobalParameter;
+    [SerializeField][FMODUnity.ParamRef] private string aGlobalParameter; //œ≈–≈ƒ≈À¿“‹ œŒƒ ¿–’»“≈ “”–”
 
     [SerializeField] private string SceneStart;
     [SerializeField] private string Menu;
@@ -108,10 +108,24 @@ public class SelectCharacterPanel : UIPanel
         PlayAnimation();
         StartCoroutine(ClosePanel());
 
-        _selectCharacter.IsOpen = true;
+        if (_selectType == CharacterType.Man)
+        {
+            PlayerPrefs.SetInt(PlayerPrefsParametrs.IsAdsMan, 1);
+            GameAnalytics.gameAnalytics.LogEvent("choose_baddy");
+        }
+        else if (_selectType == CharacterType.Girl)
+        {
+            PlayerPrefs.SetInt(PlayerPrefsParametrs.IsAdsGirl, 1);
+            GameAnalytics.gameAnalytics.LogEvent("choose_chica");
+        }
+
+        // _selectCharacter.IsOpen = true;
         _characterTypeChanger.SetCharacter(_selectType);
         _characterTypeChanger.SetIsOpen(_selectType, true);
         _changeSkinButton.enabled = false;
+        OnSelectCharacter?.Invoke(_selectType);
+
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.FirstGameStart, 1);
     }
 
     private IEnumerator ClosePanel()

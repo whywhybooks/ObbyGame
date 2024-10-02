@@ -55,7 +55,7 @@ MonoBehaviour:
   _restartPoint: {fileID: 6547370968127204112}
   _effectPrefab: {fileID: 5719904448287110155, guid: 89e435504c601eb4885e4e7429dc7030, type: 3}
   _defaultObject: {fileID: 937987914999502761}
-  _soholdingZone: []
+  _soholdingZone: {fileID: 0}
 --- !u!1 &2580812518564467608
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0148, y: 2.1, z: -0}
-  m_LocalScale: {x: 2.012842, y: 1.9698739, z: 2.055854}
+  m_LocalScale: {x: 3.062539, y: 2.997163, z: 8.248121}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8853953900224455329}

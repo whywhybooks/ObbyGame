@@ -1,8 +1,8 @@
+using Analytics;
 using CAS.AdObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class SkipLevelAdObject : MonoBehaviour
 {
@@ -48,12 +48,10 @@ public class SkipLevelAdObject : MonoBehaviour
 
     public void ShowInterstitial()
     {
-        //  Time.timeScale = 1;
         if (PlayerPrefs.GetInt("IsAdsRemove") == 0)
         {
             if (_elapsedTime >= _delay)
             {
-                Debug.Log(234);
                 _interstitialAdObject.Present();
                 OnShowAd?.Invoke();
                 _elapsedTime = 0;
@@ -68,6 +66,7 @@ public class SkipLevelAdObject : MonoBehaviour
 
     public void GiveReward()
     {
+        GameAnalytics.gameAnalytics.LogEvent($"skip_point_{_checkPointControllerl.CurrentCheckPointIndex}");
         _checkPointControllerl.NextCheckPoint();
         _elapsedTime = 0;
     }
@@ -75,7 +74,9 @@ public class SkipLevelAdObject : MonoBehaviour
     public void ShowAdForReward()
     {
         if (PlayerPrefs.GetInt("IsAdsRemove") == 0)
+        {
             _rewardedAdObject.Present();
+        }
         else
             GiveReward();
     }

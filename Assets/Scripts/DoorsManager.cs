@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Analytics;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,16 +14,21 @@ public class DoorsManager : MonoBehaviour
 
     public event UnityAction OnSetNewDoor;
     public event UnityAction OnOverDoors;
+    public event UnityAction<bool, int> TriggerEnterForKey;
 
     private void OnEnable()
     {
         _characterKeys.OnOpen += SetNewDoor;
+
+        foreach (var door in _doors)
+        {
+            door.OnTriggerEnterForKey += OnPlayerTriggerEnter;
+        }
     }
 
     private void Start()
     {
-        _currentDoorIndex = 0;
-        TargetKeysCount = _doors[_currentDoorIndex].TargetKeys;
+        _currentDoorIndex = PlayerPrefs.GetInt(PlayerPrefsParametrs.CurrentDoorIndex);
         OnSetNewDoor?.Invoke();
 
         foreach (Door door in _doors)
@@ -31,19 +37,37 @@ public class DoorsManager : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        foreach (var door in _doors)
+        {
+            door.OnTriggerEnterForKey -= OnPlayerTriggerEnter;
+        }
+    }
+
     private void SetNewDoor()
     {
+        GameAnalytics.gameAnalytics.LogEvent($"finish_quest{_currentDoorIndex+1}");
+
         _currentDoorIndex++;
+
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.CurrentDoorIndex, _currentDoorIndex);
 
         if (_currentDoorIndex < _doors.Count)
         {
-            TargetKeysCount = _doors[_currentDoorIndex].TargetKeys;
+           // TargetKeysCount = _doors[_currentDoorIndex].TargetKeys;
             OnSetNewDoor?.Invoke();
         }
         else
         {
             OnOverDoors?.Invoke();
         }
+    }
+
+    private void OnPlayerTriggerEnter(bool isTrigger, int keyCount)
+    {
+        TriggerEnterForKey?.Invoke(isTrigger, keyCount);
+        TargetKeysCount = keyCount;
     }
 }
 

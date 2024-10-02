@@ -19,6 +19,8 @@ public class InterstitialController : MonoBehaviour
     private bool _inGame;
     private bool _isPosible;
     public event UnityAction OnShowAd;
+    public event UnityAction BreakPanelActivate;
+    public event UnityAction AdClosed;
 
     private void OnEnable()
     {
@@ -74,6 +76,7 @@ public class InterstitialController : MonoBehaviour
 
     private IEnumerator StartCountdown()
     {
+        BreakPanelActivate?.Invoke();
         _isPosible = false;
         _breakPanel.SetActive(true);
         _timerText.text = "3";
@@ -101,11 +104,11 @@ public class InterstitialController : MonoBehaviour
 
     private void AdClosedHandler()
     {
-      //  Time.timeScale = 1;
+        AdClosed?.Invoke();
     }
 
     private void AdShowHandler()
     {
-      //  Time.timeScale = 0;
+
     }
 }
