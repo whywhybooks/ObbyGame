@@ -23,18 +23,21 @@
 {7ba2a3cd-87f4-4a48-a2d4-b4357b320ba7} event:/FX/Environment/Jet/Engine Loop
 {8f171d36-149f-4630-9f4a-0f29ecf1e67d} event:/FX/Environment/Moving objects/Moving Objects
 {1498abf4-4b3b-4c51-a230-07e83828632f} event:/FX/Environment/Vent/Vent
+{00bad3a0-7e98-44ea-a6c9-52054ff12025} event:/FX/Player/Ability Stop
+{65ec2718-2b19-418d-a511-947f499aadbe} event:/FX/Player/Ability use
 {9406d6d1-bd83-47b1-a1ef-cbc6cf190fbe} event:/FX/Player/Death Boy
 {f6ea810c-1c72-4c81-a4f2-073c9ec55367} event:/FX/Player/Death Girl
 {455eaf8f-de0f-44a5-9cb1-884ff42e9eab} event:/FX/Player/Jump Landing
 {0677b078-e448-406f-8233-54de1fe5c345} event:/FX/Player/Jump Start
 {b3f3c3c5-2e02-437a-93ed-3ede5127a56e} event:/FX/Player/Revive
 {3b0cc45d-da26-40bb-b03b-dfb25e0b3ab0} event:/FX/Player/Steps
+{90646135-5878-435c-8a0c-26afe1cf2706} event:/FX/UI/Ability Charge up
 {6fe4f781-6926-4b3f-ad9c-4ac83c01ec5f} event:/FX/UI/Button
 {12149e81-e532-4e03-90d4-3df2ab153da8} event:/FX/UI/Pickup
-{630ee150-7a27-4efc-b970-07bf6a89f5eb} event:/FX/UI/Quest End
 {bbca8a7c-0bd6-4d6d-819e-535791547321} event:/Music/Music
-{10067450-e8b9-4405-ad8d-0fcb78b2786b} event:/Snapshots/GameStatus
+{10067450-e8b9-4405-ad8d-0fcb78b2786b} event:/Snapshots/Game Status
 {d09099f8-1c26-4531-88fe-ebd2da947be9} event:/Snapshots/Music status
+{3ff84535-85ff-4d8a-a032-e4b106d1260f} parameter:/Ability
 {9567915d-a261-4530-8ed2-b6d58a949682} parameter:/Activation
 {892daf6c-380a-404d-a60c-f9cc8db33462} parameter:/Death
 {6bdcd1bd-f8da-4116-94e0-62916eeac3a8} parameter:/Event Cone Angle
@@ -43,6 +46,6 @@
 {95cc4c37-21e3-4c18-937c-53e714bf230b} parameter:/Music controll
 {bf3e1829-a329-4424-93d8-95929766cbad} parameter:/Speed
 {e58f07bd-fa67-4082-b46b-e326f1beecca} snapshot:/Music Off
-{4dc8ff3f-6bf9-4a73-ace1-4e4caa1577e5} snapshot:/Start game
+{bcbef307-282a-4c65-a588-c80c49d9a66c} snapshot:/Pause Game
 {7600bad2-fb31-4d3e-b47c-d6fabbf1c9b9} vca:/MUSIC VCA
 {a60b9111-abee-4c50-8909-da54611d9978} vca:/Scene VCA
