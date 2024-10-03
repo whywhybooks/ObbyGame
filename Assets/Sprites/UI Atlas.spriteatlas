@@ -75,6 +75,7 @@ SpriteAtlas:
     - 65ac1c9095f37124db007597e9ef846b: 21300000
     - fab5c4c0760216e4ba249ffd9557dfd6: 21300000
     - 231f780127985404fa56e41611c1a2ee: 21300000
+    - 95b885517aabb2949a62d2bca90825d1: 21300000
     - d61e8e911522f614793f79d298aa7d21: 21300000
     - a892afb1cdd0b2b418fa2d120acb1f6d: 21300000
     - be907ae16d72ca94795d4d916aca5a6f: 21300000
@@ -128,6 +129,7 @@ SpriteAtlas:
     - 58124c993c79b4a4c8f961067a6a0ccf: 21300000
     - 729b33a9559d4134cb393b1d4cb720d1: 21300000
     - 2e6c3cb9c7fe1934fb69b8ac0e01d2a8: 21300000
+    - 2c4573d9e9d68174ca5da9fdc2a2cb65: 21300000
     - d67395d988e190846b4a55e71625a44c: 21300000
     - b6b632f9f3dd4b640928a0365283360a: 21300000
     - 4d8b0d0a085ae494caa3ecc8c86ec79f: 21300000
@@ -153,6 +155,7 @@ SpriteAtlas:
     - 28da475ef407a424791c5d2f260a22d0: 21300000
     - 2710079ea966fe542a419392392f60b6: 21300000
     - d03eb1ce17cef1c4eb9cc29508d428fc: 21300000
+    - e3562fde259be9644a1b336e6196e4fd: 21300000
     - ae7f6cee021bbd940a46cde627192cff: 21300000
     - 9d9fb5febff732240808b6695cd0ca6b: 21300000
     - 1a01f83f75dd3674cba022903d539bb4: 21300000
@@ -176,6 +179,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 65ac1c9095f37124db007597e9ef846b, type: 3}
   - {fileID: 21300000, guid: fab5c4c0760216e4ba249ffd9557dfd6, type: 3}
   - {fileID: 21300000, guid: 231f780127985404fa56e41611c1a2ee, type: 3}
+  - {fileID: 21300000, guid: 95b885517aabb2949a62d2bca90825d1, type: 3}
   - {fileID: 21300000, guid: d61e8e911522f614793f79d298aa7d21, type: 3}
   - {fileID: 21300000, guid: a892afb1cdd0b2b418fa2d120acb1f6d, type: 3}
   - {fileID: 21300000, guid: be907ae16d72ca94795d4d916aca5a6f, type: 3}
@@ -229,6 +233,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 58124c993c79b4a4c8f961067a6a0ccf, type: 3}
   - {fileID: 21300000, guid: 729b33a9559d4134cb393b1d4cb720d1, type: 3}
   - {fileID: 21300000, guid: 2e6c3cb9c7fe1934fb69b8ac0e01d2a8, type: 3}
+  - {fileID: 21300000, guid: 2c4573d9e9d68174ca5da9fdc2a2cb65, type: 3}
   - {fileID: 21300000, guid: d67395d988e190846b4a55e71625a44c, type: 3}
   - {fileID: 21300000, guid: b6b632f9f3dd4b640928a0365283360a, type: 3}
   - {fileID: 21300000, guid: 4d8b0d0a085ae494caa3ecc8c86ec79f, type: 3}
@@ -254,6 +259,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 28da475ef407a424791c5d2f260a22d0, type: 3}
   - {fileID: 21300000, guid: 2710079ea966fe542a419392392f60b6, type: 3}
   - {fileID: 21300000, guid: d03eb1ce17cef1c4eb9cc29508d428fc, type: 3}
+  - {fileID: 21300000, guid: e3562fde259be9644a1b336e6196e4fd, type: 3}
   - {fileID: 21300000, guid: ae7f6cee021bbd940a46cde627192cff, type: 3}
   - {fileID: 21300000, guid: 9d9fb5febff732240808b6695cd0ca6b, type: 3}
   - {fileID: 21300000, guid: 1a01f83f75dd3674cba022903d539bb4, type: 3}
@@ -276,6 +282,7 @@ SpriteAtlas:
   - Chica_form1
   - star_icon_normal
   - quest form (3)
+  - form3
   - Frame 8
   - Checkpoint reached!
   - Frame 5
@@ -330,6 +337,7 @@ SpriteAtlas:
   - back purple
   - line_2
   - sound button_on
+  - loading full
   - line_3
   - back blue2
   - Frame 9 (1)
@@ -356,6 +364,7 @@ SpriteAtlas:
   - key_icon
   - Connection with space is lost... (1)
   - Frame 3
+  - loading empty
   - Baddy_form 2
   - Chica button_press
   - Frame 3 (1)
