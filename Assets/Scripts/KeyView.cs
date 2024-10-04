@@ -1,32 +1,29 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class KeyView : MonoBehaviour
 {
-    [SerializeField] private DoorsManager _doorsManager;
-    [SerializeField] private CharacterKeys _characterKeys;
+    [SerializeField] private Door _door;
     [SerializeField] private TMP_Text _counter;
     [SerializeField] private CanvasGroup _thisPanel;
 
+    private CharacterKeys _characterKeys;
     private int _targetKey;
 
     private void OnEnable()
     {
+        _characterKeys = FindObjectOfType<CharacterKeys>();
+
         _characterKeys.OnOpen += DeactivateDoor;
         _characterKeys.OnGetKey += UpdateText;
-        _doorsManager.OnOverDoors += ClosePanel;
-
-        _doorsManager.TriggerEnterForKey += SetActive;
+        _door.OnTriggerEnterForKey += SetActive;
     }
 
     private void OnDisable()
     {
         _characterKeys.OnGetKey -= UpdateText;
         _characterKeys.OnOpen -= DeactivateDoor;
-        _doorsManager.OnOverDoors -= ClosePanel;
-
-        _doorsManager.TriggerEnterForKey -= SetActive;
+        _door.OnTriggerEnterForKey -= SetActive;
     }
 
     private void ClosePanel()
@@ -51,7 +48,7 @@ public class KeyView : MonoBehaviour
 
     private void UpdateText()
     {
-        _counter.text = $"{_characterKeys.CurrentCount}/{_targetKey}";
+        _counter.text = $"{_characterKeys.CurrentCount}/{_door.TargetKeys}";
     }
 
     private void DeactivateDoor()

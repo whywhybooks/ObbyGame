@@ -96,7 +96,7 @@ public class PlayerInput : MonoBehaviour
 			return;
 		}
 
-        if (physicalCC.isGround == false)
+        if (physicalCC.isGround == false && physicalCC.LongJumpActive == false)
         {
             m_elapsedCoyoteJumpTime += Time.deltaTime;
 
@@ -163,6 +163,7 @@ public class PlayerInput : MonoBehaviour
             if (physicalCC.moveInput.magnitude > 1)
 			{
 				_animator.SetBool("IsRun", true);
+				_animator.SetFloat("Speed", Math.Min(1.5f, speed * physicalCC.moveInput.magnitude / 40));//Это для спид бустера, чтобы скорость анимации была максимум 1.5
 			}
 			else
 			{
@@ -198,7 +199,7 @@ public class PlayerInput : MonoBehaviour
 	{
 		if (_smoothRemoveAccelerationCoroutine != null)
 		{
-			StopCoroutine( _smoothRemoveAccelerationCoroutine );
+			StopCoroutine(_smoothRemoveAccelerationCoroutine);
 			_smoothRemoveAccelerationCoroutine = null;
 		}
 
@@ -208,7 +209,7 @@ public class PlayerInput : MonoBehaviour
 		}
 
 		speed *= multiplier;
-		_animator.SetFloat("Speed", 1.5f);
+	//	_animator.SetFloat("Speed", 1.5f);
 	}
 
 	public void SmoothRemoveAcceleration(float multiplier)
@@ -220,7 +221,7 @@ public class PlayerInput : MonoBehaviour
     public void RemoveAcceleration(float multiplier)
     {
         speed /= multiplier;
-        _animator.SetFloat("Speed", 1);
+       // _animator.SetFloat("Speed", 1);
     }
 
 	private IEnumerator SmoothRemoveAccelerationCoroutine(float multiplier)

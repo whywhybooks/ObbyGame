@@ -32,7 +32,7 @@ public class CharacterHealth : MonoBehaviour
     private bool _isDied;
     private bool _isFastKill;
 
-    private float _maxNotGroundTime = 2.7f;
+    private float _maxNotGroundTime = 3f;
     private float _elapsedNotGroundTime;
     public bool IsDied { get => _isDied; private set => _isDied = value; }
 
@@ -130,6 +130,9 @@ public class CharacterHealth : MonoBehaviour
 
         if (_physicalCC.isGround == false)
         {
+            if (_physicalCC.LongJumpActive == true)
+                return;
+            
             _elapsedNotGroundTime += Time.deltaTime;
 
             if (_elapsedNotGroundTime > _maxNotGroundTime)
