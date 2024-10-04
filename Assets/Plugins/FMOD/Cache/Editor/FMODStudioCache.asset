@@ -211,7 +211,59 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-7413639430834380362
+--- !u!114 &-7352661372722315825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX/Player/Ability use
+  m_EditorClassIdentifier: 
+  Path: event:/FX/Player/Ability use
+  Guid:
+    Data1: 1709975320
+    Data2: 1099770649
+    Data3: 2140410277
+    Data4: -1095919031
+  Banks:
+  - {fileID: -2988802598845888904}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8727886361375206994}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 14799
+--- !u!114 &-7059374925049396577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Gears/Speed
+  m_EditorClassIdentifier: 
+  Name: Speed
+  StudioPath: 
+  Min: 0
+  Max: 20
+  Default: 10
+  ID:
+    data1: 518467254
+    data2: 1327141513
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6648670558124301127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,83 +289,6 @@ MonoBehaviour:
   - Ability Start
   - Ability End
   Exists: 1
---- !u!114 &-7372074432909808341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Ability
-  m_EditorClassIdentifier: 
-  Name: Ability
-  StudioPath: parameter:/Ability
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 441159386
-    data2: 3968255311
-  Type: 2
-  IsGlobal: 1
-  Labels:
-  - Ability Start
-  - Ability End
-  Exists: 1
---- !u!114 &-7059374925049396577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Gears/Speed
-  m_EditorClassIdentifier: 
-  Name: Speed
-  StudioPath: 
-  Min: 0
-  Max: 20
-  Default: 10
-  ID:
-    data1: 518467254
-    data2: 1327141513
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-6608489568229804069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX/UI/Ability Charge up
-  m_EditorClassIdentifier: 
-  Path: event:/FX/UI/Ability Charge up
-  Guid:
-    Data1: -1872469707
-    Data2: 1130125432
-    Data3: -1356460918
-    Data4: 103272417
-  Banks:
-  - {fileID: -2988802598845888904}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1568
 --- !u!114 &-6592089166302157951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +316,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 30
   Length: 1400
+--- !u!114 &-4965868850829968445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX/UI/Ability Charge up
+  m_EditorClassIdentifier: 
+  Path: event:/FX/UI/Ability Charge up
+  Guid:
+    Data1: -1872469707
+    Data2: 1130125432
+    Data3: -1356460918
+    Data4: 103272417
+  Banks:
+  - {fileID: -2988802598845888904}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1568
 --- !u!114 &-3079848370576254061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +385,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638635129096317119
+  lastModified: 638635049687116581
   FileSizes: []
   Exists: 1
 --- !u!114 &-2198466100244793191
@@ -454,7 +456,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638635129096358360
+  lastModified: 638635049687136526
   FileSizes:
   - Name: 
     Value: 2938
@@ -486,34 +488,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 30
   Length: 0
---- !u!114 &-403611422579399457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX/Player/Ability Stop
-  m_EditorClassIdentifier: 
-  Path: event:/FX/Player/Ability Stop
-  Guid:
-    Data1: 12243872
-    Data2: 1156218520
-    Data3: 89311654
-    Data4: 622915919
-  Banks:
-  - {fileID: -2988802598845888904}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -7413639430834380362}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1770
 --- !u!114 &-154095496978978943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,18 +612,18 @@ MonoBehaviour:
   - {fileID: 5669292945956045885}
   - {fileID: 5094123609685392593}
   - {fileID: -8004260587272513619}
-  - {fileID: 5581369331885255509}
-  - {fileID: -6608489568229804069}
-  - {fileID: -403611422579399457}
+  - {fileID: -7352661372722315825}
+  - {fileID: -4965868850829968445}
+  - {fileID: 3836179051599722828}
   EditorParameters:
   - {fileID: 4531376024945506383}
   - {fileID: 3667197354475668681}
-  - {fileID: -7372074432909808341}
+  - {fileID: 7192535061265203492}
   MasterBanks:
   - {fileID: -2988802598845888904}
   StringsBanks:
   - {fileID: -2019003620653629749}
-  cacheTime: 638635129096358360
+  cacheTime: 638635049687136526
   cacheVersion: 131618
 --- !u!114 &639127238997990598
 MonoBehaviour:
@@ -865,6 +839,34 @@ MonoBehaviour:
   - Menu
   - SceneStart
   Exists: 1
+--- !u!114 &3836179051599722828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX/Player/Ability Stop
+  m_EditorClassIdentifier: 
+  Path: event:/FX/Player/Ability Stop
+  Guid:
+    Data1: 12243872
+    Data2: 1156218520
+    Data3: 89311654
+    Data4: 622915919
+  Banks:
+  - {fileID: -2988802598845888904}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6648670558124301127}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1770
 --- !u!114 &4531376024945506383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,34 +973,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &5581369331885255509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX/Player/Ability use
-  m_EditorClassIdentifier: 
-  Path: event:/FX/Player/Ability use
-  Guid:
-    Data1: 1709975320
-    Data2: 1099770649
-    Data3: 2140410277
-    Data4: -1095919031
-  Banks:
-  - {fileID: -2988802598845888904}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 9173308750148706622}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 14799
 --- !u!114 &5669292945956045885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1055,58 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 656
+--- !u!114 &7192535061265203492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ability
+  m_EditorClassIdentifier: 
+  Name: Ability
+  StudioPath: parameter:/Ability
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 441159386
+    data2: 3968255311
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Ability Start
+  - Ability End
+  Exists: 1
+--- !u!114 &8727886361375206994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ability use/Ability
+  m_EditorClassIdentifier: 
+  Name: Ability
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 441159386
+    data2: 3968255311
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Ability Start
+  - Ability End
+  Exists: 1
 --- !u!114 &8939359499654594573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,29 +1162,3 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 30
   Length: 31048
---- !u!114 &9173308750148706622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Ability use/Ability
-  m_EditorClassIdentifier: 
-  Name: Ability
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 441159386
-    data2: 3968255311
-  Type: 2
-  IsGlobal: 1
-  Labels:
-  - Ability Start
-  - Ability End
-  Exists: 1
