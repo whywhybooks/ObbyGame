@@ -49,12 +49,17 @@ public class PhysicalCC : MonoBehaviour
 	public bool applyCollision = true;
 	public float pushForce = 55f;
 	public bool collisionWithFixator = true;
+	public Coroutine _longJumpCoroutine;
 
 	public event UnityAction OnGround;
+    public event UnityAction OnLongJumpStart;
+    public event UnityAction OnLongJumpEnd;
 
-	public float VelocityY => moveVelocity.y;
+    public float VelocityY => moveVelocity.y;
 
-	private void Start()
+    public bool LongJumpActive { get => longJumpActive; private set => longJumpActive = value; }
+
+    private void Start()
 	{
 		cc = GetComponent<CharacterController>();
 	}
@@ -124,10 +129,10 @@ public class PhysicalCC : MonoBehaviour
 				float previousInertialVelocityY = 0;
                 inertiaVelocity.y -= gravity * Time.deltaTime;
 
-                if (previousInertialVelocityY > cc.velocity.y && longJumpActive == true)
+                if (previousInertialVelocityY > cc.velocity.y && LongJumpActive == true)
                 {
 					inertiaVelocity.y = 0;
-                    StartCoroutine(LongJump());
+                    _longJumpCoroutine = StartCoroutine(LongJump());
                     stopGravity = true;
                 }
 
@@ -139,21 +144,23 @@ public class PhysicalCC : MonoBehaviour
 	public void PlayLongJump(float longJumpDelayTime)
 	{
 		this.longJumpDelayTime = longJumpDelayTime;
-
-       // inertiaVelocity.y = 25;
-        longJumpActive = true;
+		OnLongJumpStart?.Invoke();
+        // inertiaVelocity.y = 25;
+        LongJumpActive = true;
     }
+	private float previousInertialVelocityY;
 
-	private IEnumerator LongJump()
+    private IEnumerator LongJump()
 	{
-		float previousInertialVelocityY = inertiaVelocity.y;
+	    previousInertialVelocityY = inertiaVelocity.y;
         inertiaVelocity.y = 0;
 
 		yield return new WaitForSeconds(longJumpDelayTime);
 
 		inertiaVelocity.y = previousInertialVelocityY;
 		stopGravity = false;
-		longJumpActive = false;
+		LongJumpActive = false;
+		OnLongJumpEnd?.Invoke();
     }
 
 	private void InertiaDamping()
@@ -179,8 +186,16 @@ public class PhysicalCC : MonoBehaviour
 		{
 			if (isGround == false)
 			{
-                OnGround?.Invoke();
+				if (LongJumpActive)
+				{
+                    stopGravity = false;
+                    LongJumpActive = false;
+                    OnLongJumpEnd?.Invoke();
+                    inertiaVelocity.y = previousInertialVelocityY;
+                    StopCoroutine(_longJumpCoroutine);
+                }
 
+                OnGround?.Invoke();
             }
             isGround = true;
 			//inertiaVelocity = Vector2.zero;

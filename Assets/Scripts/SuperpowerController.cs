@@ -1,4 +1,5 @@
 using Analytics;
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +8,7 @@ public class SuperpowerController : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private CharacterTypeChanger _characterTypeChanger;
+    [SerializeField] private int _targetCountSuperItem;
 
     [Header("Long-jump")]
     [SerializeField] private float _delayTime;
@@ -16,21 +18,23 @@ public class SuperpowerController : MonoBehaviour
     [SerializeField] private float _accelerationTime;
     [SerializeField] private float _multiplier;
 
-
     [Header("Collision Parametrs")]
     [SerializeField] private Transform _collisionPoint;
     [SerializeField] private Vector3 _cubeSize;
     [SerializeField] private LayerMask _superItemMask;
 
     private int _superItemCount;
+    private bool _hasAbility;
     private Collider[] _hits;
 
     public int SuperItemCount { get => _superItemCount; private set => _superItemCount = value; }
+    public int TargetCountSuperItem { get => _targetCountSuperItem; private set => _targetCountSuperItem = value; }
 
     public event UnityAction ChangeSuperItemCount;
     public event UnityAction PickupSuperItemCount;
     public event UnityAction OverSuperItemCount;
     public event UnityAction FillSuperItemCount;
+    public event UnityAction AbilityActivate;
 
     private void Start()
     {
@@ -47,68 +51,72 @@ public class SuperpowerController : MonoBehaviour
 
     private void Update()
     {
-        if (_superItemCount <= 0)
+        if (_superItemCount < TargetCountSuperItem)
             return;
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            _playerInput.LongJump(_longJumpHeight, _delayTime);
-            _superItemCount--;
-            ChangeSuperItemCount?.Invoke();
-
-            CheckCuperItemCount();
+            PlayPower();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            _playerInput.BoostSpeed(_multiplier);
-            StartCoroutine(SpeedBoost());
-            _superItemCount--;
-            ChangeSuperItemCount?.Invoke();
-
-            CheckCuperItemCount();
+            PlayPower();
         }
     }
 
     public bool PlayPower()
     {
-        if (_superItemCount <= 0)
+        if (_superItemCount < TargetCountSuperItem)
             return false;
 
-        if (_characterTypeChanger.CharacterType == CharacterType.Girl) // Если это девочка
-        {
-            _playerInput.LongJump(_longJumpHeight, _delayTime);
-            _superItemCount--;
-            ChangeSuperItemCount?.Invoke();
+        /*   if (_characterTypeChanger.CharacterType == CharacterType.Girl) // Если это девочка
+           {
+               _playerInput.LongJump(_longJumpHeight, _delayTime);
+               _superItemCount--;
+               ChangeSuperItemCount?.Invoke();
 
-            CheckCuperItemCount();
-            return true;
-         }
+               CheckCuperItemCount();
+               return true;
+            }*/
 
-        if (_characterTypeChanger.CharacterType == CharacterType.Man) // Если это мальчик
-        {
-            _playerInput.BoostSpeed(_multiplier);
-            StartCoroutine(SpeedBoost());
-            _superItemCount--;
-            ChangeSuperItemCount?.Invoke();
+        /* if (_characterTypeChanger.CharacterType == CharacterType.Man) // Если это мальчик
+         {
+             _playerInput.BoostSpeed(_multiplier);
+             StartCoroutine(SpeedBoost());
+             _superItemCount--;
+             ChangeSuperItemCount?.Invoke();
 
-            CheckCuperItemCount();
-            return true;
-        }
+             CheckCuperItemCount();
+             return true;
+         }*/
 
+        _playerInput.LongJump(_longJumpHeight, _delayTime);
+        _superItemCount -= TargetCountSuperItem;
+        PlayerPrefs.SetInt(PlayerPrefsParametrs.StarsCounter, _superItemCount);
+        ChangeSuperItemCount?.Invoke();
+
+        CheckCuperItemCount();
         return true;
     }
 
 
     private void CheckCuperItemCount()
     {
-        if (_superItemCount == 0)
+        if (_superItemCount < TargetCountSuperItem)
         {
             OverSuperItemCount?.Invoke();
+            _hasAbility = false;
         }
         else
         {
             FillSuperItemCount?.Invoke();
+
+            if (_hasAbility == false)
+            {
+                _hasAbility = true;
+                AbilityActivate?.Invoke();
+            }
         }
     }
 
