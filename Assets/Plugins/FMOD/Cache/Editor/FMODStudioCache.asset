@@ -263,32 +263,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-6648670558124301127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Ability Stop/Ability
-  m_EditorClassIdentifier: 
-  Name: Ability
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 441159386
-    data2: 3968255311
-  Type: 2
-  IsGlobal: 1
-  Labels:
-  - Ability Start
-  - Ability End
-  Exists: 1
 --- !u!114 &-6592089166302157951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +359,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638636534198738554
+  lastModified: 638636550095668871
   FileSizes: []
   Exists: 1
 --- !u!114 &-2198466100244793191
@@ -456,7 +430,7 @@ MonoBehaviour:
   Path: Assets/SoundForYuri/Mobile/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638636534198758502
+  lastModified: 638636550095698790
   FileSizes:
   - Name: 
     Value: 2938
@@ -623,7 +597,7 @@ MonoBehaviour:
   - {fileID: -2988802598845888904}
   StringsBanks:
   - {fileID: -2019003620653629749}
-  cacheTime: 638636534198758502
+  cacheTime: 638636550095698790
   cacheVersion: 131618
 --- !u!114 &639127238997990598
 MonoBehaviour:
@@ -862,8 +836,7 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters:
-  - {fileID: -6648670558124301127}
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 1770
